@@ -1,0 +1,67 @@
+Idea 1:
+Turn Based RPG
+---
+
+Fighting game, each enemy has 
+their turn, where they can attack,
+cast spells, or use items.
+
+---
+Inspirations:
+Pokemon franchise
+Final Fanatsy
+Undertale
+
+---
+Data Access Layer
+---
+
+Health Updates
+Damage Updates
+Debuffs/Buffs
+Item Management
+
+---
+Business Logic Layer
+---
+
+Attacks
+Healing
+Spells
+Item usage
+
+---
+Presentation Layer
+---
+
+---
+Idea 2:
+Card Game
+---
+
+Implementation of a known card game
+
+---
+Data Access Layer
+---
+
+Picking Up Cards
+Putting Down Cards
+Throwing away Cards
+Giving Cards to someone else
+
+---
+Business Logic Layer
+---
+
+Game Rules
+
+---
+Presentation Layer
+---
+
+---
+Multiplayer/Bot?
+
+---
+Idea 3:?
