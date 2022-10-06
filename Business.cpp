@@ -17,3 +17,5 @@ int fgv(Creature *player, Creature *enemy){
 	}
 }
 
+// Hello Matyas!
+
