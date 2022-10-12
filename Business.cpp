@@ -1,11 +1,13 @@
 #include "classes.h"
 
-int humanoid.turn(Creature *enemy){
+int humanoid.turn(Creature *enemy)
+{
 	//TODO:SHOW CHOICES
 	char choice = getChoice(), answer;
 	bool yourTurn = true;
 	while(yourTurn)
-	switch(choice){
+	switch(choice)
+    {
 		//FIGHT
 		case 'f':
 			yourTurn = false;
@@ -33,9 +35,9 @@ int Player::castSpell(Spell* spell,Enemy *enemy);
 int Player::attack(Enemy* enemy);
 
 int fight(Creature *player, Creature *enemy){
-	while(mindenki él){
-		int turn;	
-		if(turn = player->turn(enemy))
+	while(everyoneLives){
+		int turn;
+		if(turn == player->turn(enemy))
 			return player->turn;
 		if(enemy->turn(player))
 			return 2;
