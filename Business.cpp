@@ -43,3 +43,5 @@ int fight(Creature *player, Creature *enemy){
 	return 0;
 }
 
+// Hello Matyas!
+
