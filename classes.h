@@ -1,33 +1,23 @@
 #include <string>
+#include "spells.h"
+#include "items.h"
+#include "effects.h"
 
 class Item{
 	string name;
-};
-
-class Weapon: public Item{
-	int damage;
-};
-
-class Armor: public Item{
-	
 };
 
 class Spell{
 	int Cast(Creature *caster, Creature* enemy) = 0;
 };
 
-class Fireball: public Spell{
-	int Cast(Creature *caster, Creature* enemy){
-		enemy.damage(5*caster.tool.getMagicAdjust());
-	}
-}
-
-
 class Creature{
 	int hp,maxHp;
 	int strength;
+	Team *team;
+	vector <Effect>;
 public:
-	int attack();
+	int attack(Creature *enemy);
 };
 
 class Humanoid: public Creature{
@@ -40,3 +30,9 @@ class Humanoid: public Creature{
 class Player: public Humanoid{
 	
 };
+
+class Team{
+	string name;
+	vector <Team> allies;
+	vector <Team> enemies;
+}

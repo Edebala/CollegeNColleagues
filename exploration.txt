@@ -1,0 +1,28 @@
+Data Access Layer
+---
+
+---
+gridMap
+Map Drawing
+Single Unit Movement in 4 Directions
+Passable and Unpassable blocks
+
+Getting in a fight
+
+---
+Business Logic Layer
+---
+Walking
+Interactions
+Shop
+Map Loading
+
+---
+Spawner Blocks (When you get to a foresty place,
+you have a chance to get into a fight)
+
+NPC-s
+
+HUD
+
+
