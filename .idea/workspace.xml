@@ -12,7 +12,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e0e9478a-84e7-4c0a-b71a-0eebc812d659" name="Changes" comment="." />
+    <list default="true" id="e0e9478a-84e7-4c0a-b71a-0eebc812d659" name="Changes" comment=".">
+      <change beforePath="$PROJECT_DIR$/Business.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Business.cpp" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

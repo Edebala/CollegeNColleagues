@@ -44,4 +44,5 @@ int fight(Creature *player, Creature *enemy){
 }
 
 // Hello Matyas!
+// Clion test
 
