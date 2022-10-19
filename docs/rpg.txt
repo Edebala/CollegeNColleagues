@@ -1,0 +1,43 @@
+Turn Based RPG
+---
+
+Fighting game, each enemy has 
+their turn, where they can attack,
+cast spells, or use items.
+
+---
+Inspirations:
+Pokemon franchise
+Final Fanatsy
+Undertale
+
+---
+Data Access Layer
+---
+
+Health Updates
+Damage Updates
+Debuffs/Buffs
+Item Management
+
+---
+Health Updates
+---
+
+int heal();
+
+---
+Business Logic Layer
+---
+
+Attacks
+Healing
+Spells
+Item usage
+
+---
+Presentation Layer
+---
+
+SDL
+
