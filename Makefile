@@ -1,3 +1,7 @@
+all: build
+
 build: 
-	g++ main.cpp -o Program
+	g++ -Lsrc test.cpp -o Program -Iinclude
  
+clear:
+	rm Program
