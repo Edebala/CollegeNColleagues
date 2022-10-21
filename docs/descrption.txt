@@ -1,1 +1,64 @@
+----------------------
+College and Colleagues
+----------------------
+
+1.0 Intruduction
+
+College and Colleagues is a game engine for role playing games inspired by Pokemon and Final Fantasy games and the popular role playing table top game, Dungeons and Dragons. The project consists of two main parts; Exploration and Fighting.
+
+
+1.1 Exploration
+
+This part of the game is mainly responsible for creating the context of the game. This is where the player explores the map, interacts with other characters, picks fights and collects useful items on their journey. The world of the game consists of multiple locations connected together. These locations are shown in a top-down gridlike map, and are connected together by special areas, where the player can enter an another location.
+
+
+1.2 Fighting
+
+In this part of the game, the player has to use his resources and abilities carefully, to beat an opponent. The two opponents take turns to attack the opponents, cast spells or use items. The fight ends if either of the opponent's health points reach zero, the fight ends. The damage dealt by the attacks depends on many factors, like the strength of the attacker, the resistance of the defender, the weapon of the attacker, the armor of the defender and spell or item effects.
+
+
+2.0 Items
+
+The player can collect items in their inventory. These items can be put into different categories and subcategories.
+
+
+2.1 Weapons
+
+Weapons can be equipped, and can increase the damage of the player.
+
+
+2.2 Armor 
+
+Armor items increase the armor of the wearer. The more armor a fighter has, the less damage they take from an attack.
+
+
+2.3 Consumables
+
+This category contains items, like drinkable potions or throwable weapons. Consumable items dissapear from the inventory after usage.
+
+
+3.0 Spells
+
+Spells can be cast using a staff, and can affect the fight in various ways. They can be categorized into four different types. Damaging spells, Healing spells, Buffs and Debuffs. Casting a spell costs mana points.
+
+
+3.1 Damaging Spells
+
+Damaging Spells damage the opponent. The damage dealt depends on the magical power of the staff.
+
+
+3.2 Healing spells
+
+Healing Spells increase the health of the caster. The ammount of the healing depends on the magical power of the staff.
+
+
+3.3 Buffs
+
+Buffs apply a positive effect on the caster, which can help in the fight. They can shield from incoming damage, make the caster regenerate health points over time, or increase the strength of the caster.
+
+
+3.4 Debuffs
+
+Debuffs apply a negative effect on the opponent, making their life harder. They can lose health over time, have their armor and damage decreased or they can be stunned, and skip several turns.
+
 
