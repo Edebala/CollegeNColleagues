@@ -26,3 +26,24 @@ NPC-s
 HUD
 
 
+Game Loop
+	Draw
+	Input
+		Movement:
+			Collision Check
+				Move
+					Change Map
+					Get In Fight
+		Menu:
+			Inventory:
+				Draw Inventory
+				Inventory Input
+					Use Items
+
+Get In Fight
+	Fight Loop
+		Draw
+		Input
+			Attack
+			Use Item
+			Cast Spell
