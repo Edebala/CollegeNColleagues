@@ -33,12 +33,12 @@ Game Loop
 			Collision Check
 				Move
 					Change Map
-					Get In Fight
+				Get In Fight
 		Menu:
 			Inventory:
 				Draw Inventory
 				Inventory Input
-					Use Items
+					Use Item
 
 Get In Fight
 	Fight Loop
