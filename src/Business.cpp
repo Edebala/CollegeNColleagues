@@ -1,50 +1,31 @@
 #include "classes.h"
+#include <string>
 
-int humanoid.turn(Creature *enemy)
-{
-	//TODO:SHOW CHOICES
-	char choice = getChoice(), answer;
-	bool yourTurn = true;
-	while(yourTurn)
-	switch(choice)
-    {
-		//FIGHT
-		case 'f':
-			yourTurn = false;
-			attack(enemy);
-		break;
-		//USE ITEM
-		case 'i':
-			Item* chosenItem = chooseItem();
-			if(answer = chosenItem.use(player,enemy)>0)
-				yourTurn = false;
-		break;
-		//CAST SPELL
-		case 's':
-			yourTurn = false;
-		break;
-	}
+int fight(Creature *player, Creature *enemy) {
+    bool playerTurn = true;
+    int done;
+    while (player.getHp() > 0 && enemy.getHp() > 0) {
+        if (playerTurn) {
+            // move 1 -> fight/attack
+            // move 2 -> cast spell
+            // move 3 -> use item
+            int move = getMove();
+            switch (move) {
+                case 1:
+                    done = attack(Creature* player, Creature* enemy);
+            }
+        } else {
+
+        }
+    }
 }
+int Creature::attack(Creature* player, Creature *enemy) {
+    int enemyHP = enemy.getHp();
+    int strength = player.getStrength();
+    int weaponDMG = player.getWeaponDmg();
+    int armorHP = enemy.getArmor();
+    int damage = 2 * strength * weaponDMG / armorHP;
+    if(enemy)
 
-int creature.turn(Creature *enemy){
-	attack(enemy);
+    int newEnemyHp = enem
 }
-
-int Player::useItem(Item *item,Enemy *enemy);
-int Player::castSpell(Spell* spell,Enemy *enemy);
-int Player::attack(Enemy* enemy);
-
-int fight(Creature *player, Creature *enemy){
-	while(everyoneLives){
-		int turn;
-		if(turn == player->turn(enemy))
-			return player->turn;
-		if(enemy->turn(player))
-			return 2;
-	}
-	return 0;
-}
-
-// Hello Matyas!
-// Clion test
-

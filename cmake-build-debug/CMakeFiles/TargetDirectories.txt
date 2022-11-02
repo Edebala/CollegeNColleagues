@@ -1,0 +1,3 @@
+/home/matyko/Desktop/CollegeNColleagues/cmake-build-debug/CMakeFiles/CollegeNColleagues.dir
+/home/matyko/Desktop/CollegeNColleagues/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/matyko/Desktop/CollegeNColleagues/cmake-build-debug/CMakeFiles/rebuild_cache.dir
