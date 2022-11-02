@@ -6,6 +6,9 @@
   <component name="CMakePresetLoader">{
   &quot;useNewFormat&quot;: true
 }</component>
+  <component name="CMakeRunConfigurationManager">
+    <generated />
+  </component>
   <component name="CMakeSettings">
     <configurations>
       <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
@@ -26,6 +29,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
@@ -33,6 +37,39 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitToolBoxStore">
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="main" />
+                    <option name="lastUsedInstant" value="1667406695" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="origin/Matyas" />
+                    <option name="lastUsedInstant" value="1667406515" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="Matyas" />
+                    <option name="lastUsedInstant" value="1667405945" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="Data-Access-Layer(Biro-Apor)" />
+                    <option name="lastUsedInstant" value="1667402771" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
   </component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
@@ -53,26 +90,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "last_opened_file_path": "C:/Users/matya/Desktop/Software Project/SoftwaresNSystems",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/matya/Desktop/Software Project/SoftwaresNSystems&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
