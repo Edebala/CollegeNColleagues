@@ -1,6 +1,7 @@
 #include <string>
 #include <vector>
 #include "items.h"
+#include "effects.h"
 
 using namespace std;
 
@@ -16,7 +17,7 @@ public:
 
 class Humanoid: public Creature{
     Armor *armor;
-    Tool *weapon;
+    Weapon *weapon;
 public:
     Humanoid();
     int castSpell(Spell*,Enemy*);
