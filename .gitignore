@@ -9,4 +9,5 @@ CollegeNColleagues/CollegeNColleagues.xcodeproj/project.xcworkspace/xcshareddata
 CollegeNColleagues/CollegeNColleagues.xcodeproj/project.xcworkspace/xcuserdata/aporka.xcuserdatad/UserInterfaceState.xcuserstate
 CollegeNColleagues/CollegeNColleagues.xcodeproj/xcuserdata/aporka.xcuserdatad/xcschemes/xcschememanagement.plist
 CollegeNColleagues/CollegeNColleagues/main.cpp
-CollegeNColleagues/cmake-build-debug
+CollegeNColleagues/cmake-build-debug.idea/
+cmake-build-debug
