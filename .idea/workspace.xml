@@ -20,14 +20,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e0e9478a-84e7-4c0a-b71a-0eebc812d659" name="Changes" comment="CLion push test">
-      <change afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/SoftwaresNSystems.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/classes.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/classes.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Business.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Business.cpp" afterDir="false" />
-    </list>
+    <list default="true" id="e0e9478a-84e7-4c0a-b71a-0eebc812d659" name="Changes" comment="CLion push test" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -116,7 +109,7 @@
       <workItem from="1665589886837" duration="252000" />
       <workItem from="1665590151299" duration="17028000" />
       <workItem from="1667320270338" duration="4000" />
-      <workItem from="1667399984250" duration="1803000" />
+      <workItem from="1667399984250" duration="2495000" />
     </task>
     <task id="LOCAL-00001" summary=".">
       <created>1665584981590</created>
