@@ -22,10 +22,9 @@
   <component name="ChangeListManager">
     <list default="true" id="e0e9478a-84e7-4c0a-b71a-0eebc812d659" name="Changes" comment="CLion push test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-8360179c621afb8534ec.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2022-11-02T14-57-35-0221.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/build.ninja" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/include/classes.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/classes.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/items.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/items.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Business.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Business.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +42,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="SWAP_SIDES_IN_COMPARE_BRANCHES" value="true" />
   </component>
   <component name="GitToolBoxStore">
     <option name="recentBranches">
