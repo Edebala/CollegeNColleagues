@@ -22,9 +22,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e0e9478a-84e7-4c0a-b71a-0eebc812d659" name="Changes" comment="CLion push test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/classes.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/classes.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/items.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/items.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Business.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Business.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +51,7 @@
                 <list>
                   <RecentBranch>
                     <option name="branchName" value="Matyas" />
-                    <option name="lastUsedInstant" value="1667402895" />
+                    <option name="lastUsedInstant" value="1667405945" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="Data-Access-Layer(Biro-Apor)" />
@@ -114,12 +111,12 @@
   }
 }</component>
   <component name="RunManager">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+    <configuration name="CollegeNColleagues" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="CollegeNColleagues" TARGET_NAME="CollegeNColleagues" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="CollegeNColleagues" RUN_TARGET_NAME="CollegeNColleagues">
       <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CollegeNColleagues" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="CollegeNColleagues" TARGET_NAME="CollegeNColleagues" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="CollegeNColleagues" RUN_TARGET_NAME="CollegeNColleagues">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -141,6 +138,7 @@
       <workItem from="1665590151299" duration="17028000" />
       <workItem from="1667320270338" duration="4000" />
       <workItem from="1667399984250" duration="2495000" />
+      <workItem from="1667406192336" duration="4000" />
     </task>
     <task id="LOCAL-00001" summary=".">
       <created>1665584981590</created>
