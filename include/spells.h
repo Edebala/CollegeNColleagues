@@ -1,15 +1,19 @@
-class Spell;
+class Spell{
+public:
+    int Cast(Creature *caster, Creature* enemy) = 0;
+};
 
 class Fireball: public Spell{
-	int Cast(Creature *caster, Creature* enemy){
-		enemy.damage(5*caster.tool.getMagicAdjust());
+public:
+    int Cast(Creature *caster, Creature* enemy){
+		enemy->damage(5*caster.tool.getMagicAdjust());
 	}
 }
 
 class PoisonGas: public Spell{
+public:
 	int Cast(Creature *caster, Creature* enemy){
-
-		enemy.damage(5*caster.tool.getMagicAdjust());
+		enemy->damage(2*caster.tool.getMagicAdjust());
 	}
 }
 
