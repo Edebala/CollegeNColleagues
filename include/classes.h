@@ -17,12 +17,12 @@ class Creature{
     Team *team;
     vector <Effect>;
 public:
-    int attack(Creature *enemy);
+    int attack(Creature* player, Creature *enemy);
 };
 
 class Humanoid: public Creature{
     Armor *armor;
-    Tool *weapon;
+    Weapon *weapon;
     int castSpell(Spell*,Enemy*);
     int useItem();
 };
