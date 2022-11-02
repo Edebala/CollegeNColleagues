@@ -5,3 +5,4 @@ test/Program
 *.swp
 xcode/xcode.xcodeproj/project.xcworkspace/xcuserdata/aporka.xcuserdatad/UserInterfaceState.xcuserstate
 xcode/xcode.xcodeproj/project.xcworkspace/contents.xcworkspacedata
+cmake-build-debug/
