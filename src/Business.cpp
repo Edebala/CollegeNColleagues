@@ -34,6 +34,15 @@ int Player::useItem(Item *item,Enemy *enemy);
 int Player::castSpell(Spell* spell,Enemy *enemy);
 int Player::attack(Enemy* enemy);
 
+// strength
+int Creature::attack(Creature *enemy) {
+    if(enemy.getHp() > 0)
+    {
+        float damage = ;
+
+    }
+}
+
 int fight(Creature *player, Creature *enemy){
 	while(everyoneLives){
 		int turn;
@@ -44,7 +53,4 @@ int fight(Creature *player, Creature *enemy){
 	}
 	return 0;
 }
-
-// Hello Matyas!
-// Clion test
 

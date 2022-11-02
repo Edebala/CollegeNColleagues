@@ -2,9 +2,13 @@
 #include "spells.h"
 #include "items.h"
 #include "effects.h"
+#include <string>
+#include <vector>
+
+
 
 class Item{
-	string name;
+	std::string name;
 };
 
 class Spell{
@@ -13,7 +17,7 @@ class Spell{
 
 class Creature{
 	int hp,maxHp;
-	int strength;
+	int strength; // [0, 10]
 	Team *team;
 	vector <Effect>;
 public:
@@ -22,7 +26,7 @@ public:
 
 class Humanoid: public Creature{
 	Armor *armor;
-	Tool *weapon;
+	Weapon *weapon;
 	int castSpell(Spell*,Enemy*);
 	int useItem();
 };
@@ -32,7 +36,7 @@ class Player: public Humanoid{
 };
 
 class Team{
-	string name;
-	vector <Team> allies;
-	vector <Team> enemies;
+	std::string name;
+	std::vector<Team> allies;
+	std::vector<Team> enemies;
 }
