@@ -1,3 +1,4 @@
+#pragma once
 #include <string>
 #include <vector>
 #include "items.h"
@@ -5,6 +6,8 @@
 
 using namespace std;
 class Humanoid;
+class Weapon;
+class Armor;
 
 class Creature{
     string name;
@@ -12,7 +15,7 @@ class Creature{
     int strength;
     vector<Effect> effect;
 public:
-    Creature(string name, int hp, int maxHp, int strength, vector<Effect> effect);
+    Creature(const string& name, int hp, int maxHp, int strength, vector<Effect> effect);
     void setHp(int hp);
     void setMaxHp(int maxHp);
     
@@ -31,7 +34,7 @@ class Humanoid{
     Armor *armor;
     Weapon *weapon;
 public:
-    Humanoid(string name, int hp, int maxHp, int strength, vector<Effect> effect, Armor *armor, Weapon *weapon);
+    Humanoid(const string& name, int hp, int maxHp, int strength, vector<Effect> effect, Armor *armor, Weapon *weapon);
 
     int getHp() const;
     int getStrength() const;
@@ -48,7 +51,7 @@ public:
 
 // Creature functions implementation
 
-Creature::Creature(string name, int hp, int maxHp, int strength, vector<Effect> effect){
+Creature::Creature(const string& name, int hp, int maxHp, int strength, vector<Effect> effect){
     this->name = name;
     this->hp = hp;
     this->maxHp = maxHp;
@@ -98,7 +101,7 @@ bool Creature::attack(Humanoid* enemy){
 
 // Humanoid functions implementation
 
-Humanoid::Humanoid(string name, int hp, int maxHp, int strength, vector<Effect> effect, Armor *armor, Weapon *weapon){
+Humanoid::Humanoid(const string& name, int hp, int maxHp, int strength, vector<Effect> effect, Armor *armor, Weapon *weapon){
     this->name = name;
     this->hp = hp;
     this->maxHp = maxHp;
@@ -147,6 +150,5 @@ bool Humanoid::attack(Creature *enemy) {
     else
         return false;
 }
-
 
 

@@ -6,12 +6,12 @@ class Item;
 class Item{
     string name;
 public:
-    Item(string name);
+    Item(const string& name);
     string getName();
     void setName(string name);
 };
 
-Item::Item(string name){
+Item::Item(const string& name){
     this->name = name;
 }
 
@@ -26,11 +26,11 @@ string Item::getName(){
 class Weapon: public Item{
 	int damage;
 public:
-    Weapon(string name, int damage);
+    Weapon(const string& name, int damage);
     int getDamage() const;
 };
 
-Weapon::Weapon(string name, int damage) : Item(name) {
+Weapon::Weapon(const string& name, int damage) : Item(name) {
     this->damage = damage;
 }
 
@@ -41,11 +41,11 @@ int Weapon::getDamage() const {
 class Armor: public Item{
 	int defense;
 public:
-    Armor(string name, int defense);
+    Armor(const string& name, int defense);
     int getDefense() const;
 };
 
-Armor::Armor(string name, int defense) : Item(name) {
+Armor::Armor(const string& name, int defense) : Item(name) {
     this->defense = defense;
 }
 
