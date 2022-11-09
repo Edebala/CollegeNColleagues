@@ -1,6 +1,7 @@
 #include <string>
 
 using namespace std;
+class Item;
 
 class Item{
     string name;
