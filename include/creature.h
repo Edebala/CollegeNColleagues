@@ -18,7 +18,7 @@ public:
     int getHp();
     int getMaxHp();
     
-    bool attack(Creature *enemy);
+    virtual bool attack(Creature *enemy);
 };
 
 class Humanoid: public Creature{
@@ -30,7 +30,7 @@ public:
     int castSpell(Spell*, Enemy*);
     int useItem();
     
-    virtual bool attack(Creature *enemy);
+    bool attack(Creature *enemy);
 };
 
 // Creature
