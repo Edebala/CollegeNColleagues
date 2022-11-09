@@ -11,9 +11,43 @@ public:
     void setName(string name);
 };
 
-Item::Item(const string& name){
+class Weapon: public Item{
+	int damage;
+	use();	//Equip
+	Weapon();
+};
+
+class Armor: public Item{
+	int defense;
+public:
+	use();	//Equip
+	getDefense();
+	Armor();
+};
+
+//Ez nem a Headerbe valo
+Item::Item(string name){
     this->name = name;
-}
+};
+
+//Ez nem a Headerbe valo
+string Item::getName(){
+    return this->name;
+};
+
+class Consumable: public Item{
+	public:
+		use();
+};
+
+class Throwable: public Consumable{
+	int dmg;
+};
+
+ Usable: public Consumable{
+public:
+	
+};
 
 void Item::setName(string name) {
     this->name = name;

@@ -3,6 +3,7 @@ test/.DS_Store
 .DS_Store
 test/Program
 *.swp
-xcode/xcode.xcodeproj/project.xcworkspace/xcuserdata/aporka.xcuserdatad/UserInterfaceState.xcuserstate
-xcode/xcode.xcodeproj/project.xcworkspace/contents.xcworkspacedata
+xcode
 cmake-build-debug/
+CollegeNColleagues/
+Program
