@@ -1,4 +1,3 @@
-#include "classes.h"
 #include <string>
 
 int fight(Creature *player, Creature *enemy) {
