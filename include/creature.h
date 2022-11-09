@@ -12,17 +12,28 @@ class Creature{
     vector<Effect> effect;
 public:
     Creature(string name, int hp, int maxHp, int strength, vector<Effect> effect);
-    int attack(Creature *enemy);
+    void setHp(int hp);
+    void setMaxHp(int maxHp);
+    
+    int getHp();
+    int getMaxHp();
+    
+    bool attack(Creature *enemy);
 };
 
 class Humanoid: public Creature{
     Armor *armor;
     Weapon *weapon;
 public:
-    Humanoid();
-    int castSpell(Spell*,Enemy*);
+    Humanoid(string name, int hp, int maxHp, int strength, vector<Effect> effect, Armor *armor, Tool *weapon);
+    
+    int castSpell(Spell*, Enemy*);
     int useItem();
+    
+    virtual bool attack(Creature *enemy);
 };
+
+// Creature
 
 Creature::Creature(string name, int hp, int maxHp, int strength, vector<Effect> effect){
     this->name = name;
@@ -32,9 +43,33 @@ Creature::Creature(string name, int hp, int maxHp, int strength, vector<Effect> 
     this->effect = effect;
 }
 
+void Creature::setHp(int hp){
+    this->hp = hp;
+}
+
+void Creature::setMaxHp(int maxHp){
+    this->maxHp = maxHp;
+}
+
+int Creature::getHp(){
+    return this->hp;
+}
+
+int Creature::getMaxHp(){
+    return this->maxHp;
+}
+
+void Creature::attack(Creature *enemy){
+    enemy->setHp(enemy->getHp - this->strength);
+}
+
+// Humanoid
+
 Humanoid::Humanoid(string name, int hp, int maxHp, int strength, vector<Effect> effect, Armor *armor, Tool *weapon) :
 Creature(name, hp, maxhp, strength, effect){
     this->armor = armor;
     this->weapon = weapon;
 }
+
+
 
