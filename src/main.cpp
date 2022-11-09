@@ -40,23 +40,23 @@ void drawMap(int n,int m,int **map,SDL_Renderer *renderer,int x, int y){
 		}
 	}
  	SDL_RenderPresent(renderer);
-	sleep(1);
 }
 
 int main(int argc, const char * argv[]) {
 	SDL_Window *window = SDL_CreateWindow(
 	"CollegeNColleges",SDL_WINDOWPOS_CENTERED,
-	SDL_WINDOWPOS_CENTERED,800,800,
+	SDL_WINDOWPOS_CENTERED,1200,1200,
 	SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN);
 	SDL_Renderer *renderer = SDL_CreateRenderer(
 	window, -1, SDL_RENDERER_ACCELERATED);
 	SDL_Event event;
-	int n=13,m=16,x=6,y=6;
+	int n=20,m=24,x=6,y=6;
 	int **map = createMap(n,m);
 	const unsigned char* key;
 	while(x<m-1){
 		SDL_PollEvent(&event);
 		key = SDL_GetKeyboardState(0);
+		usleep(50000);
 		if(key[SDL_SCANCODE_W]) y--;
 		if(key[SDL_SCANCODE_S]) y++;
 		if(key[SDL_SCANCODE_A]) x--;
