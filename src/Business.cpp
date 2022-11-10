@@ -3,7 +3,7 @@
 int fight(Creature *player, Creature *enemy) {
     bool playerTurn = true;
     bool done;
-    while (player.getHp() > 0 && enemy.getHp() > 0) {
+    while (player->getHp() > 0 && enemy->getHp() > 0) {
         if (playerTurn) {
             // move 1 -> fight/attack
             // move 2 -> cast spell
