@@ -3,7 +3,7 @@
 int fight(Creature *player, Creature *enemy) {
     bool playerTurn = true;
     bool done;
-    while (player.getHp() > 0 && enemy.getHp() > 0) {
+    while (player->getHp() > 0 && enemy->getHp() > 0) {
         if (playerTurn) {
             // move 1 -> fight/attack
             // move 2 -> cast spell
@@ -44,48 +44,3 @@ int fight(Creature *player, Creature *enemy) {
         }
     }
 }
-bool Creature::attack(Creature* player, Creature *enemy) {
-    int enemyHP = enemy->getHp();
-    int strength = player->getStrength();
-    int weaponDamage = player->getWeaponDmg();
-    int armor = enemy->getArmor();
-    int damage = 2 * strength * weaponDamage / armor;
-    
-    int newEnemyHp;
-    if(enemyHP > damage)
-    {
-    	newEnemyHp = enemyHP - damage;	
-    }
-    else
-    {
-    	newEnemyHp = 0;
-    }
-    enemy->setHp(newEnemyHp);
-    
-    if(enemyHP != enemy->getHp())
-    {
-    	return true;
-    }
-    else
-    {
-    	return false;
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
