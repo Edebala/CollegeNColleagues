@@ -5,6 +5,7 @@
 #include "effects.h"
 
 using namespace std;
+
 class Humanoid;
 class Weapon;
 class Armor;
@@ -16,22 +17,26 @@ class Creature{
     vector<Effect> effect;
 public:
     Creature(const string& name, int hp, int maxHp, int strength, vector<Effect> effect);
-    void setName(const string& name);
+    
+	// setters
+	void setName(const string& name);
     void setHp(int hp);
     void setMaxHp(int maxHp);
     void setStrength(int strength);
     void setEffect(vector<Effect> effect);
 
+	// getters
     string getName();
     int getHp() const;
     int getMaxHp() const;
     int getStrength() const;
     vector<Effect> getEffect() const;
 
-    bool attack(Humanoid *enemy) const;
+	// actions
+    virtual bool attack(Humanoid *enemy) const;
 };
 
-class Humanoid{
+class Humanoid : public Creature{
     string name;
     int hp, maxHp;
     int strength;
@@ -41,24 +46,19 @@ class Humanoid{
 public:
     Humanoid(const string& name, int hp, int maxHp, int strength, vector<Effect> effect, Armor *armor, Weapon *weapon);
 
-    void setName(const string& name);
-    void setHp(int hp);
-    void setMaxHp(int maxHp);
-    void setStrength(int strength);
-    void setEffect(vector<Effect> effect);
+	//setters
     void setArmor(Armor* armor);
     void setWeapon(Weapon* weapon);
 
-    int getHp() const;
-    int getStrength() const;
+	// getters
     Weapon* getWeapon() const;
     Armor* getArmor() const;
-
-
-//    int castSpell(Spell*, Enemy*);
-//    int useItem();
-
-    bool attack(Creature *enemy) const;
+    	
+	//actions
+	bool castSpell(Spell*, Creature*);
+	bool attack(Creature *enemy);
+	bool useItem(Item*, Creature*);
+	bool useItem(Item*, Humanoid*);
 };
 
 // Creature functions implementation
