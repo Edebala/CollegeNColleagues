@@ -1,3 +1,5 @@
+#include "creature.h"
+
 Creature::Creature(const string& name, int hp, int maxHp, int strength, vector<Effect> effect){
     this->name = name;
     this->hp = hp;
@@ -78,40 +80,12 @@ Humanoid::Humanoid(const string& name, int hp, int maxHp, int strength, vector<E
     this->weapon = weapon;
 }
 
-void Humanoid::setName(const string &name) {
-    this->name = name;
-}
-
-void Humanoid::setHp(int hp){
-    this->hp = hp;
-}
-
-void Humanoid::setMaxHp(int maxHp) {
-    this->maxHp = maxHp;
-}
-
-void Humanoid::setStrength(int strength) {
-    this->strength = strength;
-}
-
-void Humanoid::setEffect(vector<Effect> effect) {
-    this->effect = effect;
-}
-
 void Humanoid::setArmor(Armor* armor){
     this->armor = armor;
 }
 
 void Humanoid::setWeapon(Weapon* weapon){
     this->weapon = weapon;
-}
-
-int Humanoid::getHp() const{
-    return this->hp;
-}
-
-int Humanoid::getStrength() const{
-    return this->strength;
 }
 
 Weapon* Humanoid::getWeapon() const{
@@ -141,3 +115,8 @@ bool Humanoid::attack(Creature *enemy) const {
     else
         return false;
 }
+
+
+
+
+
