@@ -16,14 +16,19 @@ class Creature{
     vector<Effect> effect;
 public:
     Creature(const string& name, int hp, int maxHp, int strength, vector<Effect> effect);
+    void setName(const string& name);
     void setHp(int hp);
     void setMaxHp(int maxHp);
-    
+    void setStrength(int strength);
+    void setEffect(vector<Effect> effect);
+
+    string getName();
     int getHp() const;
     int getMaxHp() const;
     int getStrength() const;
+    vector<Effect> getEffect() const;
 
-    bool attack(Humanoid *enemy);
+    bool attack(Humanoid *enemy) const;
 };
 
 class Humanoid{
@@ -36,17 +41,24 @@ class Humanoid{
 public:
     Humanoid(const string& name, int hp, int maxHp, int strength, vector<Effect> effect, Armor *armor, Weapon *weapon);
 
+    void setName(const string& name);
+    void setHp(int hp);
+    void setMaxHp(int maxHp);
+    void setStrength(int strength);
+    void setEffect(vector<Effect> effect);
+    void setArmor(Armor* armor);
+    void setWeapon(Weapon* weapon);
+
     int getHp() const;
     int getStrength() const;
-    int getWeaponDmg() const;
-    int getArmorDfs() const;
+    Weapon* getWeapon() const;
+    Armor* getArmor() const;
 
-    void setHp(int hp);
 
 //    int castSpell(Spell*, Enemy*);
 //    int useItem();
 
-    bool attack(Creature *enemy);
+    bool attack(Creature *enemy) const;
 };
 
 // Creature functions implementation
@@ -59,12 +71,28 @@ Creature::Creature(const string& name, int hp, int maxHp, int strength, vector<E
     this->effect = effect;
 }
 
+void Creature::setName(const string& name){
+    this->name = name;
+}
+
 void Creature::setHp(int hp){
     this->hp = hp;
 }
 
 void Creature::setMaxHp(int maxHp){
     this->maxHp = maxHp;
+}
+
+void Creature::setStrength(int strength){
+    this->strength = strength;
+}
+
+void Creature::setEffect(vector<Effect> effect){
+    this->effect = effect;
+}
+
+string Creature::getName(){
+    return this->name;
 }
 
 int Creature::getHp() const{
@@ -79,10 +107,14 @@ int Creature::getStrength() const {
     return this->strength;
 }
 
-bool Creature::attack(Humanoid* enemy){
+vector<Effect> Creature::getEffect() const {
+    return this->effect;
+}
+
+bool Creature::attack(Humanoid* enemy) const{
     int enemyHp = enemy->getHp();
     int strength = this->getStrength();
-    int armor = enemy->getArmorDfs();
+    int armor = enemy->getArmor()->getDefense();
     int damage = 2 * strength / armor;
 
     int newEnemyHp;
@@ -111,6 +143,34 @@ Humanoid::Humanoid(const string& name, int hp, int maxHp, int strength, vector<E
     this->weapon = weapon;
 }
 
+void Humanoid::setName(const string &name) {
+    this->name = name;
+}
+
+void Humanoid::setHp(int hp){
+    this->hp = hp;
+}
+
+void Humanoid::setMaxHp(int maxHp) {
+    this->maxHp = maxHp;
+}
+
+void Humanoid::setStrength(int strength) {
+    this->strength = strength;
+}
+
+void Humanoid::setEffect(vector<Effect> effect) {
+    this->effect = effect;
+}
+
+void Humanoid::setArmor(Armor* armor){
+    this->armor = armor;
+}
+
+void Humanoid::setWeapon(Weapon* weapon){
+    this->weapon = weapon;
+}
+
 int Humanoid::getHp() const{
     return this->hp;
 }
@@ -119,22 +179,18 @@ int Humanoid::getStrength() const{
     return this->strength;
 }
 
-int Humanoid::getWeaponDmg() const{
-    return this->weapon->getDamage();
+Weapon* Humanoid::getWeapon() const{
+    return this->weapon;
 }
 
-int Humanoid::getArmorDfs() const{
-    return this->armor->getDefense();
+Armor* Humanoid::getArmor() const{
+    return this->armor;
 }
 
-void Humanoid::setHp(int hp){
-    this->hp = hp;
-}
-
-bool Humanoid::attack(Creature *enemy) {
+bool Humanoid::attack(Creature *enemy) const {
     int enemyHp = enemy->getHp();
     int strength = this->getStrength();
-    int weaponDamage = this->getWeaponDmg();
+    int weaponDamage = this->weapon->getDamage();
     int damage = 2 * strength * weaponDamage;
 
     int newEnemyHp;
