@@ -7,14 +7,14 @@ class Item{
 public:
     Item(const string& name);
     string getName();
-    void setName(string name);
+    void setName(const string& name);
 };
 
 Item::Item(const string& name){
     this->name = name;
 }
 
-void Item::setName(string name) {
+void Item::setName(const string& name) {
     this->name = name;
 }
 
