@@ -54,9 +54,4 @@ public:
 	//bool castSpell(Spell*, Creature*);
 	bool attack(Creature *enemy) const;
 	bool useItem(Item*, Creature*);
-<<<<<<< HEAD
 };
-=======
-	bool useItem(Item*, Humanoid*);
-};
->>>>>>> a5f7f85e74edf472939269c6ab3c3758338b9755
