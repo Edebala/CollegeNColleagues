@@ -1,12 +1,9 @@
-.idea/*
+.idea/
 test/.DS_Store
 .DS_Store
 test/Program
 *.swp
-CollegeNColleagues/CollegeNColleagues.xcodeproj/project.pbxproj
-CollegeNColleagues/CollegeNColleagues.xcodeproj/project.xcworkspace/contents.xcworkspacedata
-CollegeNColleagues/CollegeNColleagues.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
-CollegeNColleagues/CollegeNColleagues.xcodeproj/project.xcworkspace/xcuserdata/aporka.xcuserdatad/UserInterfaceState.xcuserstate
-CollegeNColleagues/CollegeNColleagues.xcodeproj/xcuserdata/aporka.xcuserdatad/xcschemes/xcschememanagement.plist
-CollegeNColleagues/CollegeNColleagues/main.cpp
+xcode
+cmake-build-debug/
+CollegeNColleagues/
 Program
