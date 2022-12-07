@@ -1,12 +1,16 @@
 #pragma once
+#include "iostream"
 
 class Map{
-	int size[2];
+	int width,height;
 	int **blocks;
+	string fileName;
 public:
-	int *getSize();
-	int *getSize(blocks);
+	int getWidth();
+	int getHeight();
 	int getBlock(int x,int y);
+	int setBlock(int x,int y);
+	int loadFromFile(string file);
 	Map(int n,int m,int **blocks);
 	Map(string filename);
 }
