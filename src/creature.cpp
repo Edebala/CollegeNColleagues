@@ -1,7 +1,7 @@
 //
 // Created by Apor Biro on 23.11.2022.
 //
-#include "creature.h"
+#include "../include/creature.h"
 
 Creature::Creature(const string& name, int hp, int maxHp, int strength, vector<Effect> effect){
     this->name = name;
@@ -65,10 +65,18 @@ bool Creature::attack(Humanoid* enemy) const{
 
     enemy->setHp(newEnemyHp);
 
-    if(enemyHp != enemy->getHp())
-        return true;
-    else
+    if(enemy->getHp() > 0)
         return false;
+    else
+        return true;
+}
+
+void Creature::setTurn(bool turn) {
+    this->turn = turn;
+}
+
+bool Creature::getTurn() const {
+    return this->turn;
 }
 
 // Humanoid functions implementation
@@ -109,8 +117,8 @@ bool Humanoid::attack(Creature *enemy) const {
 
     enemy->setHp(newEnemyHp);
 
-    if(enemyHp != enemy->getHp())
-        return true;
-    else
+    if(enemy->getHp() > 0)
         return false;
+    else
+        return true;
 }

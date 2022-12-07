@@ -13,15 +13,16 @@ class Creature{
     int hp, maxHp;
     int strength;
     vector<Effect> effect;
+    bool turn;
 public:
     Creature(const string& name, int hp, int maxHp, int strength, vector<Effect> effect);
-
 	// setters
 	void setName(const string& name);
     void setHp(int hp);
     void setMaxHp(int maxHp);
     void setStrength(int strength);
     void setEffect(vector<Effect> effect);
+    void setTurn(bool turn);
 
 	// getters
     string getName();
@@ -29,6 +30,7 @@ public:
     int getMaxHp() const;
     int getStrength() const;
     vector<Effect> getEffect() const;
+    bool getTurn() const;
 
 	// actions
     bool attack(Humanoid *enemy) const;
@@ -52,5 +54,4 @@ public:
 	//bool castSpell(Spell*, Creature*);
 	bool attack(Creature *enemy) const;
 	bool useItem(Item*, Creature*);
-	bool useItem(Item*, Humanoid*);
 };

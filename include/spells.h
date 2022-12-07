@@ -8,36 +8,18 @@ class Spell{
 public:
     Spell(int duration);
     void setDuration(int duration);
-    void getDuration() const;
+    int getDuration() const;
 };
 
-Spell::Spell(int duration) {
-    this->duration = duration;
-}
-
-void Spell::setDuration(int duration) {
-    this->duration = duration;
-}
-
-void Spell::getDuration() const {
-    return this->duration;
-}
-
 class Fireball: public Spell{
+    static int damage;
 public:
-    int Cast(Creature *caster, Creature* enemy);
-}
-
-int Fireball::Cast(Creature* caster, Creature* enemy){
-    enemy->damage(5*caster.tool.getMagicAdjust());
-}
+    bool cast(Creature *caster, Creature* enemy);
+};
 
 class PoisonGas: public Spell{
+    static int damage;
 public:
-	int Cast(Creature *caster, Creature* enemy);
-}
-
-int PoisonGas::Cast(Creature *caster, Creature *enemy){
-    enemy->damage(2*caster.tool.getMagicAdjust());
-}
+	static bool cast(Creature *caster, Creature* enemy);
+};
 
