@@ -10,6 +10,7 @@ class Character{
 public:
 	int getPosX();
 	int getPosY();
-	int move(int x,int y);
+	int move(int x,int y,string map="");
 	int walk(DIRECTION dir);
+	Character(int x,int y,Creature*);
 };

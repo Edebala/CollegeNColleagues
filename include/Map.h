@@ -10,7 +10,7 @@ public:
 	int getHeight();
 	int getBlock(int x,int y);
 	int setBlock(int x,int y);
-	int loadFromFile();
+	int loadFromFile(string file);
 	Map(int n,int m,int **blocks);
 	Map(string filename);
 }
