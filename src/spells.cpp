@@ -19,23 +19,48 @@ int Spell::getDuration() const {
 
 int Fireball::damage = 10;
 
-bool Fireball::cast(Creature* caster, Creature* enemy){
+Fireball::Fireball(int duration) : Spell(duration) {}
 
+int Fireball::getDamage() const{
+    return Fireball::damage;
+}
+
+bool Fireball::cast(Creature* caster, Creature* enemy){
+    auto * hCaster = (Humanoid *) caster;
+    auto * hEnemy = (Humanoid *) enemy;
+    int finalDamage = Fireball::damage;
+    if(hCaster->getWeapon() != nullptr && hCaster->getWeapon()->getMagicAdjust() != 0)
+        finalDamage = (int)((float)finalDamage * hCaster->getWeapon()->getMagicAdjust());
+    else if(hEnemy->getArmor() != nullptr)
+        finalDamage -= hEnemy->getArmor()->getDefense();
+    if(finalDamage > 0)
+        hEnemy->setHp(hEnemy->getHp() - finalDamage);
+    if(hEnemy->getHp() > 0)
+        return false;
+    else
+        return true;
 }
 
 // Poison Gas class implementations
 
 int PoisonGas::damage = 2;
 
+PoisonGas::PoisonGas(int duration) : Spell(duration){}
+
+int PoisonGas::getDamage() const {
+    return PoisonGas::damage;
+}
+
 bool PoisonGas::cast(Creature *caster, Creature *enemy){
-    auto * hCaster = (Humanoid *) &caster;
-    auto * hEnemy = (Humanoid *) &enemy;
+    auto * hCaster = (Humanoid *) caster;
+    auto * hEnemy = (Humanoid *) enemy;
     int finalDamage = PoisonGas::damage;
-    if(hCaster->getWeapon() != nullptr)
+    if(hCaster->getWeapon() != nullptr && hCaster->getWeapon()->getMagicAdjust() != 0)
         finalDamage = (int)((float)finalDamage * hCaster->getWeapon()->getMagicAdjust());
-    if(hEnemy->getArmor() != nullptr)
+    else if(hEnemy->getArmor() != nullptr)
         finalDamage -= hEnemy->getArmor()->getDefense();
-    hEnemy->setHp(hEnemy->getHp() - finalDamage);
+    if(finalDamage > 0)
+        hEnemy->setHp(hEnemy->getHp() - finalDamage);
     if(hEnemy->getHp() > 0)
         return false;
     else

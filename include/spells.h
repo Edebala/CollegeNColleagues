@@ -14,12 +14,20 @@ public:
 class Fireball: public Spell{
     static int damage;
 public:
+    Fireball(int duration);
+
+    int getDamage() const;
+
     bool cast(Creature *caster, Creature* enemy);
 };
 
 class PoisonGas: public Spell{
     static int damage;
 public:
+    PoisonGas(int duration);
+
+    int getDamage() const;
+
 	static bool cast(Creature *caster, Creature* enemy);
 };
 

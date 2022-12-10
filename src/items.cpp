@@ -18,18 +18,23 @@ string Item::getName(){
     return this->name;
 }
 
-float Item::getMagicAdjust() const {
-    return this->magicAdjust;
-}
-
 // Weapon class implementations
 
 Weapon::Weapon(const string& name, int damage) : Item(name) {
     this->damage = damage;
 }
 
+Weapon::Weapon(const string &name, float magicAdjust, int damage) : Item(name) {
+    this->damage = damage;
+    this->magicAdjust = magicAdjust;
+}
+
 int Weapon::getDamage() const {
     return this->damage;
+}
+
+float Weapon::getMagicAdjust() const {
+    return this->magicAdjust;
 }
 
 // Armor class implementations
