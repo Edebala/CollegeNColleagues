@@ -3,16 +3,19 @@
 #include <vector>
 #include "items.h"
 #include "effects.h"
+#include "spells.h"
 
 using namespace std;
 class Humanoid;
 class Effect;
+class Spell;
+class Armor;
+class Weapon;
 
 class Creature{
     string name;
     int hp, maxHp;
     int strength;
-    vector<Effect> effect;
     bool turn;
 public:
     Creature(const string& name, int hp, int maxHp, int strength, vector<Effect> effect);
@@ -21,7 +24,6 @@ public:
     void setHp(int hp);
     void setMaxHp(int maxHp);
     void setStrength(int strength);
-    void setEffect(vector<Effect> effect);
     void setTurn(bool turn);
 
 	// getters
@@ -29,11 +31,10 @@ public:
     int getHp() const;
     int getMaxHp() const;
     int getStrength() const;
-    vector<Effect> getEffect() const;
     bool getTurn() const;
 
 	// actions
-    bool attack(Humanoid *enemy) const;
+    virtual bool attack(Creature *enemy) const;
 };
 
 class Humanoid : public Creature{
@@ -50,8 +51,6 @@ public:
     Weapon* getWeapon() const;
     Armor* getArmor() const;
 
-	//actions
-	//bool castSpell(Spell*, Creature*);
-	bool attack(Creature *enemy) const;
-	bool useItem(Item*, Creature*);
+    //actions
+    bool attack(Creature * enemy) const;
 };

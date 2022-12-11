@@ -8,7 +8,6 @@ Creature::Creature(const string& name, int hp, int maxHp, int strength, vector<E
     this->hp = hp;
     this->maxHp = maxHp;
     this->strength = strength;
-    this->effect = effect;
 }
 
 void Creature::setName(const string& name){
@@ -27,8 +26,8 @@ void Creature::setStrength(int strength){
     this->strength = strength;
 }
 
-void Creature::setEffect(vector<Effect> effect){
-    this->effect = effect;
+void Creature::setTurn(bool turn) {
+    this->turn = turn;
 }
 
 string Creature::getName(){
@@ -47,14 +46,18 @@ int Creature::getStrength() const {
     return this->strength;
 }
 
-vector<Effect> Creature::getEffect() const {
-    return this->effect;
+bool Creature::getTurn() const {
+    return this->turn;
 }
 
-bool Creature::attack(Humanoid* enemy) const{
+bool Creature::attack(Creature* enemy) const{
+    Humanoid * hEnemy = (Humanoid*) enemy;
     int enemyHp = enemy->getHp();
     int strength = this->getStrength();
-    int armor = enemy->getArmor()->getDefense();
+
+    int armor = 0;
+    if (hEnemy->getArmor() != nullptr)
+        armor = hEnemy->getArmor()->getDefense();
     int damage = strength - armor;
 
     int newEnemyHp;
@@ -69,14 +72,6 @@ bool Creature::attack(Humanoid* enemy) const{
         return false;
     else
         return true;
-}
-
-void Creature::setTurn(bool turn) {
-    this->turn = turn;
-}
-
-bool Creature::getTurn() const {
-    return this->turn;
 }
 
 // Humanoid functions implementation
@@ -105,9 +100,7 @@ Armor* Humanoid::getArmor() const{
 
 bool Humanoid::attack(Creature *enemy) const {
     int enemyHp = enemy->getHp();
-    int strength = this->getStrength();
-    int weaponDamage = this->weapon->getDamage();
-    int damage = strength + weaponDamage;
+    int damage = this->weapon->getDamage();
 
     int newEnemyHp;
     if(enemyHp > damage)
@@ -117,8 +110,5 @@ bool Humanoid::attack(Creature *enemy) const {
 
     enemy->setHp(newEnemyHp);
 
-    if(enemy->getHp() > 0)
-        return false;
-    else
-        return true;
+    return Creature::attack(enemy);
 }
