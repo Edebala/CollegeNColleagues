@@ -45,11 +45,12 @@ public:
     virtual bool attack(Creature *enemy) const;
     void addToInventory(Spell * newElement);
     void addToInventory(Item * newElement);
+    static void useElementFromInventoryByIndex(int index, Creature * player, Creature * enemy);
 };
 
 class Humanoid : public Creature{
-    Armor *armor;
-    Weapon *weapon;
+    Armor *armor = nullptr;
+    Weapon *weapon = nullptr;
 public:
     Humanoid(const string& name, int hp, int maxHp, int strength, Armor *armor, Weapon *weapon);
 

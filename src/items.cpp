@@ -107,29 +107,45 @@ void HealingPotion::use(Creature *creature) const{
     creature->setHp(creature->getHp() + this->hp);
 }
 
-// EquipmentBuffPotion class implementation
+// WeaponBuffPotion class implementation
 
-EquipmentBuffPotion::EquipmentBuffPotion(const string &name, int duration, int amount) : Potion(name, duration){
+WeaponBuffPotion::WeaponBuffPotion(const string &name, int duration, int amount) : Potion(name, duration){
     this->amount = amount;
+    this->isForWeapon = 1;
 }
 
-int EquipmentBuffPotion::getAmount() const {
+int WeaponBuffPotion::getAmount() const {
     return this->amount;
 }
 
-void EquipmentBuffPotion::use(Item * item) const {
-    Weapon * wItem = (Weapon*) item;
-    Armor * aItem = (Armor*) item;
-
-    if(wItem->getDamage() != 0)
-        wItem->setDamage(wItem->getDamage() + this->amount);
-    else if(aItem->getDefense() != 0)
-        aItem->setDefense(aItem->getDefense() + this->amount);
-    else
-        cout << "Potion is not applicable on this item!" << endl;
+int WeaponBuffPotion::getIsForWeapon() const {
+    return this->isForWeapon;
 }
 
-//StrengthenPotion class implementation
+void WeaponBuffPotion::use(Weapon * weapon) const {
+    weapon->setDamage(weapon->getDamage() + this->amount);
+}
+
+// ArmorBuffPotion class implementation
+
+ArmorBuffPotion::ArmorBuffPotion(const string &name, int duration, int amount) : Potion(name, duration){
+    this->amount = amount;
+    this->isForWeapon = 2;
+}
+
+int ArmorBuffPotion::getAmount() const {
+    return this->amount;
+}
+
+int ArmorBuffPotion::getIsForWeapon() const {
+    return this->isForWeapon;
+}
+
+void ArmorBuffPotion::use(Armor * armor) const{
+    armor->setDefense(armor->getDefense() + this->amount);
+}
+
+// StrengthenPotion class implementation
 
 StrengthenPotion::StrengthenPotion(const string &name, int duration, int amount) : Potion(name, duration){
     this->amount = amount;

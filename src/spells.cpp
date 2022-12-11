@@ -102,11 +102,11 @@ Erase::Erase(int duration) : Spell(duration){}
 void Erase::cast(Creature *caster, Creature *enemy) {
     int i = 0;
     auto * hCaster = (Humanoid *) caster;
-    if (hCaster->getWeapon()->getMagicAdjust() > 0)
+    if (hCaster->getWeapon() != nullptr && hCaster->getWeapon()->getMagicAdjust() > 0)
         i++;
-    for (int j = 0; j < i; ++j) {
+    for (int j = 0; j <= i; ++j) {
         vector<INV> newInv = enemy->getInventory();
-        newInv.erase(newInv.begin() + (rand() % newInv.size()));
+        newInv.erase(newInv.begin() + (rand() % (newInv.size())));
         enemy->setInventory(newInv);
     }
 }

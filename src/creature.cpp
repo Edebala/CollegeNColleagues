@@ -95,6 +95,30 @@ void Creature::addToInventory(Item *newElement) {
     this->inventory.emplace_back(newInvEl);
 }
 
+void Creature::useElementFromInventoryByIndex(int index, Creature * player, Creature * enemy) {
+    vector<INV> inv = player->getInventory();
+    INV element = inv.at(index);
+    Humanoid * hPlayer = (Humanoid*) player;
+
+    if(element.item != nullptr){
+        Item * parentItem = element.item;
+
+        auto childThrowable = (Throwable*) parentItem;
+        auto childHealingPotion = (HealingPotion*) parentItem;
+        auto childWeaponBuffPotion = (WeaponBuffPotion*) parentItem;
+        auto childArmorBuffPotion = (ArmorBuffPotion*) parentItem;
+        auto childStrengthenPotion = (StrengthenPotion*) parentItem;
+
+        if(childThrowable->getDamage() != 0)
+            childThrowable->use(enemy);
+        else if (childWeaponBuffPotion->getIsForWeapon() == 1 && hPlayer->getWeapon() != nullptr)
+            childWeaponBuffPotion->use(hPlayer->getWeapon());
+
+        inv.erase(inv.begin() + index);
+        player->setInventory(inv);
+    }
+}
+
 // Humanoid functions implementation
 
 Humanoid::Humanoid(const string& name, int hp, int maxHp, int strength, Armor *armor, Weapon *weapon)
