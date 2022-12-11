@@ -127,9 +127,13 @@ int main(){
 
         // Testing use element by index function
 
-    Creature::useElementFromInventoryByIndex(3, human, creature);
+    Creature::useElementFromInventoryByIndex(2, human, creature);
 
     cout << "Creature hp after using shuriken from inv: " << creature->getHp() << endl;
+
+    Creature::useElementFromInventoryByIndex(2, human, creature);
+
+    cout << "Human weapon damage after weapon buff from inv: " << human->getWeapon()->getDamage() << endl;
 
     return 0;
 }
