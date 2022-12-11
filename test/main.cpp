@@ -12,9 +12,8 @@ int main(){
 
 	Weapon * weapon = new Weapon("Sword", 100);
     Armor * armor = new Armor("Lionskin", 40);
-    vector<Effect> effects = vector<Effect>();
-    Humanoid * human = new Humanoid("Jeff", 400, 800, 80, effects, armor, weapon);
-    Creature * creature = new Creature("Shrek", 600, 1000, 80, effects);
+    Humanoid * human = new Humanoid("Jeff", 400, 800, 80, armor, weapon);
+    Creature * creature = new Creature("Shrek", 600, 1000, 80);
 
         //Testing Creature classes instances attack function
 
@@ -79,7 +78,27 @@ int main(){
 
     StrengthenPotion * strengthenPotion = new StrengthenPotion("Lion heart", 1, 70);
     strengthenPotion->use(creature);
-    cout << "Creature strength after strengthen potion: " << creature->getStrength() << endl;
+    cout << "Creature strength after strengthen potion: " << creature->getStrength() << endl << endl;
+
+    // Inventory tests
+
+        // Testing inventory adding
+
+    human->addToInventory(fire);
+    human->addToInventory(poison);
+    human->addToInventory(throwable);
+    human->addToInventory(equipmentBuffPotion);
+
+    vector<INV> testInv = human->getInventory();
+
+    for(INV element : testInv){
+       if(element.spell == nullptr)
+           cout << element.item->getName() << " ";
+       if(element.item == nullptr)
+           cout << element.spell->getDuration() << " ";
+    }
+
+    cout << endl << endl;
 
     return 0;
 }

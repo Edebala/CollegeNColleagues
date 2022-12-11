@@ -1,11 +1,12 @@
 #pragma once
 #include "creature.h"
 #include <cmath>
+#include <random>
 
 class Creature;
 
 class Spell{
-    int duration;
+    int duration = 0;
 public:
     Spell(int duration);
     void setDuration(int duration);
@@ -40,4 +41,10 @@ public:
     int getStrength() const;
     int getMaxHp() const;
     void cast(Creature *caster, Creature* enemy);
+};
+
+class Erase: public Spell{
+public:
+    Erase(int duration);
+    void cast(Creature * caster, Creature * enemy);
 };
