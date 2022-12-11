@@ -16,8 +16,6 @@ class Creature{
     string name;
     int hp, maxHp;
     int strength;
-    vector<Effect> effect;
-    vector<Spell*> spells;
     bool turn;
 public:
     Creature(const string& name, int hp, int maxHp, int strength, vector<Effect> effect);
@@ -26,22 +24,17 @@ public:
     void setHp(int hp);
     void setMaxHp(int maxHp);
     void setStrength(int strength);
-    void setEffect(vector<Effect> effect);
     void setTurn(bool turn);
-    void setSpells(vector<Spell*> spells);
 
 	// getters
     string getName();
     int getHp() const;
     int getMaxHp() const;
     int getStrength() const;
-    vector<Effect> getEffect() const;
     bool getTurn() const;
-    vector<Spell*> getSpells() const;
 
 	// actions
     virtual bool attack(Creature *enemy) const;
-    void addSpell(Spell * spell);
 };
 
 class Humanoid : public Creature{

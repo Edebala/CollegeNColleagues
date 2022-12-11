@@ -1,5 +1,4 @@
 #include "../include/spells.h"
-#include <memory>
 
 // Spell class implementations
 
@@ -30,7 +29,7 @@ bool Fireball::cast(Creature* caster, Creature* enemy){
     auto * hEnemy = (Humanoid *) enemy;
     int finalDamage = Fireball::damage;
     if(hCaster->getWeapon() != nullptr && hCaster->getWeapon()->getMagicAdjust() != 0)
-        finalDamage = (int)((float)finalDamage * hCaster->getWeapon()->getMagicAdjust());
+        finalDamage = (int)round((float)finalDamage * hCaster->getWeapon()->getMagicAdjust());
     else if(hEnemy->getArmor() != nullptr)
         finalDamage -= hEnemy->getArmor()->getDefense();
     if(finalDamage > 0)
@@ -56,7 +55,7 @@ bool PoisonGas::cast(Creature *caster, Creature *enemy){
     auto * hEnemy = (Humanoid *) enemy;
     int finalDamage = PoisonGas::damage;
     if(hCaster->getWeapon() != nullptr && hCaster->getWeapon()->getMagicAdjust() != 0)
-        finalDamage = (int)((float)finalDamage * hCaster->getWeapon()->getMagicAdjust());
+        finalDamage = (int)round((float)finalDamage * hCaster->getWeapon()->getMagicAdjust());
     else if(hEnemy->getArmor() != nullptr)
         finalDamage -= hEnemy->getArmor()->getDefense();
     if(finalDamage > 0)
@@ -66,3 +65,33 @@ bool PoisonGas::cast(Creature *caster, Creature *enemy){
     else
         return true;
 }
+
+// Debuff class implementation
+
+Debuff::Debuff(int duration, int strength, int maxHp) : Spell(duration){
+    this->strength = strength;
+    this->maxHp = maxHp;
+}
+
+int Debuff::getStrength() const {
+    return this->strength;
+}
+
+int Debuff::getMaxHp() const {
+    return this->maxHp;
+}
+
+void Debuff::cast(Creature *caster, Creature *enemy) {
+    auto * hCaster = (Humanoid *) caster;
+    int strengthDebuff = this->strength;
+    int maxHpDebuff = this->maxHp;
+    if(hCaster->getWeapon() != nullptr && hCaster->getWeapon()->getMagicAdjust() != 0) {
+        strengthDebuff = (int) round((float) strengthDebuff * hCaster->getWeapon()->getMagicAdjust());
+        maxHpDebuff = (int) round((float) maxHpDebuff * hCaster->getWeapon()->getMagicAdjust());
+    }
+    enemy->setStrength(enemy->getStrength() - strengthDebuff);
+    enemy->setMaxHp(enemy->getMaxHp() - maxHpDebuff);
+    if(enemy->getHp() > enemy->getMaxHp())
+        enemy->setHp(enemy->getMaxHp());
+}
+

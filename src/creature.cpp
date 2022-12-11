@@ -8,8 +8,6 @@ Creature::Creature(const string& name, int hp, int maxHp, int strength, vector<E
     this->hp = hp;
     this->maxHp = maxHp;
     this->strength = strength;
-    this->effect = effect;
-    this->spells = vector<Spell*>();
 }
 
 void Creature::setName(const string& name){
@@ -28,16 +26,8 @@ void Creature::setStrength(int strength){
     this->strength = strength;
 }
 
-void Creature::setEffect(vector<Effect> effect){
-    this->effect = effect;
-}
-
 void Creature::setTurn(bool turn) {
     this->turn = turn;
-}
-
-void Creature::setSpells(vector<Spell*> spells) {
-    this->spells = spells;
 }
 
 string Creature::getName(){
@@ -56,16 +46,8 @@ int Creature::getStrength() const {
     return this->strength;
 }
 
-vector<Effect> Creature::getEffect() const {
-    return this->effect;
-}
-
 bool Creature::getTurn() const {
     return this->turn;
-}
-
-vector<Spell*> Creature::getSpells() const {
-    return this->spells;
 }
 
 bool Creature::attack(Creature* enemy) const{
@@ -90,12 +72,6 @@ bool Creature::attack(Creature* enemy) const{
         return false;
     else
         return true;
-}
-
-void Creature::addSpell(Spell * spell) {
-    vector<Spell*> newSpells = this->spells;
-    newSpells.emplace_back(spell);
-    this->spells = newSpells;
 }
 
 // Humanoid functions implementation

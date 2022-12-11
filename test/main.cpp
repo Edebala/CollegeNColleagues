@@ -30,20 +30,24 @@ int main(){
         // Testing damaging Spell instances
 
     Fireball * fire = new Fireball(1);
-    human->addSpell(fire);
-    Fireball* fireball = ((Fireball*)human->getSpells().at(0));
-    fireball->cast(human, creature);
+    fire->cast(human, creature);
     cout << "Creature hp after fireball: " << creature->getHp() << endl;
-    PoisonGas * poison = new PoisonGas(3);
-    creature->addSpell(poison);
 
         // Testing damaging Spell instances with magical Weapon instance(magic adjust > 0)
 
+    PoisonGas * poison = new PoisonGas(3);
     Weapon * magicWeapon = new Weapon("Magic staff", 2, 60);
     human->setWeapon(magicWeapon);
-    PoisonGas * poisonGas = ((PoisonGas*)creature->getSpells().at(0));
-    poisonGas->cast(creature, human);
-    cout << "Human hp after poison gas: " << human->getHp() << endl << endl;
+    poison->cast(creature, human);
+    cout << "Human hp after poison gas: " << human->getHp() << endl;
+
+        // Testing Debuff instance with magical Weapon instance(magic adjust > 0)
+
+    Debuff * debuff = new Debuff(1, 20, 300);
+    debuff->cast(human, creature);
+    cout << "Creature strength after debuff: " << creature->getStrength() << endl;
+    cout << "Creature max hp after debuff: " << creature->getMaxHp() << endl;
+    cout << "Creature hp after debuff: " << creature->getHp() << endl << endl;
 
     // Throwable tests
 
