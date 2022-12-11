@@ -12,9 +12,8 @@ int main(){
 
 	Weapon * weapon = new Weapon("Sword", 100);
     Armor * armor = new Armor("Lionskin", 40);
-    vector<Effect> effects = vector<Effect>();
-    Humanoid * human = new Humanoid("Jeff", 400, 800, 80, effects, armor, weapon);
-    Creature * creature = new Creature("Shrek", 600, 1000, 80, effects);
+    Humanoid * human = new Humanoid("Jeff", 400, 800, 80, armor, weapon);
+    Creature * creature = new Creature("Shrek", 600, 1000, 80);
 
         //Testing Creature classes instances attack function
 
@@ -69,17 +68,72 @@ int main(){
     healingPotion->use(human);
     cout << "Human hp after healing: " << human->getHp() << endl;
 
-        // Testing EquipmentBuffPotion instance with Weapon instance
+        // Testing WeaponBuffPotion instance with Weapon instance
 
-    EquipmentBuffPotion * equipmentBuffPotion = new EquipmentBuffPotion("Rampage", 1, 60);
+    WeaponBuffPotion * equipmentBuffPotion = new WeaponBuffPotion("Rampage", 1, 60);
     equipmentBuffPotion->use(human->getWeapon());
     cout << "Humans weapon damage after buff: " << human->getWeapon()->getDamage() << endl;
+
+        // Testing ArmorBuffPotion instance with Armor instance
+
+    ArmorBuffPotion * armorBuffPotion = new ArmorBuffPotion("The best defense", 1, 50);
+    armorBuffPotion->use(human->getArmor());
+    cout << "Humans armor defense after buff: " << human->getArmor()->getDefense() << endl;
 
         // Testing StrengthenPotion instance on Creature instance
 
     StrengthenPotion * strengthenPotion = new StrengthenPotion("Lion heart", 1, 70);
     strengthenPotion->use(creature);
-    cout << "Creature strength after strengthen potion: " << creature->getStrength() << endl;
+    cout << "Creature strength after strengthen potion: " << creature->getStrength() << endl << endl;
+
+    // Inventory tests
+
+        // Testing inventory adding
+
+    human->addToInventory(fire);
+    human->addToInventory(poison);
+    human->addToInventory(throwable);
+    human->addToInventory(equipmentBuffPotion);
+
+    vector<INV> testInv = human->getInventory();
+
+    cout << "Human inventory contains before Erase: ";
+
+    for(INV element : testInv){
+       if(element.spell == nullptr)
+           cout << element.item->getName() << " ";
+       if(element.item == nullptr)
+           cout << element.spell->getDuration() << " ";
+    }
+
+    cout << endl << endl;
+
+        //Testing Erase spell
+
+//    Erase * erase = new Erase(1);
+//    erase->cast(creature, human);
+//
+//    testInv = human->getInventory();
+//
+//    cout << "Human inventory contains after Erase: ";
+//
+//    for(INV element : testInv){
+//        if(element.spell == nullptr)
+//            cout << element.item->getName() << " ";
+//        if(element.item == nullptr)
+//            cout << element.spell->getDuration() << " ";
+//    }
+//    cout << endl;
+
+        // Testing use element by index function
+
+    Creature::useElementFromInventoryByIndex(2, human, creature);
+
+    cout << "Creature hp after using shuriken from inv: " << creature->getHp() << endl;
+
+    Creature::useElementFromInventoryByIndex(2, human, creature);
+
+    cout << "Human weapon damage after weapon buff from inv: " << human->getWeapon()->getDamage() << endl;
 
     return 0;
 }
