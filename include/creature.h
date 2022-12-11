@@ -9,6 +9,8 @@ using namespace std;
 class Humanoid;
 class Effect;
 class Spell;
+class Armor;
+class Weapon;
 
 class Creature{
     string name;
@@ -39,7 +41,6 @@ public:
 
 	// actions
     virtual bool attack(Creature *enemy) const;
-    static bool useThrowable(Throwable *throwable, Creature *enemy);
     void addSpell(Spell * spell);
 };
 

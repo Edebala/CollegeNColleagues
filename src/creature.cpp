@@ -92,26 +92,6 @@ bool Creature::attack(Creature* enemy) const{
         return true;
 }
 
-bool Creature::useThrowable(Throwable *throwable, Creature *enemy){
-    int enemyHp = enemy->getHp();
-    int damage = throwable->getDamage();
-
-    int newEnemyHp;
-    if(enemyHp > damage)
-        newEnemyHp = enemyHp - damage;
-    else
-        newEnemyHp = 0;
-
-    enemy->setHp(newEnemyHp);
-
-    delete throwable;
-
-    if(enemy->getHp() > 0)
-        return false;
-    else
-        return true;
-}
-
 void Creature::addSpell(Spell * spell) {
     vector<Spell*> newSpells = this->spells;
     newSpells.emplace_back(spell);
