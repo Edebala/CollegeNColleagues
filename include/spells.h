@@ -28,6 +28,6 @@ public:
 
     int getDamage() const;
 
-	static bool cast(Creature *caster, Creature* enemy);
+    bool cast(Creature *caster, Creature* enemy);
 };
 

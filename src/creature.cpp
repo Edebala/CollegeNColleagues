@@ -68,10 +68,14 @@ vector<Spell*> Creature::getSpells() const {
     return this->spells;
 }
 
-bool Creature::attack(Humanoid* enemy) const{
+bool Creature::attack(Creature* enemy) const{
+    Humanoid * hEnemy = (Humanoid*) enemy;
     int enemyHp = enemy->getHp();
     int strength = this->getStrength();
-    int armor = enemy->getArmor()->getDefense();
+
+    int armor = 0;
+    if (hEnemy->getArmor() != nullptr)
+        armor = hEnemy->getArmor()->getDefense();
     int damage = strength - armor;
 
     int newEnemyHp;
@@ -81,6 +85,26 @@ bool Creature::attack(Humanoid* enemy) const{
         newEnemyHp = 0;
 
     enemy->setHp(newEnemyHp);
+
+    if(enemy->getHp() > 0)
+        return false;
+    else
+        return true;
+}
+
+bool Creature::useThrowable(Throwable *throwable, Creature *enemy){
+    int enemyHp = enemy->getHp();
+    int damage = throwable->getDamage();
+
+    int newEnemyHp;
+    if(enemyHp > damage)
+        newEnemyHp = enemyHp - damage;
+    else
+        newEnemyHp = 0;
+
+    enemy->setHp(newEnemyHp);
+
+    delete throwable;
 
     if(enemy->getHp() > 0)
         return false;
@@ -120,9 +144,7 @@ Armor* Humanoid::getArmor() const{
 
 bool Humanoid::attack(Creature *enemy) const {
     int enemyHp = enemy->getHp();
-    int strength = this->getStrength();
-    int weaponDamage = this->weapon->getDamage();
-    int damage = strength + weaponDamage;
+    int damage = this->weapon->getDamage();
 
     int newEnemyHp;
     if(enemyHp > damage)
@@ -132,8 +154,5 @@ bool Humanoid::attack(Creature *enemy) const {
 
     enemy->setHp(newEnemyHp);
 
-    if(enemy->getHp() > 0)
-        return false;
-    else
-        return true;
+    return Creature::attack(enemy);
 }

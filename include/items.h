@@ -26,3 +26,17 @@ public:
     Armor(const string& name, int defense);
     int getDefense() const;
 };
+
+class Throwable: public Item{
+    int damage;
+public:
+    Throwable(const string& name, int damage);
+    int getDamage() const;
+};
+
+class Potion: public Item{
+    int duration;
+public:
+    Potion(const string& name, int duration);
+    int getDuration() const;
+};

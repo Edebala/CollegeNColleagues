@@ -46,3 +46,15 @@ Armor::Armor(const string& name, int defense) : Item(name) {
 int Armor::getDefense() const{
     return this->defense;
 }
+
+// Throwable class implementations
+
+Throwable::Throwable(const string& name, int damage) : Item(name) {
+    this->damage = damage;
+}
+
+int Throwable::getDamage() const {
+    return this->damage;
+}
+
+// Potion class implementation

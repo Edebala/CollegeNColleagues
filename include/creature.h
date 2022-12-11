@@ -38,7 +38,8 @@ public:
     vector<Spell*> getSpells() const;
 
 	// actions
-    bool attack(Humanoid *enemy) const;
+    virtual bool attack(Creature *enemy) const;
+    static bool useThrowable(Throwable *throwable, Creature *enemy);
     void addSpell(Spell * spell);
 };
 
@@ -56,6 +57,6 @@ public:
     Weapon* getWeapon() const;
     Armor* getArmor() const;
 
-	//actions
-	bool attack(Creature *enemy) const;
+    //actions
+    bool attack(Creature * enemy) const;
 };
