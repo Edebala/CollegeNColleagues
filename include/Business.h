@@ -1,5 +1,6 @@
 #include <string>
 
+
 using namespace std;
 
 int fight(Creature *player, Creature *enemy);
