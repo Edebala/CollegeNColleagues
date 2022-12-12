@@ -14,14 +14,17 @@ public:
 	void Draw(int x,int y,int size);
 }
 
+enum MoveType(MOVE_IDEL,MOVE_JUMP);
+
 class Move{
 	vector<Frame> Frames;
+	MoveType moveType;
 public:
 	Move(string filename);
 };
 
 class Animation{
-	int MoveNr;
-
-	
+	vector <Move*> Movements;
 };
+
+

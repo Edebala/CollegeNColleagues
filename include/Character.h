@@ -3,7 +3,8 @@
 #include "creatures.h"
 #include "Entity.h"
 
-enum DIRECTION(DIR_EAST,DIR_WEST,DIR_SOUTH,DIR_NORTH);
+enum DIRECTION(
+	DIR_EAST,DIR_WEST,DIR_SOUTH,DIR_NORTH);
 
 class Character:public Entity{
 	Creature* creature;
