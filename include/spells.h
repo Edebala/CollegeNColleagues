@@ -2,42 +2,26 @@
 #include "creature.h"
 
 class Creature;
+class Humanoid;
 
 class Spell{
     int duration;
 public:
     Spell(int duration);
     void setDuration(int duration);
-    void getDuration() const;
+    int getDuration() const;
+		virtual int Cast(Humanoid *caster, Creature* enemy) = 0;
 };
-
-Spell::Spell(int duration) {
-    this->duration = duration;
-}
-
-void Spell::setDuration(int duration) {
-    this->duration = duration;
-}
-
-void Spell::getDuration() const {
-    return this->duration;
-}
 
 class Fireball: public Spell{
 public:
-    int Cast(Creature *caster, Creature* enemy);
-}
-
-int Fireball::Cast(Creature* caster, Creature* enemy){
-    enemy->damage(5*caster.tool.getMagicAdjust());
-}
+		Fireball();
+    int Cast(Humanoid *caster, Creature* enemy);
+};
 
 class PoisonGas: public Spell{
 public:
-	int Cast(Creature *caster, Creature* enemy);
-}
-
-int PoisonGas::Cast(Creature *caster, Creature *enemy){
-    enemy->damage(2*caster.tool.getMagicAdjust());
-}
+	PoisonGas(int duration);
+	int Cast(Humanoid *caster, Creature* enemy);
+};
 

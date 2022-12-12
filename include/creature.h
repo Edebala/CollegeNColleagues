@@ -1,14 +1,17 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <algorithm>
 #include "items.h"
 #include "effects.h"
+#include "spells.h"
 
 using namespace std;
 
-class Humanoid;
 class Weapon;
 class Armor;
+class Effect;
+class Spell;
 
 class Creature{
     string name;
@@ -33,7 +36,8 @@ public:
     vector<Effect> getEffect() const;
 
 	// actions
-    virtual bool attack(Humanoid *enemy) const;
+    virtual bool attack(Creature *enemy) const;
+		virtual int damage(int dmg){return (hp-=dmg) < 1;}
 };
 
 class Humanoid : public Creature{
@@ -59,4 +63,5 @@ public:
 	bool attack(Creature *enemy);
 	bool useItem(Item*, Creature*);
 	bool useItem(Item*, Humanoid*);
+	int damage(int dmg){return (hp=max(hp-dmg/armor->getDefense(),0));}
 };

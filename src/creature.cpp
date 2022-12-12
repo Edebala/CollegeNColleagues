@@ -48,29 +48,13 @@ vector<Effect> Creature::getEffect() const {
     return this->effect;
 }
 
-bool Creature::attack(Humanoid* enemy) const{
-    int enemyHp = enemy->getHp();
-    int strength = this->getStrength();
-    int armor = enemy->getArmor()->getDefense();
-    int damage = 2 * strength / armor;
-
-    int newEnemyHp;
-    if(enemyHp > damage)
-        newEnemyHp = enemyHp - damage;
-    else
-        newEnemyHp = 0;
-
-    enemy->setHp(newEnemyHp);
-
-    if(enemyHp != enemy->getHp())
-        return true;
-    else
-        return false;
+bool Creature::attack(Creature* enemy) const{
+		return(enemy->damage(2*strength));
 }
 
 // Humanoid functions implementation
 
-Humanoid::Humanoid(const string& name, int hp, int maxHp, int strength, vector<Effect> effect, Armor *armor, Weapon *weapon){
+Humanoid::Humanoid(const string& name, int hp, int maxHp, int strength, vector<Effect> effect, Armor *armor, Weapon *weapon):Creature(name,hp,maxHp,strength,effect){
     this->name = name;
     this->hp = hp;
     this->maxHp = maxHp;
@@ -96,7 +80,7 @@ Armor* Humanoid::getArmor() const{
     return this->armor;
 }
 
-bool Humanoid::attack(Creature *enemy) const {
+bool Humanoid::attack(Creature *enemy){
     int enemyHp = enemy->getHp();
     int strength = this->getStrength();
     int weaponDamage = this->weapon->getDamage();

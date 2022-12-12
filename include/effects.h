@@ -1,8 +1,9 @@
+#pragma once
 #include "creature.h"
 
-using namespace std;
-
 class Creature;
+
+using namespace std;
 
 class Effect{
     string name;
@@ -11,11 +12,3 @@ public:
     Effect(const string& name, int duration);
 	void affect(Creature* target);
 };
-
-Effect::Effect(const string& name, int duration) {
-    this->name = name;
-    this->duration = duration;
-}
-
-
-
