@@ -4,7 +4,7 @@
 
 #include "../include/items.h"
 
-// Item class implementations
+// Item parent class implementations
 
 Item::Item(const string& name){
     this->name = name;
@@ -83,7 +83,7 @@ bool Throwable::use(Creature *enemy) const{
         return true;
 }
 
-// Potion class implementation
+// Potion parent class implementation
 
 Potion::Potion(const string &name, int duration) : Item(name) {
     this->duration = duration;
@@ -107,42 +107,30 @@ void HealingPotion::use(Creature *creature) const{
     creature->setHp(creature->getHp() + this->hp);
 }
 
-// WeaponBuffPotion class implementation
+// BuffPotion parent class implementation
 
-WeaponBuffPotion::WeaponBuffPotion(const string &name, int duration, int amount) : Potion(name, duration){
+BuffPotion::BuffPotion(const string &name, int duration, int amount) : Potion(name, duration){
     this->amount = amount;
-    this->isForWeapon = 1;
 }
 
-int WeaponBuffPotion::getAmount() const {
+int BuffPotion::getAmount() const {
     return this->amount;
 }
 
-int WeaponBuffPotion::getIsForWeapon() const {
-    return this->isForWeapon;
-}
+// WeaponBuffPotion class implementation
+
+WeaponBuffPotion::WeaponBuffPotion(const string &name, int duration, int amount) : BuffPotion(name, duration, amount){}
 
 void WeaponBuffPotion::use(Weapon * weapon) const {
-    weapon->setDamage(weapon->getDamage() + this->amount);
+    weapon->setDamage(weapon->getDamage() + this->getAmount());
 }
 
 // ArmorBuffPotion class implementation
 
-ArmorBuffPotion::ArmorBuffPotion(const string &name, int duration, int amount) : Potion(name, duration){
-    this->amount = amount;
-    this->isForWeapon = 2;
-}
-
-int ArmorBuffPotion::getAmount() const {
-    return this->amount;
-}
-
-int ArmorBuffPotion::getIsForWeapon() const {
-    return this->isForWeapon;
-}
+ArmorBuffPotion::ArmorBuffPotion(const string &name, int duration, int amount) : BuffPotion(name, duration, amount){}
 
 void ArmorBuffPotion::use(Armor * armor) const{
-    armor->setDefense(armor->getDefense() + this->amount);
+    armor->setDefense(armor->getDefense() + this->getAmount());
 }
 
 // StrengthenPotion class implementation

@@ -8,7 +8,7 @@ class Creature;
 
 class Item{
     string name;
-public:
+protected:
     Item(const string& name);
     string getName();
     void setName(const string& name);
@@ -60,23 +60,22 @@ public:
     void use(Creature * creature) const;
 };
 
-class WeaponBuffPotion: public Potion{
+class BuffPotion: public Potion{
     int amount = 0;
-    int isForWeapon = 0;
+public:
+    BuffPotion(const string& name, int duration, int amount);
+    int getAmount() const;
+};
+
+class WeaponBuffPotion: public BuffPotion{
 public:
     WeaponBuffPotion(const string& name, int duration, int amount);
-    int getAmount() const;
-    int getIsForWeapon() const;
     void use(Weapon * weapon) const;
 };
 
-class ArmorBuffPotion: public Potion{
-    int amount = 0;
-    int isForWeapon = 0;
+class ArmorBuffPotion: public BuffPotion{
 public:
     ArmorBuffPotion(const string& name, int duration, int amount);
-    int getAmount() const;
-    int getIsForWeapon() const;
     void use(Armor * armor) const;
 };
 

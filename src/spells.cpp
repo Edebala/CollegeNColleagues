@@ -1,6 +1,6 @@
 #include "../include/spells.h"
 
-// Spell class implementations
+// Spell parent class implementations
 
 Spell::Spell(int duration) {
     this->duration = duration;
@@ -105,8 +105,8 @@ void Erase::cast(Creature *caster, Creature *enemy) {
     if (hCaster->getWeapon() != nullptr && hCaster->getWeapon()->getMagicAdjust() > 0)
         i++;
     for (int j = 0; j <= i; ++j) {
-        vector<INV> newInv = enemy->getInventory();
-        newInv.erase(newInv.begin() + (rand() % (newInv.size())));
+        Inventory * newInv = enemy->getInventory();
+        newInv->deleteElementByIndex((rand() % (newInv->getElements().size())));
         enemy->setInventory(newInv);
     }
 }

@@ -1,9 +1,9 @@
 #include <iostream>
 #include <vector>
 #include "../include/creature.h"
+#include <variant>
 
 using namespace std;
-
 
 int main(){
     //Creature tests
@@ -70,8 +70,8 @@ int main(){
 
         // Testing WeaponBuffPotion instance with Weapon instance
 
-    WeaponBuffPotion * equipmentBuffPotion = new WeaponBuffPotion("Rampage", 1, 60);
-    equipmentBuffPotion->use(human->getWeapon());
+    WeaponBuffPotion * weaponBuffPotion = new WeaponBuffPotion("Rampage", 1, 60);
+    weaponBuffPotion->use(human->getWeapon());
     cout << "Humans weapon damage after buff: " << human->getWeapon()->getDamage() << endl;
 
         // Testing ArmorBuffPotion instance with Armor instance
@@ -90,50 +90,55 @@ int main(){
 
         // Testing inventory adding
 
-    human->addToInventory(fire);
-    human->addToInventory(poison);
-    human->addToInventory(throwable);
-    human->addToInventory(equipmentBuffPotion);
+        Inventory * inventory = new Inventory();
+        inventory->addElement(fire);
+        inventory->addElement(poison);
+        inventory->addElement(healingPotion);
+        inventory->addElement(weaponBuffPotion);
 
-    vector<INV> testInv = human->getInventory();
+        human->setInventory(inventory);
 
-    cout << "Human inventory contains before Erase: ";
+        cout << "Infos about human inventory elements: ";
 
-    for(INV element : testInv){
-       if(element.spell == nullptr)
-           cout << element.item->getName() << " ";
-       if(element.item == nullptr)
-           cout << element.spell->getDuration() << " ";
-    }
+        for(MultiType element : human->getInventory()->getElements())
+            switch (element.index()){
+                case 7: cout << get<Fireball*>(element)->getDamage() << " "; break;
+                case 8: cout << get<PoisonGas*>(element)->getDamage() << " ";break;
+                case 3: cout << get<HealingPotion*>(element)->getHp() << " "; break;
+                case 4: cout << get<WeaponBuffPotion*>(element)->getAmount() << " "; break;
+            }
 
-    cout << endl << endl;
+        cout << endl;
+
 
         //Testing Erase spell
 
 //    Erase * erase = new Erase(1);
 //    erase->cast(creature, human);
 //
-//    testInv = human->getInventory();
+//    Inventory * testInv = human->getInventory();
 //
 //    cout << "Human inventory contains after Erase: ";
 //
-//    for(INV element : testInv){
-//        if(element.spell == nullptr)
-//            cout << element.item->getName() << " ";
-//        if(element.item == nullptr)
-//            cout << element.spell->getDuration() << " ";
-//    }
+//    for(MultiType element : human->getInventory()->getElements())
+//        switch (element.index()){
+//            case 7: cout << get<Fireball*>(element)->getDamage() << " "; break;
+//            case 8: cout << get<PoisonGas*>(element)->getDamage() << " ";break;
+//            case 3: cout << get<HealingPotion*>(element)->getHp() << " "; break;
+//            case 4: cout << get<WeaponBuffPotion*>(element)->getAmount() << " "; break;
+//        }
+//
 //    cout << endl;
 
         // Testing use element by index function
 
-    Creature::useElementFromInventoryByIndex(2, human, creature);
+    human->useElementFromInventoryByIndex(0, human, creature);
 
-    cout << "Creature hp after using shuriken from inv: " << creature->getHp() << endl;
+    cout << "Creature hp after using fireball from inv: " << creature->getHp() << endl;
 
-    Creature::useElementFromInventoryByIndex(2, human, creature);
+    human->useElementFromInventoryByIndex(2, human, creature);
 
-    cout << "Human weapon damage after weapon buff from inv: " << human->getWeapon()->getDamage() << endl;
-
+    cout << "Human weapon damage after healing potion from inv: " << human->getHp() << endl;
+    
     return 0;
 }
