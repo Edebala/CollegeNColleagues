@@ -1,11 +1,14 @@
+//
+// Created by Apor Biro on 23.11.2022.
+//
 #include "creature.h"
 
-Creature::Creature(const string& name, int hp, int maxHp, int strength, vector<Effect> effect){
+Creature::Creature(const string& name, int hp, int maxHp, int strength,vector<Effect>effect){
     this->name = name;
     this->hp = hp;
     this->maxHp = maxHp;
     this->strength = strength;
-    this->effect = effect;
+    //this->inventory = new Inventory();
 }
 
 void Creature::setName(const string& name){
@@ -24,9 +27,13 @@ void Creature::setStrength(int strength){
     this->strength = strength;
 }
 
-void Creature::setEffect(vector<Effect> effect){
-    this->effect = effect;
+void Creature::setTurn(bool turn) {
+    this->turn = turn;
 }
+
+/*void Creature::setInventory(Inventory* inventory) {
+    this->inventory = inventory;
+}*/
 
 string Creature::getName(){
     return this->name;
@@ -44,22 +51,36 @@ int Creature::getStrength() const {
     return this->strength;
 }
 
-vector<Effect> Creature::getEffect() const {
-    return this->effect;
+bool Creature::getTurn() const {
+    return this->turn;
 }
+
+/*Inventory* Creature::getInventory() const {
+    return this->inventory;
+}*/
+
+// Do Creatures have an Inventory? - Ede
 
 bool Creature::attack(Creature* enemy) const{
-		return(enemy->damage(2*strength));
+		return(enemy->damage(strength));
 }
 
+int Creature::damage(int dmg){
+	return (hp-=dmg) < 1;
+}
+
+/*
+bool Creature::addElementToInventory(MultiType element) {
+    return this->inventory->addElement(element);
+}
+
+void Creature::useElementFromInventoryByIndex(int index, Creature * player, Creature * enemy) {
+    this->inventory->useElementByIndex(index, player, enemy);
+}
+*/
 // Humanoid functions implementation
 
 Humanoid::Humanoid(const string& name, int hp, int maxHp, int strength, vector<Effect> effect, Armor *armor, Weapon *weapon):Creature(name,hp,maxHp,strength,effect){
-    this->name = name;
-    this->hp = hp;
-    this->maxHp = maxHp;
-    this->strength = strength;
-    this->effect = effect;
     this->armor = armor;
     this->weapon = weapon;
 }
@@ -80,27 +101,11 @@ Armor* Humanoid::getArmor() const{
     return this->armor;
 }
 
-bool Humanoid::attack(Creature *enemy){
-    int enemyHp = enemy->getHp();
-    int strength = this->getStrength();
-    int weaponDamage = this->weapon->getDamage();
-    int damage = 2 * strength * weaponDamage;
-
-    int newEnemyHp;
-    if(enemyHp > damage)
-        newEnemyHp = enemyHp - damage;
-    else
-        newEnemyHp = 0;
-
-    enemy->setHp(newEnemyHp);
-
-    if(enemyHp != enemy->getHp())
-        return true;
-    else
-        return false;
+bool Humanoid::attack(Creature *enemy) const{
+		return(enemy->damage((getWeapon()==nullptr)?strength:strength*getWeapon()->getDamage()));
 }
 
-
-
-
-
+int Humanoid::damage(int dmg){
+	return (hp=max(hp-dmg/armor->getDefense(),0));
+}
+								

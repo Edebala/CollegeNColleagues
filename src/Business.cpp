@@ -24,7 +24,7 @@ int fight(Humanoid *player, Creature *enemy) {
                 	if(spellType == 1)
                 	{
                 		Spell* spell = new Fireball();
-                		if(spell->Cast(player, enemy))
+                		if(spell->cast(player, enemy))
                 		{
                 			playerTurn = false;
                 		}
@@ -32,7 +32,7 @@ int fight(Humanoid *player, Creature *enemy) {
                 	else if(spellType == 2)
                 	{
                 		Spell* spell = new PoisonGas(5);
-                		if(spell->Cast(player, enemy))
+                		if(spell->cast(player, enemy))
                 		{
                 			playerTurn = false;
                 		}
