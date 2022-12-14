@@ -1,6 +1,7 @@
 #include <string>
 #include "creature.h"
 
+
 using namespace std;
 
 int fight(Creature *player, Creature *enemy);
