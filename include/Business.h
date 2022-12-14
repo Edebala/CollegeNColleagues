@@ -1,6 +1,4 @@
-#include <string>
 #include "creature.h"
-
 
 using namespace std;
 

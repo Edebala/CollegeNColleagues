@@ -1,5 +1,6 @@
 #include "../include/Business.h"
 
+
 int fight(Creature *player, Creature *enemy) {
     bool dead = false;
 
