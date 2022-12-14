@@ -3,45 +3,17 @@
 #include "creature.h"
 #include "spells.h"
 
-int fight(Humanoid *player, Creature *enemy) {
-    bool playerTurn = true;
-    while (player->getHp() > 0 && enemy->getHp() > 0) {
-				printf("PlayerHP:%i\nEnemyHP:%i\n\n",player->getHp(),enemy->getHp());
-        if (playerTurn) {
-            // move 1 -> fight/attack
-            // move 2 -> cast spell
-            // move 3 -> use item
-            int move = 1;
-            switch (move) {
-                case 1:
-                    if(player->attack(enemy)) 
-                    {
-                    	playerTurn = false;
-                    }
-                    break;
-                case 2:
-                	int spellType = 1; // = getSpellType;
-                	if(spellType == 1)
-                	{
-                		Spell* spell = new Fireball();
-                		if(spell->cast(player, enemy))
-                		{
-                			playerTurn = false;
-                		}
-                	}
-                	else if(spellType == 2)
-                	{
-                		Spell* spell = new PoisonGas(5);
-                		if(spell->cast(player, enemy))
-                		{
-                			playerTurn = false;
-                		}
-                	}
-                	break;
-            }
-        } else {
-
+int fight(Creature *attacker, Creature *enemy) {
+    bool attackerTurn = true;
+    while (1) {
+        printf("PlayerHP:%i\nEnemyHP:%i\n\n",attacker->getHp(),enemy->getHp());
+        if (!attackerTurn){
+            if(!attacker->turn(enemy)) return 1;
         }
+        else{
+            if(!enemy->turn(attacker)) return 0;
+        }
+        attackerTurn = !attackerTurn;
     }
-		return -1;
+    return -1;
 }

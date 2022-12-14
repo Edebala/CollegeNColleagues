@@ -4,6 +4,7 @@
 #include <vector>
 #include <variant>
 
+class Humanoid;
 class Weapon;
 class Armor;
 class Throwable;
@@ -21,12 +22,12 @@ using MultiType = variant<Weapon*, Armor*, Throwable*, HealingPotion*, WeaponBuf
 
 class Inventory{
     vector<MultiType> elements;
-    static int maxSize;
+    static long unsigned int maxSize;
 public:
     Inventory();
     void setElements(vector<MultiType> elements);
     vector<MultiType> getElements() const;
     bool addElement(MultiType element);
     void deleteElementByIndex(int index);
-    static void useElementByIndex(int index, Creature * player, Creature * enemy);
+    static void useElementByIndex(int index, Humanoid * player, Creature * enemy);
 };
