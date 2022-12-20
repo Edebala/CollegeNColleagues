@@ -16,7 +16,7 @@ void Creature::setName(const string& name){
 }
 
 void Creature::setHp(int hp){
-    this->hp = hp;
+		this->hp = hp<0?0:(hp>maxHp?maxHp:hp);
 }
 
 void Creature::setMaxHp(int maxHp){

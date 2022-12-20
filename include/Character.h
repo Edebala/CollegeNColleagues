@@ -10,4 +10,5 @@ class Character:public Entity{
 	Creature* creature;
 public:
 	Character(int x,int y,Creature*);
+	Creature *getCreature();
 };
