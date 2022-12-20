@@ -21,8 +21,6 @@ class PoisonGas;
 class Debuff;
 class Erase;
 
-using MultiType = variant<Weapon*, Armor*, Throwable*, HealingPotion*, WeaponBuffPotion*, ArmorBuffPotion*, StrengthenPotion*, Fireball*, PoisonGas*, Debuff*, Erase*>;
-
 class Creature{
     string name;
     int hp, maxHp;
@@ -47,10 +45,9 @@ public:
     bool getTurn() const;
     Inventory* getInventory() const;
 
-
 	// actions
     virtual bool attack(Creature *enemy) const;
-    bool addElementToInventory(MultiType element);
+    bool addElementToInventory(Slot* element);
     void useElementFromInventoryByIndex(int index, Creature * player, Creature * enemy);
 };
 

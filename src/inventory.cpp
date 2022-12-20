@@ -4,15 +4,15 @@ int Inventory::maxSize = 20;
 
 Inventory::Inventory() {};
 
-void Inventory::setElements(vector<MultiType> elements) {
+void Inventory::setElements(vector<Slot*> elements) {
     this->elements = elements;
 }
 
-vector<MultiType> Inventory::getElements() const {
+vector<Slot*> Inventory::getElements() const {
     return this->elements;
 }
 
-bool Inventory::addElement(MultiType element){
+bool Inventory::addElement(Slot* element){
     if(this->elements.size() < maxSize) {
         this->elements.emplace_back(element);
         return true;
@@ -27,7 +27,7 @@ void Inventory::deleteElementByIndex(int index){
 
 void Inventory::useElementByIndex(int index, Creature *player, Creature *enemy) {
     auto hPlayer = (Humanoid*) player;
-    MultiType element = player->getInventory()->getElements().at(index);
+    Slot* element = player->getInventory()->getElements().at(index);
     int typeIndex = player->getInventory()->getElements().at(index).index();
     bool isUsable = false;
 
@@ -44,6 +44,7 @@ void Inventory::useElementByIndex(int index, Creature *player, Creature *enemy) 
     }
 
     if(isUsable) {
+				//player->getInventory()->deleteElementByIndex(index);
         Inventory * newInv = player->getInventory();
         newInv->deleteElementByIndex(index);
         player->setInventory(newInv);

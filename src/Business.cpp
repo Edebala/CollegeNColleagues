@@ -1,5 +1,5 @@
-#include "../include/Business.h"
-
+#pragma once
+#include "Business.h"
 
 int fight(Creature *player, Creature *enemy) {
     bool dead = false;

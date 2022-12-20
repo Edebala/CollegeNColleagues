@@ -1,16 +1,19 @@
 #pragma once
+#include "Slot.h"
 #include "creature.h"
 #include <cmath>
 #include <random>
 
 class Creature;
 
-class Spell{
+class Spell: public Slot{
     int duration = 0;
 public:
     Spell(int duration);
     void setDuration(int duration);
     int getDuration() const;
+		virtual bool cast(Humanoid*,Creature*)=0;
+		void use(Humanoid* user,Creature* enemy){cast(user,enemy);}
 };
 
 // Damaging spells
@@ -20,7 +23,6 @@ class Fireball: public Spell{
 public:
     Fireball(int duration);
     int getDamage() const;
-    bool cast(Creature *caster, Creature* enemy);
 };
 
 class PoisonGas: public Spell{
@@ -28,7 +30,6 @@ class PoisonGas: public Spell{
 public:
     PoisonGas(int duration);
     int getDamage() const;
-    bool cast(Creature *caster, Creature* enemy);
 };
 
 // Debuff spells
@@ -40,11 +41,9 @@ public:
     Debuff(int duration, int strength, int maxHp);
     int getStrength() const;
     int getMaxHp() const;
-    void cast(Creature *caster, Creature* enemy);
 };
 
 class Erase: public Spell{
 public:
     Erase(int duration);
-    void cast(Creature * caster, Creature * enemy);
 };

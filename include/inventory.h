@@ -1,8 +1,7 @@
 #pragma once
-#include "../include/items.h"
-#include "../include/spells.h"
+#include "items.h"
+#include "spells.h"
 #include <vector>
-#include <variant>
 
 class Weapon;
 class Armor;
@@ -17,16 +16,15 @@ class Debuff;
 class Erase;
 
 using namespace std;
-using MultiType = variant<Weapon*, Armor*, Throwable*, HealingPotion*, WeaponBuffPotion*, ArmorBuffPotion*, StrengthenPotion*, Fireball*, PoisonGas*, Debuff*, Erase*>;
 
 class Inventory{
-    vector<MultiType> elements;
+    vector<Slot*> elements;
     static int maxSize;
 public:
     Inventory();
-    void setElements(vector<MultiType> elements);
-    vector<MultiType> getElements() const;
-    bool addElement(MultiType element);
+    void setElements(vector<Slot*> elements);
+    vector<Slot*> getElements() const;
+    bool addElement(Slot* element);
     void deleteElementByIndex(int index);
     static void useElementByIndex(int index, Creature * player, Creature * enemy);
 };
