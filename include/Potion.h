@@ -13,7 +13,7 @@ class HealingPotion : public Potion{
 public:
     HealingPotion(const string& name, int duration, int hp);
     int getHp() const;
-    void use(Humanoid* user,Creature * creature) const;
+    int use(Humanoid* user,Creature * creature) const;
 };
 
 class BuffPotion: public Potion{
@@ -26,13 +26,13 @@ public:
 class WeaponBuffPotion: public BuffPotion{
 public:
     WeaponBuffPotion(const string& name, int duration, int amount);
-    void use(Humanoid* user,Creature* Enemy) const;
+    int use(Humanoid* user,Creature* Enemy) const;
 };
 
 class ArmorBuffPotion: public BuffPotion{
 public:
     ArmorBuffPotion(const string& name, int duration, int amount);
-    void use(Humanoid* user,Creature* Enemy) const;
+    int use(Humanoid* user,Creature* Enemy) const;
 };
 
 class StrengthenPotion: public Potion{
@@ -40,5 +40,5 @@ class StrengthenPotion: public Potion{
 public:
     StrengthenPotion(const string& name, int duration, int amount);
     int getAmount() const;
-    void use(Humanoid* user,Creature * enemy) const;
+    int use(Humanoid* user,Creature * enemy) const;
 };

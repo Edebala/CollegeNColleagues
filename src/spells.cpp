@@ -1,5 +1,4 @@
-#include "../include/spells.h"
-
+#include "spells.h"
 // Spell parent class implementations
 
 Spell::Spell(int duration) {
@@ -14,59 +13,18 @@ int Spell::getDuration() const {
     return this->duration;
 }
 
-// Fireball class implementations
+Fireball::Fireball():Spell(0){}
 
-int Fireball::damage = 10;
-
-Fireball::Fireball(int duration) : Spell(duration) {}
-
-int Fireball::getDamage() const{
-    return Fireball::damage;
+int Fireball::cast(Humanoid* caster, Creature* enemy){
+    return enemy->damage((caster->getWeapon()==nullptr)?10:10*caster->getWeapon()->getMagicAdjust());
 }
 
-bool Fireball::cast(Creature* caster, Creature* enemy){
-    auto * hCaster = (Humanoid *) caster;
-    auto * hEnemy = (Humanoid *) enemy;
-    int finalDamage = Fireball::damage;
-    if(hCaster->getWeapon() != nullptr && hCaster->getWeapon()->getMagicAdjust() != 0)
-        finalDamage = (int)round((float)finalDamage * hCaster->getWeapon()->getMagicAdjust());
-    else if(hEnemy->getArmor() != nullptr)
-        finalDamage -= hEnemy->getArmor()->getDefense();
-    if(finalDamage > 0)
-        hEnemy->setHp(hEnemy->getHp() - finalDamage);
-    if(hEnemy->getHp() > 0)
-        return false;
-    else
-        return true;
-}
+PoisonGas::PoisonGas(int duration):Spell(duration){}
 
+int PoisonGas::cast(Humanoid *caster, Creature *enemy){
+    return enemy->damage((caster->getWeapon()==nullptr)?2:2*caster->getWeapon()->getMagicAdjust());
+}
 // Poison Gas class implementations
-
-int PoisonGas::damage = 2;
-
-PoisonGas::PoisonGas(int duration) : Spell(duration){}
-
-int PoisonGas::getDamage() const {
-    return PoisonGas::damage;
-}
-
-bool PoisonGas::cast(Creature *caster, Creature *enemy){
-    auto * hCaster = (Humanoid *) caster;
-    auto * hEnemy = (Humanoid *) enemy;
-    int finalDamage = PoisonGas::damage;
-    if(hCaster->getWeapon() != nullptr && hCaster->getWeapon()->getMagicAdjust() != 0)
-        finalDamage = (int)round((float)finalDamage * hCaster->getWeapon()->getMagicAdjust());
-    else if(hEnemy->getArmor() != nullptr)
-        finalDamage -= hEnemy->getArmor()->getDefense();
-    if(finalDamage > 0)
-        hEnemy->setHp(hEnemy->getHp() - finalDamage);
-    if(hEnemy->getHp() > 0)
-        return false;
-    else
-        return true;
-}
-
-// Debuff class implementation
 
 Debuff::Debuff(int duration, int strength, int maxHp) : Spell(duration){
     this->strength = strength;
@@ -81,7 +39,7 @@ int Debuff::getMaxHp() const {
     return this->maxHp;
 }
 
-void Debuff::cast(Creature *caster, Creature *enemy) {
+int Debuff::cast(Humanoid *caster, Creature *enemy) {
     auto * hCaster = (Humanoid *) caster;
     int strengthDebuff = this->strength;
     int maxHpDebuff = this->maxHp;
@@ -93,13 +51,14 @@ void Debuff::cast(Creature *caster, Creature *enemy) {
     enemy->setMaxHp(enemy->getMaxHp() - maxHpDebuff);
     if(enemy->getHp() > enemy->getMaxHp())
         enemy->setHp(enemy->getMaxHp());
+		return 1;
 }
 
 //Erase class implementation
 
 Erase::Erase(int duration) : Spell(duration){}
-
-void Erase::cast(Creature *caster, Creature *enemy) {
+/*
+int Erase::cast(Humanoid *caster, Creature *enemy) {
     int i = 0;
     auto * hCaster = (Humanoid *) caster;
     if (hCaster->getWeapon() != nullptr && hCaster->getWeapon()->getMagicAdjust() > 0)
@@ -109,5 +68,7 @@ void Erase::cast(Creature *caster, Creature *enemy) {
         newInv->deleteElementByIndex((rand() % (newInv->getElements().size())));
         enemy->setInventory(newInv);
     }
-}
+		return 1;
+}*/
+int Erase::cast(Humanoid *caster, Creature *enemy) {return 1;}
 

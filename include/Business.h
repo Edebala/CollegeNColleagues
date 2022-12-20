@@ -1,5 +1,4 @@
 #include "Game.h"
-#include "creature.h"
 
 using namespace std;
 

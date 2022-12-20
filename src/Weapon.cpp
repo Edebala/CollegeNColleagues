@@ -1,11 +1,7 @@
-#include "Weapon.h"
+#include "Game.h"
 
 // Weapon class implementations
 //
-void Weapon::use(Humanoid* user, Creature* enemy){
-	
-}
-
 Weapon::Weapon(const string& name, int damage) : Item(name) {
     this->damage = damage;
 }
@@ -25,4 +21,9 @@ int Weapon::getDamage() const {
 
 float Weapon::getMagicAdjust() const {
     return this->magicAdjust;
+}
+
+int Weapon::use(Humanoid* user, Creature* Enemy){
+	user->addElementToInventory(user->getWeapon());
+	user->setWeapon(this);
 }

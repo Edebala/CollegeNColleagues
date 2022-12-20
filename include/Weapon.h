@@ -10,4 +10,5 @@ public:
     void setDamage(int damage);
     int getDamage() const;
     float getMagicAdjust() const;
+		int use(Humanoid* user, Creature* Enemy);
 };

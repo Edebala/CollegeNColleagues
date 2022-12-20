@@ -5,6 +5,7 @@
 #include <random>
 
 class Creature;
+class Humanoid;
 
 class Spell: public Slot{
     int duration = 0;
@@ -12,8 +13,8 @@ public:
     Spell(int duration);
     void setDuration(int duration);
     int getDuration() const;
-		virtual bool cast(Humanoid*,Creature*)=0;
-		void use(Humanoid* user,Creature* enemy){cast(user,enemy);}
+		virtual int cast(Humanoid*,Creature*)=0;
+		int use(Humanoid* user,Creature* enemy){return cast(user,enemy);}
 };
 
 // Damaging spells
@@ -21,13 +22,15 @@ public:
 class Fireball: public Spell{
     static int damage;
 public:
-    Fireball(int duration);
+		Fireball();
+    int cast(Humanoid *caster, Creature* enemy);
     int getDamage() const;
 };
 
 class PoisonGas: public Spell{
     static int damage;
 public:
+    int cast(Humanoid *caster, Creature* enemy);
     PoisonGas(int duration);
     int getDamage() const;
 };
@@ -39,6 +42,7 @@ class Debuff: public Spell{
     int maxHp = 0;
 public:
     Debuff(int duration, int strength, int maxHp);
+    int cast(Humanoid *caster, Creature* enemy);
     int getStrength() const;
     int getMaxHp() const;
 };
@@ -46,4 +50,5 @@ public:
 class Erase: public Spell{
 public:
     Erase(int duration);
+		int cast(Humanoid* caster,Creature* enemy);
 };

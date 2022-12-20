@@ -1,18 +1,20 @@
 #pragma once
-#include "creature.h"
-#include <iostream>
 #include <string>
+#include "Slot.h"
+
+class Humanoid;
+class Creature;
+class Slot;
 
 using namespace std;
-class Creature;
 
-class Item:public Slot{
+class Item: public Slot{
     string name;
 protected:
     Item(const string& name);
     string getName();
     void setName(const string& name);
-		virtual void use(Humanoid* user,Creature* Enemy);
+		virtual int use(Humanoid* user,Creature* Enemy)=0;
 };
 
 // Equipment items
@@ -24,6 +26,5 @@ class Throwable: public Item{
 public:
     Throwable(const string& name, int damage);
     int getDamage() const;
-    bool use(Humanoid* user,Creature *enemy) const;
+    int use(Humanoid* user,Creature *enemy) const;
 };
-

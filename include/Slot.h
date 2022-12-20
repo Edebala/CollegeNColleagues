@@ -1,9 +1,9 @@
 #pragma once
-#include "creature.h"
+#include <string>
 
 class Creature;
 class Humanoid;
 
 class Slot{
-	virtual void use(Humanoid* user, Creature* enemy)=0;
+	virtual int use(Humanoid* user, Creature* enemy)=0;
 };
