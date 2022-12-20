@@ -27,13 +27,9 @@ void Creature::setStrength(int strength){
     this->strength = strength;
 }
 
-void Creature::setTurn(bool turn) {
-    this->turn = turn;
-}
-
-/*void Creature::setInventory(Inventory* inventory) {
+void Humanoid::setInventory(Inventory* inventory) {
     this->inventory = inventory;
-}*/
+}
 
 string Creature::getName(){
     return this->name;
@@ -51,33 +47,30 @@ int Creature::getStrength() const {
     return this->strength;
 }
 
-bool Creature::getTurn() const {
-    return this->turn;
-}
-
-/*Inventory* Creature::getInventory() const {
+Inventory* Humanoid::getInventory() const {
     return this->inventory;
-}*/
+}
 
 // Do Creatures have an Inventory? - Ede
 
 bool Creature::attack(Creature* enemy) const{
-		return(enemy->damage(strength));
+		return enemy->damage(strength);
 }
 
 int Creature::damage(int dmg){
-	return (hp-=dmg) < 1;
+    setHp(hp-dmg);
+	return getHp();
 }
 
-/*
-bool Creature::addElementToInventory(MultiType element) {
+
+bool Humanoid::addElementToInventory(MultiType element) {
     return this->inventory->addElement(element);
 }
 
-void Creature::useElementFromInventoryByIndex(int index, Creature * player, Creature * enemy) {
+void Humanoid::useElementFromInventoryByIndex(int index, Humanoid * player, Creature * enemy) {
     this->inventory->useElementByIndex(index, player, enemy);
 }
-*/
+
 // Humanoid functions implementation
 
 Humanoid::Humanoid(const string& name, int hp, int maxHp, int strength, vector<Effect> effect, Armor *armor, Weapon *weapon):Creature(name,hp,maxHp,strength,effect){
@@ -102,10 +95,46 @@ Armor* Humanoid::getArmor() const{
 }
 
 bool Humanoid::attack(Creature *enemy) const{
-		return(enemy->damage((getWeapon()==nullptr)?strength:strength*getWeapon()->getDamage()));
+    return enemy->damage((getWeapon()==nullptr)?strength:strength*getWeapon()->getDamage());
 }
 
 int Humanoid::damage(int dmg){
-	return (hp=max(hp-dmg/armor->getDefense(),0));
+	setHp((getArmor()==nullptr)?hp-dmg:hp-max(dmg-armor->getDefense(),0));
+    return getHp();
 }
-								
+
+int Creature::turn(Creature* enemy){
+    return attack(enemy);
+}
+
+int Humanoid::turn(Creature* enemy){
+    int move = 1;
+    switch (move) {
+            case 1:
+                if(attack(enemy)) 
+                {
+                    return 0;
+                }
+                break;
+            case 2:
+                int spellType = 1; // = getSpellType;
+                if(spellType == 1)
+                {
+                    Spell* spell = new Fireball();
+                    if(spell->cast(this, enemy))
+                    {
+                        return 0;
+                    }
+                }
+                else if(spellType == 2)
+                {
+                    Spell* spell = new PoisonGas(5);
+                    if(spell->cast(this, enemy))
+                    {
+                        return 0;
+                    }
+                }
+                break;
+        }
+}
+

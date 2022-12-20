@@ -1,9 +1,10 @@
 #include <iostream>
 #include "creature.h"
-int fight(Humanoid*,Creature*);
+int fight(Creature*,Creature*);
 
 int main(int argc, const char * argv[]) {
-	Humanoid * player = new Humanoid("Player",30,30,5,vector<Effect>{},NULL,NULL);
+	Armor* armor = new Armor("Diamond Chestplate", 3);
+	Humanoid * player = new Humanoid("Player",30,30,5,vector<Effect>{},armor,NULL);
 	Creature * dog = new Creature("Dog",30,30,5,vector<Effect>{});
 	fight(player,dog);
 }

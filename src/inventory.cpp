@@ -1,6 +1,6 @@
 #include "../include/inventory.h"
 
-int Inventory::maxSize = 20;
+long unsigned int Inventory::maxSize = 20;
 
 Inventory::Inventory() {};
 
@@ -25,7 +25,7 @@ void Inventory::deleteElementByIndex(int index){
         this->elements.erase(this->elements.begin() + index);
 }
 
-void Inventory::useElementByIndex(int index, Creature *player, Creature *enemy) {
+void Inventory::useElementByIndex(int index, Humanoid *player, Creature *enemy) {
     auto hPlayer = (Humanoid*) player;
     MultiType element = player->getInventory()->getElements().at(index);
     int typeIndex = player->getInventory()->getElements().at(index).index();

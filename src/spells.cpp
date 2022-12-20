@@ -70,6 +70,6 @@ int Erase::cast(Humanoid *caster, Creature *enemy) {
     }
 		return 1;
 }*/
-int Erase::cast(Humanoid *caster, Creature *enemy) {}
+int Erase::cast(Humanoid *caster, Creature *enemy) {return 1;}
 
 //I commented this, Because I can't run it yet
