@@ -9,6 +9,9 @@ class Humanoid;
 class Throwable;
 class Potion;
 
+using namespace std;
+#include <iostream>
+
 #include "Slot.h"
 #include "items.h"
 #include "Armor.h"
@@ -18,3 +21,7 @@ class Potion;
 #include "inventory.h"
 #include "Business.h"
 #include "spells.h"
+#include "Map.h"
+#include "Entity.h"
+#include "Character.h"
+
