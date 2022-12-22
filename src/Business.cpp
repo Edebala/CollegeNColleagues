@@ -8,7 +8,7 @@ int fight(Creature *attacker, Creature *enemy) {
     bool attackerTurn = true;
     while (1) {
         printf("PlayerHP:%i\nEnemyHP:%i\n\n",attacker->getHp(),enemy->getHp());
-        if (!attackerTurn){
+        if (attackerTurn){
 						if(!attacker->affect()) return 1;
             if(!attacker->turn(enemy)) return 1;
         }

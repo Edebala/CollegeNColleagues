@@ -9,7 +9,6 @@ Creature::Creature(const string& name, int hp, int maxHp, int strength,vector<Ef
     this->maxHp = maxHp;
     this->strength = strength;
 		effects = effect;
-    //this->inventory = new Inventory();
 }
 
 void Creature::setName(const string& name){
