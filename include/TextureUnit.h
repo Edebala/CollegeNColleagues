@@ -3,7 +3,10 @@
 
 class TextureUnit{
 	Entity* entity;
-	Animation* Animation
+	Animation* Animation;
 public:
-	Draw(Camera*);
+	TextureUnit(Entity*,Animation*);
+	Entity* getEntity();
+	Animation* getAnimation();
+	void Draw(Camera*);
 };

@@ -5,26 +5,34 @@
 
 class Frame{
 	SDL_Texture* texture;
+	SDL_Renderer* renderer;
 	int w, h;
 	float dx,dy;
 public:
-	Frame(SDL_Texture*,dx,dy);
+	Frame(SDL_Renderer*,string,float ,float );
 	float getDx();
 	float getDy();
+	SDL_Texture* getTexture();
+	SDL_Renderer* getRenderer();
 	void Draw(int x,int y,int size);
 }
 
-enum MoveType(MOVE_IDEL,MOVE_JUMP);
+enum MoveType(MOVE_IDLE,MOVE_JUMP);
 
 class Move{
-	vector<Frame> Frames;
+	vector<Frame*> Frames;
 	MoveType moveType;
+	SDL_Renderer* renderer;
+	int startTime;
 public:
-	Move(string filename);
+	vector<Frame*> getFrames();
+	MoveType getMoveType();
+	Move(SDL_Renderer*,string filename);
+	void Draw(SDL_Renderer*,int x,int y,int size);
+	int getStartTime();
+	void start();
 };
 
 class Animation{
 	vector <Move*> Movements;
 };
-
-

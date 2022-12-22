@@ -11,6 +11,9 @@ class Potion;
 
 using namespace std;
 #include <iostream>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 
 #include "Slot.h"
 #include "items.h"
@@ -24,4 +27,7 @@ using namespace std;
 #include "Map.h"
 #include "Entity.h"
 #include "Character.h"
+#include "Animation.h"
+#include "MapRendering.h"
+#include "TextureUnit.h"
 
