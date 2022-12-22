@@ -15,6 +15,7 @@ int Armor::getDefense() const{
 }
 
 int Armor::use(Humanoid* user, Creature* Enemy){
-	user->addElementToInventory(user->getArmor());
+	if(user->getArmor()!=NULL)
+		user->addElementToInventory(user->getArmor());
 	user->setArmor(this);
 }

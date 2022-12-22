@@ -9,9 +9,11 @@ int fight(Creature *attacker, Creature *enemy) {
     while (1) {
         printf("PlayerHP:%i\nEnemyHP:%i\n\n",attacker->getHp(),enemy->getHp());
         if (!attackerTurn){
+						if(!attacker->affect()) return 1;
             if(!attacker->turn(enemy)) return 1;
         }
         else{
+						if(!enemy->affect()) return 0;
             if(!enemy->turn(attacker)) return 0;
         }
         attackerTurn = !attackerTurn;
@@ -36,7 +38,7 @@ int Explore(Character* player){
 		player->move(-1 * (input=='a') + (input =='d'),-1 * (input == 'w') + (input == 's'));
 		if(map->getBlock(player->getX(),player->getY()) == 2){
 			if(rand()%10>7)
-				if(fight(player->getCreature(),new Creature("Dog",30,30,5,vector<Effect>{}))== 0) return 0;
+				if(fight(player->getCreature(),new Creature("Dog",30,30,5,vector<Effect*>{}))== 0) return 0;
 		}
 	}
 }

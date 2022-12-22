@@ -1,5 +1,6 @@
 #pragma once
-#include "items.h"
+#include <string>
+class Item;
 
 class Weapon: public Item{
     int damage = 0;

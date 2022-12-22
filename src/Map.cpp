@@ -58,7 +58,7 @@ void Map::printMap(vector <Entity*> entities){
 					break;
 				}
 			if(!EntityDrawn)
-				printf("%c",(getBlock(j,i)==0)?' ':'O');
+				printf("%c",(getBlock(j,i)==0)?' ':'a'+getBlock(j,i));
 		}
 		printf("\n");
 	}

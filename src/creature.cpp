@@ -3,11 +3,12 @@
 //
 #include "Game.h"
 
-Creature::Creature(const string& name, int hp, int maxHp, int strength,vector<Effect>effect){
+Creature::Creature(const string& name, int hp, int maxHp, int strength,vector<Effect*>effect){
     this->name = name;
     this->hp = hp;
     this->maxHp = maxHp;
     this->strength = strength;
+		effects = effect;
     //this->inventory = new Inventory();
 }
 
@@ -26,6 +27,21 @@ void Creature::setMaxHp(int maxHp){
 void Creature::setStrength(int strength){
     this->strength = strength;
 }
+
+int Creature::affect(){
+	for(int i=0;i<effects.size();i++){
+		if(!effects[i]->affect(this)) return 0;
+		if(!effects[i]->getDuration()){
+			delete effects[i];
+			effects.erase(effects.begin()+i--);
+		}
+	}
+	return 1;
+}
+
+void Creature::addEffect(Effect *effect){
+	effects.push_back(effect);
+}	
 
 void Humanoid::setInventory(Inventory* inventory) {
     this->inventory = inventory;
@@ -67,15 +83,16 @@ bool Humanoid::addElementToInventory(Slot* element) {
     return this->inventory->addElement(element);
 }
 
-void Humanoid::useElementFromInventoryByIndex(int index, Humanoid * player, Creature * enemy) {
-    this->inventory->useElementByIndex(index, player, enemy);
+int Humanoid::useElementFromInventoryByIndex(int index, Humanoid * player, Creature * enemy) {
+    return this->inventory->useElementByIndex(index, player, enemy);
 }
 
 // Humanoid functions implementation
 
-Humanoid::Humanoid(const string& name, int hp, int maxHp, int strength, vector<Effect> effect, Armor *armor, Weapon *weapon):Creature(name,hp,maxHp,strength,effect){
+Humanoid::Humanoid(const string& name, int hp, int maxHp, int strength, vector<Effect*> effect, Armor *armor, Weapon *weapon):Creature(name,hp,maxHp,strength,effect){
     this->armor = armor;
     this->weapon = weapon;
+		inventory = new Inventory();
 }
 
 void Humanoid::setArmor(Armor* armor){
@@ -108,23 +125,20 @@ int Creature::turn(Creature* enemy){
 }
 
 int Humanoid::turn(Creature* enemy){
-    int move = 1;
+		cerr<<"WhatToDo\n";
+		cerr<<"1:Attack\n";
+		cerr<<"2:Use Something\n";
+    int move;
+		cin>>move;
     switch (move) {
-            case 1: return !attack(enemy);
+            case 1: return attack(enemy);
                 break;
             case 2:
-                int spellType = 1; // = getSpellType;
-                if(spellType == 1)
-                {
-                    Spell* spell = new Fireball();
-                    return !spell->cast(this,enemy);
-                }
-                else if(spellType == 2)
-                {
-                    Spell* spell = new PoisonGas(5);
-                    return !spell->cast(this,enemy);
-                }
-                break;
+								if(getInventory()->getElements().size()==0) break;
+								getInventory()->printElements();
+                int chosen; // = getSpellType;
+								cin>>chosen;
+								return useElementFromInventoryByIndex(chosen,this,enemy);
         }
 		return 1;
 }

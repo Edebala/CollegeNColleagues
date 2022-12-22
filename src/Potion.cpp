@@ -1,5 +1,4 @@
-#include "Potion.h"
-#include "creature.h"
+#include "Game.h"
 // Potion parent class implementation
 
 Potion::Potion(const string &name, int duration) : Item(name) {
@@ -20,8 +19,8 @@ int HealingPotion::getHp() const {
     return this->hp;
 }
 
-int HealingPotion::use(Humanoid* user,Creature *enemy) const{
-    user->setHp(user->getHp() + this->hp);
+int HealingPotion::use(Humanoid* user,Creature *enemy){
+		user->addEffect(new Regeneration(duration,hp));
 		return 1;
 }
 

@@ -33,9 +33,10 @@ protected:
     string name;
     int hp, maxHp;
     int strength;
+		vector<Effect*> effects;
     //Inventory * inventory;
 public:
-    Creature(const string& name, int hp, int maxHp, int strength,vector<Effect> effect);
+    Creature(const string& name, int hp, int maxHp, int strength,vector<Effect*> effect);
 	// setters
 	void setName(const string& name);
     void setHp(int hp);
@@ -51,9 +52,10 @@ public:
 	// actions
     virtual bool attack(Creature *enemy) const;
 	  virtual int damage(int dmg);
-    int turn(Creature *enemy);
-		bool addElementToInventory(Slot*  element){return false;}
-  	void useElementFromInventoryByIndex(int index, Creature * player, Creature * enemy){}
+    virtual int turn(Creature *enemy);
+		virtual bool addElementToInventory(Slot*  element){return false;}
+		void addEffect(Effect*);
+		int affect();
 };
 
 class Humanoid : public Creature{
@@ -61,7 +63,7 @@ class Humanoid : public Creature{
     Weapon * weapon = nullptr;
 	Inventory * inventory;
 public:
-    Humanoid(const string& name, int hp, int maxHp, int strength,vector<Effect>,Armor *armor, Weapon *weapon);
+    Humanoid(const string& name, int hp, int maxHp, int strength,vector<Effect*>,Armor *armor, Weapon *weapon);
 
 	//setters
   void setArmor(Armor* armor);
@@ -78,5 +80,5 @@ public:
 	int damage(int dmg);
   virtual int turn(Creature *enemy);
 	bool addElementToInventory(Slot* element);
-  void useElementFromInventoryByIndex(int index, Humanoid * player, Creature * enemy);
+  int useElementFromInventoryByIndex(int index, Humanoid * player, Creature * enemy);
 };

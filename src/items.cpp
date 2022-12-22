@@ -4,17 +4,14 @@
 //
 // Item parent class implementations
 
-Item::Item(const string& name){
-    this->name = name;
-}
-
-void Item::setName(const string& name) {
-    this->name = name;
+Item::Item(const string& name): Slot(name){
 }
 
 string Item::getName(){
     return this->name;
 }
+
+bool Item::isSpell(){return false;}
 
 // Throwable class implementations
 
@@ -29,3 +26,4 @@ int Throwable::getDamage() const {
 int Throwable::use(Humanoid* user, Creature *enemy) const{
 		return(enemy->damage(this->damage));
 }
+

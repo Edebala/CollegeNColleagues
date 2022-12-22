@@ -1,7 +1,7 @@
-#include "spells.h"
+#include "Game.h"
 // Spell parent class implementations
 
-Spell::Spell(int duration) {
+Spell::Spell(string name,int duration):Slot(name) {
     this->duration = duration;
 }
 
@@ -13,20 +13,24 @@ int Spell::getDuration() const {
     return this->duration;
 }
 
-Fireball::Fireball():Spell(0){}
+bool Spell::isSpell(){return true;}
+
+Fireball::Fireball():Spell(string("Fireball"),0){}
 
 int Fireball::cast(Humanoid* caster, Creature* enemy){
     return enemy->damage((caster->getWeapon()==nullptr)?10:10*caster->getWeapon()->getMagicAdjust());
 }
 
-PoisonGas::PoisonGas(int duration):Spell(duration){}
+PoisonGas::PoisonGas(int duration):Spell(string("Poison Gas"),duration){}
 
 int PoisonGas::cast(Humanoid *caster, Creature *enemy){
+		enemy->addEffect(new Regeneration(5,-4));
     return enemy->damage((caster->getWeapon()==nullptr)?2:2*caster->getWeapon()->getMagicAdjust());
+		return 1;
 }
 // Poison Gas class implementations
 
-Debuff::Debuff(int duration, int strength, int maxHp) : Spell(duration){
+Debuff::Debuff(int duration, int strength, int maxHp) : Spell(string("Debuff"),duration){
     this->strength = strength;
     this->maxHp = maxHp;
 }
@@ -56,7 +60,7 @@ int Debuff::cast(Humanoid *caster, Creature *enemy) {
 
 //Erase class implementation
 
-Erase::Erase(int duration) : Spell(duration){}
+Erase::Erase(int duration) : Spell(string("Erase"),duration){}
 /*
 int Erase::cast(Humanoid *caster, Creature *enemy) {
     int i = 0;

@@ -18,5 +18,6 @@ public:
     vector<Slot*> getElements() const;
     bool addElement(Slot* element);
     void deleteElementByIndex(int index);
-    static void useElementByIndex(int index, Humanoid * player, Creature * enemy);
+    int useElementByIndex(int index, Humanoid * player, Creature * enemy);
+		void printElements();
 };

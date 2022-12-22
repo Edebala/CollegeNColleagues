@@ -12,6 +12,7 @@ class Item: public Slot{
     string name;
 protected:
     Item(const string& name);
+		bool isSpell();
     string getName();
     void setName(const string& name);
 		virtual int use(Humanoid* user,Creature* Enemy)=0;

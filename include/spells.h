@@ -1,18 +1,19 @@
 #pragma once
-#include "Slot.h"
-#include "creature.h"
 #include <cmath>
+#include <string>
 #include <random>
 
+class Slot;
 class Creature;
 class Humanoid;
 
 class Spell: public Slot{
     int duration = 0;
 public:
-    Spell(int duration);
+    Spell(string name,int duration);
     void setDuration(int duration);
     int getDuration() const;
+		bool isSpell();
 		virtual int cast(Humanoid*,Creature*)=0;
 		int use(Humanoid* user,Creature* enemy){return cast(user,enemy);}
 };

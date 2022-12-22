@@ -24,6 +24,7 @@ float Weapon::getMagicAdjust() const {
 }
 
 int Weapon::use(Humanoid* user, Creature* Enemy){
-	user->addElementToInventory(user->getWeapon());
+	if(user->getWeapon()!=NULL)
+		user->addElementToInventory(user->getWeapon());
 	user->setWeapon(this);
 }

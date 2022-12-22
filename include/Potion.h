@@ -1,7 +1,11 @@
 #pragma once
-#include "items.h"
+#include <string>
+
+using namespace std;
+class Item;
 
 class Potion: public Item{
+protected:
     int duration = 0;
 public:
     Potion(const string& name, int duration);
@@ -13,7 +17,7 @@ class HealingPotion : public Potion{
 public:
     HealingPotion(const string& name, int duration, int hp);
     int getHp() const;
-    int use(Humanoid* user,Creature * creature) const;
+    int use(Humanoid* user,Creature * creature);
 };
 
 class BuffPotion: public Potion{

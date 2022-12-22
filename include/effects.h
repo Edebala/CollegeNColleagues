@@ -6,9 +6,20 @@ class Creature;
 using namespace std;
 
 class Effect{
-    string name;
+protected:
+	string name;
 	int duration;
 public:
-    Effect(const string& name, int duration);
-	void affect(Creature* target);
+	int getDuration();
+	Effect(const string& name, int duration);
+	virtual int affect(Creature* target);
+	virtual void print()=0;
+};
+
+class Regeneration:public Effect{
+	int value;
+public:
+	Regeneration(int duration,int value);
+	int affect(Creature*);
+	void print();
 };

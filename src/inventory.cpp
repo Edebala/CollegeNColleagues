@@ -25,9 +25,15 @@ void Inventory::deleteElementByIndex(int index){
         this->elements.erase(this->elements.begin() + index);
 }
 
-void Inventory::useElementByIndex(int index, Humanoid *player, Creature *enemy) {
-    auto hPlayer = (Humanoid*) player;
+int Inventory::useElementByIndex(int index, Humanoid *player, Creature *enemy) {
     Slot* element = player->getInventory()->getElements()[index];
-		player->getInventory()->deleteElementByIndex(index);
+		int result = element->use(player,enemy);
+		if(!getElements()[index]->isSpell())
+			player->getInventory()->deleteElementByIndex(index);
+		return result;
 }
 
+void Inventory::printElements(){
+	for(int i=0;i<elements.size();i++)
+		cout<<i<<":"<<elements[i]->getName()<<endl;
+}
