@@ -7,3 +7,5 @@ xcode
 cmake-build-debug/
 CollegeNColleagues/
 Program
+obj/
+bin/
