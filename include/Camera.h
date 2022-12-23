@@ -4,7 +4,7 @@ class Entity;
 
 class Camera:public Entity{
 	int rangeX,rangeY;
-	int blockSize = 32;
+	int blockSize = 64;
 	SDL_Window* window;
 public:
 	int getRangeX();

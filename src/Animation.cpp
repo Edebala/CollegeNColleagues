@@ -24,7 +24,6 @@ float Move::getAnimationLength(){return animationLength;}
 
 void Move::Draw(int x,int y,int size,int time){
 	int fromStart = time - startTime;
-	cerr<<startTime<<" "<<fromStart<<" "<<time<<endl;
 	float percentDone = (float)fromStart/animationLength;
 	int frameIndex = int(frames.size()*(percentDone>.99?.99:percentDone));
 	frames[frameIndex]->Draw(x,y,size);

@@ -24,10 +24,11 @@ int main(int argc, const char * argv[]) {
 
 	long currentTime,StartTime = clock();
 	vector<Move*> moves;
-	Move *idle = new Move(renderer,"Assets/PlayerIdle.txt",0,300);
-	Move *jump = new Move(renderer,"Assets/PlayerJump.txt",0,100);
-	moves.push_back(idle);
-	moves.push_back(jump);
+	moves.push_back(new Move(renderer,"Assets/PlayerIdle.txt",0,300));
+	moves.push_back(new Move(renderer,"Assets/PlayerJumpRight.txt",0,100));
+	moves.push_back(new Move(renderer,"Assets/PlayerJumpLeft.txt",0,100));
+	moves.push_back(new Move(renderer,"Assets/PlayerJumpUp.txt",0,100));
+	moves.push_back(new Move(renderer,"Assets/PlayerJumpDown.txt",0,100));
 
 	TextureUnit *txtr = new TextureUnit(playerChar,new Animation(moves));
 

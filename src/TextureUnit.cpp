@@ -12,6 +12,9 @@ void TextureUnit::setY(int y){entity->setY(y);}
 void TextureUnit::move(int x,int y,int time){
 	entity->move(x,y);
 	if(x>0) animation->setCurrentMove(animation->getMovements()[MOVE_JUMP_RIGHT],time);
+	if(x<0) animation->setCurrentMove(animation->getMovements()[MOVE_JUMP_LEFT],time);
+	if(y>0) animation->setCurrentMove(animation->getMovements()[MOVE_JUMP_DOWN],time);
+	if(y<0) animation->setCurrentMove(animation->getMovements()[MOVE_JUMP_UP],time);
 }
 
 void TextureUnit::update(int time){
