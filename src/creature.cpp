@@ -28,7 +28,7 @@ void Creature::setStrength(int strength){
 }
 
 int Creature::affect(){
-	for(int i=0;i<effects.size();i++){
+	for(long unsigned int i=0;i<effects.size();i++){
 		if(!effects[i]->affect(this)) return 0;
 		if(!effects[i]->getDuration()){
 			delete effects[i];

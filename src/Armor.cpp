@@ -18,4 +18,5 @@ int Armor::use(Humanoid* user, Creature* Enemy){
 	if(user->getArmor()!=NULL)
 		user->addElementToInventory(user->getArmor());
 	user->setArmor(this);
+	return 0;
 }

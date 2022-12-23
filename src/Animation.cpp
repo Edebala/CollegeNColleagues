@@ -1,22 +1,6 @@
 #include "Game.h"
 
-Frame::Frame(SDL_Renderer* renderer,string textureFile, float dx, float dy):dx(dx),dy(dy),renderer(renderer){
-	SDL_Surface* buffer = IMG_Load(textureFile.c_str());
-	Uint32 colorkey = SDL_MapRGB(buffer->format,255,255,255);
-	SDL_SetColorKey(buffer,SDL_TRUE,colorkey);
-	texture = SDL_CreateTextureFromSurface(renderer,buffer);
-}
-
-float Frame::getDx(){return dx;}
-float Frame::getDy(){return dy;}
-SDL_Texture* Frame::getTexture(){return texture;}
-
-void Frame::Draw(int x,int y,int size){
-	SDL_Rect rect = {x-size/2,y-size/2,size,size};
-	SDL_RenderCopy(renderer,texture,0,&rect);
-}
-
-Move::Move(SDL_Renderer* renderer,string filename,int start, float length):
+Move::Move(SDL_Renderer* renderer,string filename,int start, int length):
 	startTime(start),animationLength(length){
 	ifstream be(filename);
 	string typeStr;
@@ -24,12 +8,12 @@ Move::Move(SDL_Renderer* renderer,string filename,int start, float length):
 	if(typeStr == "IDLE")
 		moveType = MOVE_IDLE;
 	if(typeStr == "JUMP")
-		moveType = MOVE_JUMP;
-	int deltaX,deltaY;
+		moveType = MOVE_JUMP_RIGHT;
+	float deltaX,deltaY;
 	string buffer;
 	while (be>> buffer){
 		be>>deltaX>>deltaY;
-		Frames.push_back(new Frame(renderer,buffer,deltaX,deltaY));
+		frames.push_back(new Frame(renderer,buffer,deltaX,deltaY));
 	}
 }
 
@@ -37,6 +21,28 @@ MoveType Move::getMoveType(){ return moveType;}
 int Move::getStartTime(){ return startTime;}
 float Move::getAnimationLength(){return animationLength;}
 
-void Move::Draw(int x,int y,int size){
-	
+
+void Move::Draw(int x,int y,int size,int time){
+	int fromStart = time - startTime;
+	cerr<<startTime<<" "<<fromStart<<" "<<time<<endl;
+	float percentDone = (float)fromStart/animationLength;
+	int frameIndex = int(frames.size()*(percentDone>.99?.99:percentDone));
+	frames[frameIndex]->Draw(x,y,size);
 }
+
+Move* Animation::getCurrentMove(){return currentMove;}
+
+void Animation::setCurrentMove(Move *move,int time){
+	currentMove = move;
+	currentMove->setStartTime(time);
+}
+vector<Move*> Animation::getMovements(){return Movements;}
+
+Animation::Animation(vector<Move*> moves):Movements(moves){
+	currentMove = moves[MOVE_IDLE];
+}
+
+void Move::setStartTime(int time){
+	startTime = time;
+}
+

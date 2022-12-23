@@ -1,15 +1,17 @@
 #pragma once
 
-class Camera{
-	int x,y;
+class Entity;
+
+class Camera:public Entity{
 	int rangeX,rangeY;
+	int blockSize = 32;
+	SDL_Window* window;
 public:
-	int getX();
-	int getY();
-	int setX(int);
-	int setY(int);
 	int getRangeX();
+	void update();
 	int getRangeY();
 	int setRange(int x,int y);
-	Camera(int.int,int,int);
+	void getEntityPos(Entity* entity,int &x, int &y);
+	int getBlockSize();
+	Camera(SDL_Window*,int posX, int posY);
 };

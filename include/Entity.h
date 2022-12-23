@@ -1,6 +1,7 @@
 #pragma once
 
 class Entity{
+protected:
 	int posX,posY;
 public:
 	Entity(int, int);
