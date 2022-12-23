@@ -12,7 +12,7 @@ class MapRenderer{
 	vector<Entity*> entities;
 public:
 	MapRenderer(SDL_Renderer*,SDL_Window*,Map*);
-	drawMap();
+	void drawMap();
 };
 void getBlockTexture(int block);
 void drawMap(Map*,Camera*);

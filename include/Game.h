@@ -27,7 +27,6 @@ using namespace std;
 #include "Map.h"
 #include "Entity.h"
 #include "Character.h"
+#include "TextureUnit.h"
 #include "Animation.h"
 #include "MapRendering.h"
-#include "TextureUnit.h"
-

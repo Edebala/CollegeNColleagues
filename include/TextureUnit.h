@@ -1,9 +1,10 @@
 #pragma once
-#include "Entity.h"
+class Animation;
+class Camera;
 
 class TextureUnit{
 	Entity* entity;
-	Animation* Animation;
+	Animation* animation;
 public:
 	TextureUnit(Entity*,Animation*);
 	Entity* getEntity();
