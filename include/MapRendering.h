@@ -10,8 +10,9 @@ class MapRenderer{
   Camera* camera;
 	Map *map;
 	vector<TextureUnit*> units;
+	vector<SDL_Texture*> textures;
 public:
-	MapRenderer(SDL_Renderer*,SDL_Window*,Map*);
+	MapRenderer(SDL_Renderer*,Camera*,Map*);
 	void drawMap();
 };
 void getBlockTexture(int block);

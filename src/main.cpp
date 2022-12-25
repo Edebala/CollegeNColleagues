@@ -36,12 +36,13 @@ int main(int argc, const char * argv[]) {
 
 	const unsigned char* key;
 	
-	Camera *camera = new Camera(window,2,2);
+	Camera *camera = new Camera(window, 3,6);
 	///---------------------------
 	int time=0,FrameRate = 60;
 	double T =(double) CLOCKS_PER_SEC / FrameRate;
 	unsigned BaseTime = clock() / T;
 	unsigned delay = 0, totalDelay = 0;
+	MapRenderer* mapR = new MapRenderer(renderer,camera,map);
 	while (event.type != SDL_QUIT){
 	  if ((totalDelay + clock()) / T < time + BaseTime){
 		  delay = ((time +BaseTime)* T - (totalDelay+clock()));
@@ -64,6 +65,7 @@ int main(int argc, const char * argv[]) {
 		}
 		SDL_RenderClear(renderer);
     camera->update();
+		mapR->drawMap();
 		txtr->Draw(renderer,camera,currentTime);
 		txtr->update(currentTime);
 		SDL_RenderPresent(renderer);

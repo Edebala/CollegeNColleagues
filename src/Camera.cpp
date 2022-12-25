@@ -3,6 +3,7 @@
 Camera::Camera(SDL_Window* window,int x,int y):window(window),Entity(x,y){
 	rangeX = 5;
 	rangeY = 5;
+	blockSize=64;
 }
 
 int Camera::getRangeX(){return rangeX;}
