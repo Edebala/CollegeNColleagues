@@ -10,7 +10,7 @@ int main(int argc, const char * argv[]) {
 	player->addElementToInventory(new Weapon("Diamond Sword", 4));
 	player->addElementToInventory(new Fireball());
 	player->addElementToInventory(new PoisonGas(4));
-	Character *playerChar = new Character(3,3,player);
+	Character *playerChar = new Character(1,1,player);
 	Map* map = new Map("Assets/FirstMap.txt");
   
 	//Explore(playerChar);
@@ -64,7 +64,9 @@ int main(int argc, const char * argv[]) {
 			txtr->move(-control%2 + (control/2)%2,(-control/4)%2 +(control/8)%2,currentTime);
 		}
 		SDL_RenderClear(renderer);
-    camera->update();
+		camera->setX(max(0,txtr->getX()));
+		camera->setY(max(0,txtr->getY()));
+    camera->update(playerChar);
 		mapR->drawMap();
 		txtr->Draw(renderer,camera,currentTime);
 		txtr->update(currentTime);

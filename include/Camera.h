@@ -8,7 +8,7 @@ class Camera:public Entity{
 	SDL_Window* window;
 public:
 	int getRangeX();
-	void update();
+	void update(Entity*);
 	int getRangeY();
 	int setRange(int x,int y);
 	void getEntityPos(Entity* entity,int &x, int &y);
