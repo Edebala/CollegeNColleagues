@@ -18,6 +18,7 @@ public:
 	int getStartTime();
 	void setStartTime(int);
 	float getAnimationLength();
+	Frame* getCurrentFrame(int);
 	void start();
 };
 

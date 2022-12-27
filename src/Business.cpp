@@ -5,7 +5,7 @@
 using namespace std;
 
 void init(Character* playerEntity,TextureUnit **player, MapRenderer **map, Camera **camera){
-	*camera = new Camera(3,6);
+	*camera = new Camera(3.0,6.0);
 	
 	vector<Move*> moves;
 	moves.push_back(new Move((*camera)->getRenderer(),"Assets/PlayerIdle.txt",0,700));
@@ -72,7 +72,7 @@ int Explore(Character* playerEntity){
 		int control = getInput(&event);
 		if(player->isIdle())
 			player->move(-control%2 + (control/2)%2,(-control/4)%2 +(control/8)%2,time.getCurrentTime(),map->getMap());
-    camera->update(player->getEntity(),map->getMap());
+    camera->update(player,map->getMap(),time.getCurrentTime());
 		player->update(time.getCurrentTime());
 		Draw(camera,map,player,time.getCurrentTime());
 	}

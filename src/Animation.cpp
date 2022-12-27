@@ -21,12 +21,15 @@ MoveType Move::getMoveType(){ return moveType;}
 int Move::getStartTime(){ return startTime;}
 float Move::getAnimationLength(){return animationLength;}
 
-
-void Move::Draw(int x,int y,int size,int time){
+Frame* Move::getCurrentFrame(int time){
 	int fromStart = time - startTime;
 	float percentDone = (float)fromStart/animationLength;
-	int frameIndex = int(frames.size()*(percentDone>.99?.99:percentDone));
-	frames[frameIndex]->Draw(x,y,size);
+	return frames[int(frames.size()*(percentDone>.99?.99:percentDone))];
+}
+
+void Move::Draw(int x,int y,int size,int time){
+	Frame* frame  = getCurrentFrame(time);
+	frame->Draw(x,y,size);
 }
 
 Move* Animation::getCurrentMove(){return currentMove;}

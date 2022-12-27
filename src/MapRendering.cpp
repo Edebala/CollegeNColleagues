@@ -17,8 +17,8 @@ MapRenderer::MapRenderer(Camera* camera, Map* map):renderer(camera->getRenderer(
 }
 
 void MapRenderer::drawMap(){
-  for(int i=max(0,camera->getX()-camera->getRangeX()); i<min(map->getWidth(),camera->getX()+camera->getRangeX()+2); i++){
-  	for(int j=max(0,camera->getY()-camera->getRangeY()); j<min(map->getHeight(),camera->getY()+camera->getRangeY()+2); j++){
+  for(int i=max(0,int(camera->getX()-camera->getRangeX())); i<min(map->getWidth(),int(camera->getX())+camera->getRangeX()+2); i++){
+  	for(int j=max(0,int(camera->getY()-camera->getRangeY())); j<min(map->getHeight(),int(camera->getY())+camera->getRangeY()+2); j++){
 			SDL_Rect rect = {
 				(i - camera->getX() + camera->getRangeX())*camera->getBlockSize(),
 				(j - camera->getY() + camera->getRangeY())*camera->getBlockSize(),

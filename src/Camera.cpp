@@ -1,6 +1,6 @@
 #include "Game.h"
 
-Camera::Camera(int x,int y):Entity(x,y){
+Camera::Camera(float x,float y):posX(x),posY(y){
 	window = SDL_CreateWindow(
 	"CollegeNColleges",SDL_WINDOWPOS_CENTERED,
 	SDL_WINDOWPOS_CENTERED,1200,1200,
@@ -11,17 +11,26 @@ Camera::Camera(int x,int y):Entity(x,y){
 
 	rangeX = 5;
 	rangeY = 5;
-	blockSize=64;
+	blockSize=48;
 }
 
+float Camera::getX(){return posX;}
+float Camera::getY(){return posY;}
+void Camera::setX(float x){posX = x;}
+void Camera::setY(float y){posY = y;}
+void Camera::move(float x,float y){
+	posX+=x;
+	posY+=y;
+}
 int Camera::getRangeX(){return rangeX;}
 int Camera::getRangeY(){return rangeY;}
 int Camera::setRange(int x,int y){rangeX = x;rangeY=y;}
 
-void Camera::update(Entity* entity,Map* map){
+void Camera::update(TextureUnit* txtr,Map* map,int time){
 	int scrWidth,scrHeight;
-	setX(min(map->getWidth()-rangeX,max(rangeX,entity->getX())));
-	setY(min(map->getHeight()-rangeY,max(rangeY,entity->getY())));
+	float targetX = min(map->getWidth()-rangeX,max(rangeX,txtr->getX()));
+	float targetY = min(map->getHeight()-rangeY,max(rangeY,txtr->getY()));
+	move((targetX-posX)/16,(targetY-posY)/32);
 	SDL_GetWindowSize(window,&scrWidth,&scrHeight);
 	rangeX = (scrWidth/blockSize+1)/2;
 	rangeY = (scrHeight/blockSize+1)/2;
