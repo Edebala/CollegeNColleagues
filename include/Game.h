@@ -35,3 +35,4 @@ using namespace std;
 #include "Frame.h"
 #include "Animation.h"
 #include "MapRendering.h"
+#include "TimeManager.h"

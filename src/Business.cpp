@@ -4,6 +4,23 @@
 
 using namespace std;
 
+void init(Character* playerEntity,TextureUnit **player, MapRenderer **map, Camera **camera){
+	*camera = new Camera(3,6);
+	
+	vector<Move*> moves;
+	moves.push_back(new Move((*camera)->getRenderer(),"Assets/PlayerIdle.txt",0,700));
+	moves.push_back(new Move((*camera)->getRenderer(),"Assets/PlayerJumpRight.txt",0,200));
+	moves.push_back(new Move((*camera)->getRenderer(),"Assets/PlayerJumpLeft.txt",0,200));
+	moves.push_back(new Move((*camera)->getRenderer(),"Assets/PlayerJumpUp.txt",0,200));
+	moves.push_back(new Move((*camera)->getRenderer(),"Assets/PlayerJumpDown.txt",0,200));
+	Animation* animation = new Animation(moves);
+	*player = new TextureUnit(playerEntity,animation);
+
+
+	*map = new MapRenderer(*camera,new Map("Assets/SecondMap.txt"));
+}
+
+
 int fight(Creature *attacker, Creature *enemy) {
     bool attackerTurn = true;
     while (1) {
@@ -21,24 +38,42 @@ int fight(Creature *attacker, Creature *enemy) {
     return -1;
 }
 
-char getInput(){
-	char a;
-	cin>>a;
-	return a;
+void Draw(Camera* camera, MapRenderer* map,TextureUnit* player,int currentTime){
+		SDL_RenderClear(camera->getRenderer());
+		map->drawMap();
+		player->Draw(camera,currentTime);
+		SDL_RenderPresent(camera->getRenderer());
+};
+
+int getInput(SDL_Event *event){
+	const unsigned char* key;
+	int control = 0;
+	SDL_PollEvent(event);
+	key = SDL_GetKeyboardState(0);
+	control = (key[SDL_SCANCODE_A]!=0)|
+		2*(key[SDL_SCANCODE_D]!=0)|
+		4*(key[SDL_SCANCODE_W]!=0)|
+		8*(key[SDL_SCANCODE_S]!=0);
+	return control;
 }
 
-int Explore(Character* player){
-	string mapFile="FirstMap.txt";
-	vector<Entity*> entities;
-	entities.push_back(player);
-	Map* map = new Map(mapFile);
-	while(true){
-		map->printMap(entities);
-		char input = getInput();
-		player->tryToMove(-1 * (input=='a') + (input =='d'),-1 * (input == 'w') + (input == 's'),map);
-		if(map->getBlock(player->getX(),player->getY()) == 2){
-			if(rand()%10>7)
-				if(fight(player->getCreature(),new Creature("Dog",30,30,5,vector<Effect*>{}))== 0) return 0;
-		}
+int Explore(Character* playerEntity){
+	TextureUnit* player;
+	MapRenderer* map;
+	Camera* camera;
+	init(playerEntity,&player,&map,&camera);
+
+	TimeManager time;
+
+	SDL_Event event;
+
+	while (event.type != SDL_QUIT){
+		time.tick();
+		int control = getInput(&event);
+		if(player->isIdle())
+			player->move(-control%2 + (control/2)%2,(-control/4)%2 +(control/8)%2,time.getCurrentTime(),map->getMap());
+    camera->update(player->getEntity(),map->getMap());
+		player->update(time.getCurrentTime());
+		Draw(camera,map,player,time.getCurrentTime());
 	}
 }
