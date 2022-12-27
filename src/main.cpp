@@ -3,46 +3,46 @@
 int fight(Creature*,Creature*);
 int Explore(Character*);
 
-int main(int argc, const char * argv[]) {
-	Humanoid * player = new Humanoid("Player",30,30,5,vector<Effect*>{},NULL,NULL);
-	player->addElementToInventory(new Armor("Diamond Chestplate", 3));
-	player->addElementToInventory(new HealingPotion("HP Poti",7, 5));
-	player->addElementToInventory(new Weapon("Diamond Sword", 4));
-	player->addElementToInventory(new Fireball());
-	player->addElementToInventory(new PoisonGas(4));
-	Character *playerChar = new Character(1,1,player);
-	Map* map = new Map("Assets/FirstMap.txt");
-  
-	//Explore(playerChar);
+void init(TextureUnit **player, MapRenderer **map, Camera **camera){
+	*camera = new Camera(3,6);
+	Humanoid * playerCreature = new Humanoid("Player",30,30,5,vector<Effect*>{},NULL,NULL);
+	playerCreature->addElementToInventory(new Armor("Diamond Chestplate", 3));
+	playerCreature->addElementToInventory(new HealingPotion("HP Poti",7, 5));
+	playerCreature->addElementToInventory(new Weapon("Diamond Sword", 4));
+	playerCreature->addElementToInventory(new Fireball());
+	playerCreature->addElementToInventory(new PoisonGas(4));
+	Character *playerEntity = new Character(3,3,playerCreature);
 	
-	SDL_Window *window = SDL_CreateWindow(
-	"CollegeNColleges",SDL_WINDOWPOS_CENTERED,
-	SDL_WINDOWPOS_CENTERED,1200,1200,
-	SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN);
-	SDL_Renderer *renderer = SDL_CreateRenderer(
-	window, -1, SDL_RENDERER_ACCELERATED);
+	vector<Move*> moves;
+	moves.push_back(new Move((*camera)->getRenderer(),"Assets/PlayerIdle.txt",0,300));
+	moves.push_back(new Move((*camera)->getRenderer(),"Assets/PlayerJumpRight.txt",0,100));
+	moves.push_back(new Move((*camera)->getRenderer(),"Assets/PlayerJumpLeft.txt",0,100));
+	moves.push_back(new Move((*camera)->getRenderer(),"Assets/PlayerJumpUp.txt",0,100));
+	moves.push_back(new Move((*camera)->getRenderer(),"Assets/PlayerJumpDown.txt",0,100));
+	Animation* animation = new Animation(moves);
+	*player = new TextureUnit(playerEntity,animation);
+
+
+	*map = new MapRenderer(*camera,new Map("Assets/SecondMap.txt"));
+}
+
+int main(int argc, const char * argv[]) {
+	TextureUnit* player;
+	MapRenderer* map;
+	Camera* camera;
+	init(&player,&map,&camera);
 
 	SDL_Event event;
 
 	long currentTime,StartTime = clock();
-	vector<Move*> moves;
-	moves.push_back(new Move(renderer,"Assets/PlayerIdle.txt",0,300));
-	moves.push_back(new Move(renderer,"Assets/PlayerJumpRight.txt",0,100));
-	moves.push_back(new Move(renderer,"Assets/PlayerJumpLeft.txt",0,100));
-	moves.push_back(new Move(renderer,"Assets/PlayerJumpUp.txt",0,100));
-	moves.push_back(new Move(renderer,"Assets/PlayerJumpDown.txt",0,100));
-
-	TextureUnit *txtr = new TextureUnit(playerChar,new Animation(moves));
 
 	const unsigned char* key;
 	
-	Camera *camera = new Camera(window, 3,6);
 	///---------------------------
 	int time=0,FrameRate = 60;
 	double T =(double) CLOCKS_PER_SEC / FrameRate;
 	unsigned BaseTime = clock() / T;
 	unsigned delay = 0, totalDelay = 0;
-	MapRenderer* mapR = new MapRenderer(renderer,camera,map);
 	while (event.type != SDL_QUIT){
 	  if ((totalDelay + clock()) / T < time + BaseTime){
 		  delay = ((time +BaseTime)* T - (totalDelay+clock()));
@@ -54,23 +54,21 @@ int main(int argc, const char * argv[]) {
 		currentTime = time*T/1000;
 		SDL_PollEvent(&event);
 		int control = 0;
-		if(txtr->getAnimation()->getCurrentMove()->getMoveType()==MOVE_IDLE){
+		if(player->isIdle()){
 			SDL_PollEvent(&event);
 			key = SDL_GetKeyboardState(0);
-			control = (key[SDL_SCANCODE_A]!=0) +
-							2*(key[SDL_SCANCODE_D]!=0)+
-							4*(key[SDL_SCANCODE_W]!=0)+
+			control = (key[SDL_SCANCODE_A]!=0)|
+							2*(key[SDL_SCANCODE_D]!=0)|
+							4*(key[SDL_SCANCODE_W]!=0)|
 							8*(key[SDL_SCANCODE_S]!=0);
-			txtr->move(-control%2 + (control/2)%2,(-control/4)%2 +(control/8)%2,currentTime);
+			player->move(-control%2 + (control/2)%2,(-control/4)%2 +(control/8)%2,currentTime,map->getMap());
 		}
-		SDL_RenderClear(renderer);
-		camera->setX(max(0,txtr->getX()));
-		camera->setY(max(0,txtr->getY()));
-    camera->update(playerChar);
-		mapR->drawMap();
-		txtr->Draw(renderer,camera,currentTime);
-		txtr->update(currentTime);
-		SDL_RenderPresent(renderer);
+		SDL_RenderClear(camera->getRenderer());
+    camera->update(player->getEntity(),map->getMap());
+		map->drawMap();
+		player->Draw(camera,currentTime);
+		player->update(currentTime);
+		SDL_RenderPresent(camera->getRenderer());
 		usleep(CLOCKS_PER_SEC/60);
 	}
 }

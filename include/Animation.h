@@ -5,8 +5,6 @@
 
 class Frame;
 
-enum MoveType{MOVE_IDLE,MOVE_JUMP_RIGHT,MOVE_JUMP_LEFT,MOVE_JUMP_UP,MOVE_JUMP_DOWN};
-
 class Move{
 	vector<Frame*> frames;
 	MoveType moveType;

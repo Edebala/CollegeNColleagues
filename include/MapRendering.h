@@ -12,10 +12,9 @@ class MapRenderer{
 	vector<TextureUnit*> units;
 	vector<SDL_Texture*> textures;
 public:
-	MapRenderer(SDL_Renderer*,Camera*,Map*);
+	MapRenderer(Camera*,Map*);
 	void drawMap();
+	Map* getMap();
 };
-void getBlockTexture(int block);
-void drawMap();
 
 

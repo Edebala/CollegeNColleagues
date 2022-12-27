@@ -35,7 +35,7 @@ int Explore(Character* player){
 	while(true){
 		map->printMap(entities);
 		char input = getInput();
-		player->move(-1 * (input=='a') + (input =='d'),-1 * (input == 'w') + (input == 's'));
+		player->tryToMove(-1 * (input=='a') + (input =='d'),-1 * (input == 'w') + (input == 's'),map);
 		if(map->getBlock(player->getX(),player->getY()) == 2){
 			if(rand()%10>7)
 				if(fight(player->getCreature(),new Creature("Dog",30,30,5,vector<Effect*>{}))== 0) return 0;

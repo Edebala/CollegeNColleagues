@@ -9,6 +9,8 @@ class Humanoid;
 class Throwable;
 class Potion;
 
+enum MoveType{MOVE_IDLE,MOVE_JUMP_RIGHT,MOVE_JUMP_LEFT,MOVE_JUMP_UP,MOVE_JUMP_DOWN};
+
 using namespace std;
 #include <iostream>
 #include <unistd.h>

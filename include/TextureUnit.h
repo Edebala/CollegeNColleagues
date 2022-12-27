@@ -2,6 +2,7 @@
 
 class Animation;
 class Camera;
+class Map;
 
 class TextureUnit{
 	Entity* entity;
@@ -10,11 +11,12 @@ public:
 	TextureUnit(Entity*,Animation*);
 	Entity* getEntity();
 	Animation* getAnimation();
-	void Draw(SDL_Renderer*,Camera*,int time);
+	void Draw(Camera*,int time);
 	int getX();
 	int getY();
 	void setX(int);
 	void setY(int);
-	void move(int x,int y,int time);
+	void move(int x,int y,int time,Map*);
 	void update(int time);
+	bool isIdle();
 };
