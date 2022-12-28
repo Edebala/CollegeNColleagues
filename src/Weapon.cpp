@@ -27,4 +27,5 @@ int Weapon::use(Humanoid* user, Creature* Enemy){
 	if(user->getWeapon()!=NULL)
 		user->addElementToInventory(user->getWeapon());
 	user->setWeapon(this);
+	return 1;
 }

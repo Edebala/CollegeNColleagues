@@ -14,6 +14,7 @@ enum MoveType{MOVE_IDLE,MOVE_JUMP_RIGHT,MOVE_JUMP_LEFT,MOVE_JUMP_UP,MOVE_JUMP_DO
 using namespace std;
 #include <iostream>
 #include <unistd.h>
+#include <sstream>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
@@ -36,3 +37,6 @@ using namespace std;
 #include "Animation.h"
 #include "MapRendering.h"
 #include "TimeManager.h"
+#include "TextLine.h"
+//#include "TextBox.h"
+#include "UIBox.h"

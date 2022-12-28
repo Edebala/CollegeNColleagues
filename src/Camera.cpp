@@ -32,6 +32,7 @@ void Camera::update(TextureUnit* txtr,Map* map,int time){
 	float targetY = min(map->getHeight()-rangeY,max(rangeY,txtr->getY()));
 	move((targetX-posX)/16,(targetY-posY)/32);
 	SDL_GetWindowSize(window,&scrWidth,&scrHeight);
+	blockSize = (scrWidth+scrHeight)/21;
 	rangeX = (scrWidth/blockSize+1)/2;
 	rangeY = (scrHeight/blockSize+1)/2;
 }

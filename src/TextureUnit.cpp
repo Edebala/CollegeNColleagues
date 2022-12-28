@@ -2,19 +2,21 @@
 
 TextureUnit:: TextureUnit(Entity* entity,Animation* anim):
 	entity(entity),animation(anim){}
-Entity* TextureUnit::getEntity(){return entity;}
+Character* TextureUnit::getCharacter(){return (Character*)entity;}
 Animation* TextureUnit::getAnimation(){return animation;}
 
 int TextureUnit::getX(){return entity->getX();}
 int TextureUnit::getY(){return entity->getY();}
 void TextureUnit::setX(int x){entity->setX(x);}
 void TextureUnit::setY(int y){entity->setY(y);}
-void TextureUnit::move(int x,int y,int time,Map* map){
+int TextureUnit::move(int x,int y,int time,Map* map){
+	if(x == 0 && y == 0) return -2;
 	if(entity->tryToMove(x,y,map)){
 		if(x>0) animation->setCurrentMove(animation->getMovements()[MOVE_JUMP_RIGHT],time);
 		if(x<0) animation->setCurrentMove(animation->getMovements()[MOVE_JUMP_LEFT],time);
 		if(y>0) animation->setCurrentMove(animation->getMovements()[MOVE_JUMP_DOWN],time);
 		if(y<0) animation->setCurrentMove(animation->getMovements()[MOVE_JUMP_UP],time);
+		return map->getBlock(getX(),getY());
 	}
 }
 

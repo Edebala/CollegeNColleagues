@@ -123,22 +123,32 @@ int Creature::turn(Creature* enemy){
     return attack(enemy);
 }
 
-int Humanoid::turn(Creature* enemy){
-		cerr<<"WhatToDo\n";
-		cerr<<"1:Attack\n";
-		cerr<<"2:Use Something\n";
-    int move;
-		cin>>move;
-    switch (move) {
-            case 1: return attack(enemy);
-                break;
-            case 2:
-								if(getInventory()->getElements().size()==0) break;
-								getInventory()->printElements();
-                int chosen; // = getSpellType;
-								cin>>chosen;
-								return useElementFromInventoryByIndex(chosen,this,enemy);
-        }
-		return 1;
-}
 
+int getMoveChoice(){
+	int a;
+	cin>>a;
+	return a;
+};
+
+int getInventoryChoice(){
+	int a;
+	cin>>a;
+	return a;
+};
+
+int Humanoid::turn(Creature* enemy){
+	cerr<<"WhatToDo\n";
+	cerr<<"1:Attack\n";
+	cerr<<"2:Use Something\n";
+  int move = getMoveChoice();
+  switch (move) {
+  case 1: return attack(enemy);
+    break;
+  case 2:
+		if(getInventory()->getElements().size()==0) break;
+		getInventory()->printElements();
+    int chosen = getInventoryChoice(); 
+		return useElementFromInventoryByIndex(chosen,this,enemy);
+  }
+	return 1;
+}

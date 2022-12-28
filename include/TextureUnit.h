@@ -9,14 +9,14 @@ class TextureUnit{
 	Animation* animation;
 public:
 	TextureUnit(Entity*,Animation*);
-	Entity* getEntity();
+	Character* getCharacter();
 	Animation* getAnimation();
 	void Draw(Camera*,int time);
 	int getX();
 	int getY();
 	void setX(int);
 	void setY(int);
-	void move(int x,int y,int time,Map*);
+	int move(int x,int y,int time,Map*);
 	void update(int time);
 	bool isIdle();
 };
