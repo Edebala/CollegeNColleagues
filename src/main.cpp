@@ -117,6 +117,7 @@ int main(int argc, const char * argv[]) {
 		playerCreature->addElementToInventory(new Weapon("Diamond Sword", 4));
 		playerCreature->addElementToInventory(new Fireball());
 		playerCreature->addElementToInventory(new PoisonGas(4));
+		playerCreature->addElementToInventory(new Mend(7));
 		Explore(player,camera);
 	}
 }

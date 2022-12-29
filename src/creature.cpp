@@ -208,6 +208,9 @@ int getInventoryChoice(Humanoid* player,Camera* camera){
 	buffer = IMG_Load("Assets/PoisonGas.png");
 	SDL_Texture *poisongastxt = SDL_CreateTextureFromSurface(renderer,buffer);
 
+	buffer = IMG_Load("Assets/Mend.png");
+	SDL_Texture *mendtxt = SDL_CreateTextureFromSurface(renderer,buffer);
+
 	UIBox box(300,300,600,600,10);
 	box.setTexture(bricktxt);
 	box.createGrid(5,4);
@@ -225,6 +228,8 @@ int getInventoryChoice(Humanoid* player,Camera* camera){
 			box.getSubDivisions()[i]->setTexture(fireballtxt);
 		else if(typeid(*(player->getInventory()->getElements()[i]))== typeid(PoisonGas))
 			box.getSubDivisions()[i]->setTexture(poisongastxt);
+		else if(typeid(*(player->getInventory()->getElements()[i]))== typeid(Mend))
+			box.getSubDivisions()[i]->setTexture(mendtxt);
 		else
 			box.getSubDivisions()[i]->setTexture(questiontxt);
 

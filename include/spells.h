@@ -36,6 +36,16 @@ public:
     int getDamage() const;
 };
 
+//Healing Spell
+
+class Mend: public Spell{
+	int value;
+public:
+	int cast(Humanoid *caster, Creature *enemy);
+	Mend(int damage);
+	int getValue();
+};
+
 // Debuff spells
 
 class Debuff: public Spell{

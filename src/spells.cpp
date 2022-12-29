@@ -28,7 +28,17 @@ int PoisonGas::cast(Humanoid *caster, Creature *enemy){
     return enemy->damage((caster->getWeapon()==nullptr)?2:2*caster->getWeapon()->getMagicAdjust());
 		return 1;
 }
-// Poison Gas class implementations
+
+int Mend::cast(Humanoid *caster, Creature *enemy){
+	caster->setHp(caster->getHp()+value);
+	return 1;
+}
+
+int Mend::getValue(){return value;}
+
+Mend::Mend(int val):Spell(string("Mend"),0){value = val;}
+
+
 
 Debuff::Debuff(int duration, int strength, int maxHp) : Spell(string("Debuff"),duration){
     this->strength = strength;

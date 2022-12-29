@@ -2,10 +2,9 @@
 #include <string>
 #include "Game.h"
 
-void init(MapRenderer**,Camera*);
-
 int fight(Creature *attacker, Creature *enemy,Camera* camera) {
 		FightLog *log = new FightLog(9);
+		log->addLine("A "+ enemy->getName() + " has appeared");
     bool attackerTurn = true;
     while (1) {
         if (attackerTurn){
