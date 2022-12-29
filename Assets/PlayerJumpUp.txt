@@ -1,0 +1,8 @@
+JUMP
+Assets/Test.png 0 1
+Assets/Test.png 0 0.9
+Assets/Test.png 0 0.5
+Assets/Test.png 0 0
+Assets/Test.png 0 -0.2
+Assets/Test.png 0 -0.3
+Assets/Test.png 0 -0.2

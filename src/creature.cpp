@@ -28,7 +28,7 @@ void Creature::setStrength(int strength){
 }
 
 int Creature::affect(){
-	for(int i=0;i<effects.size();i++){
+	for(long unsigned int i=0;i<effects.size();i++){
 		if(!effects[i]->affect(this)) return 0;
 		if(!effects[i]->getDuration()){
 			delete effects[i];
@@ -119,26 +119,119 @@ int Humanoid::damage(int dmg){
     return getHp();
 }
 
-int Creature::turn(Creature* enemy){
+int Creature::turn(Creature* enemy,Camera* camera){
     return attack(enemy);
 }
 
-int Humanoid::turn(Creature* enemy){
-		cerr<<"WhatToDo\n";
-		cerr<<"1:Attack\n";
-		cerr<<"2:Use Something\n";
-    int move;
-		cin>>move;
-    switch (move) {
-            case 1: return attack(enemy);
-                break;
-            case 2:
-								if(getInventory()->getElements().size()==0) break;
-								getInventory()->printElements();
-                int chosen; // = getSpellType;
-								cin>>chosen;
-								return useElementFromInventoryByIndex(chosen,this,enemy);
-        }
-		return 1;
-}
 
+int getMoveChoice(Camera* camera){
+	SDL_Renderer* renderer = camera->getRenderer();
+	SDL_Window* window = camera->getWindow();
+	SDL_Event event;
+	
+	SDL_Surface *buffer = IMG_Load("Assets/Brick.png");
+	SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer,buffer);
+
+	UIBox box(300,300,600,600,10);
+	box.setTexture(texture);
+	box.subDivide(0.5,.3);
+
+	buffer = IMG_Load("Assets/Attack.png");
+	texture = SDL_CreateTextureFromSurface(renderer,buffer);
+	box.getSubDivisions()[0]->setTexture(texture);
+	
+	buffer = IMG_Load("Assets/Use.png");
+	texture = SDL_CreateTextureFromSurface(renderer,buffer);
+	box.getSubDivisions()[1]->setTexture(texture);
+
+	int mx,my;
+	while(event.type != SDL_QUIT){
+		SDL_PollEvent(&event);
+		SDL_GetMouseState(&mx,&my);
+		if(box.getSubDivisions()[0]->isPressed(&event,mx,my))
+			return 1;
+		if(box.getSubDivisions()[1]->isPressed(&event,mx,my))
+			return 2;
+		//SDL_RenderClear(renderer);
+		box.draw(renderer);
+		SDL_RenderPresent(renderer);
+		usleep(6000);
+	}
+};
+
+int getInventoryChoice(Humanoid* player,Camera* camera){
+	SDL_Renderer* renderer = camera->getRenderer();
+	SDL_Window* window = camera->getWindow();
+	SDL_Event event;
+	
+	SDL_Surface *buffer = IMG_Load("Assets/Brick.png");
+	SDL_Texture *bricktxt = SDL_CreateTextureFromSurface(renderer,buffer);
+
+	buffer = IMG_Load("Assets/QuestionMark.png");
+	SDL_Texture *questiontxt = SDL_CreateTextureFromSurface(renderer,buffer);
+
+	buffer = IMG_Load("Assets/Sword.png");
+	SDL_Texture *swordtxt = SDL_CreateTextureFromSurface(renderer,buffer);
+
+	buffer = IMG_Load("Assets/Armor.png");
+	SDL_Texture *armortxt = SDL_CreateTextureFromSurface(renderer,buffer);
+
+	buffer = IMG_Load("Assets/HPPotion.png");
+	SDL_Texture *hppottxt = SDL_CreateTextureFromSurface(renderer,buffer);
+
+	buffer = IMG_Load("Assets/FireBall.png");
+	SDL_Texture *fireballtxt = SDL_CreateTextureFromSurface(renderer,buffer);
+
+	buffer = IMG_Load("Assets/PoisonGas.png");
+	SDL_Texture *poisongastxt = SDL_CreateTextureFromSurface(renderer,buffer);
+
+	UIBox box(300,300,600,600,10);
+	box.setTexture(bricktxt);
+	box.createGrid(5,4);
+
+	int mx,my;
+
+	for(int i=0;i<player->getInventory()->getElements().size();i++){
+		if(typeid(*(player->getInventory()->getElements()[i]))== typeid(Armor))
+			box.getSubDivisions()[i]->setTexture(armortxt);
+		else if(typeid(*(player->getInventory()->getElements()[i]))== typeid(Weapon))
+			box.getSubDivisions()[i]->setTexture(swordtxt);
+		else if(typeid(*(player->getInventory()->getElements()[i]))== typeid(HealingPotion))
+			box.getSubDivisions()[i]->setTexture(hppottxt);
+		else if(typeid(*(player->getInventory()->getElements()[i]))== typeid(Fireball))
+			box.getSubDivisions()[i]->setTexture(fireballtxt);
+		else if(typeid(*(player->getInventory()->getElements()[i]))== typeid(PoisonGas))
+			box.getSubDivisions()[i]->setTexture(poisongastxt);
+		else
+			box.getSubDivisions()[i]->setTexture(questiontxt);
+
+	}
+	while(event.type != SDL_QUIT){
+		SDL_PollEvent(&event);
+		SDL_GetMouseState(&mx,&my);
+		for(int i=0;i<player->getInventory()->getElements().size();i++)
+			if(box.getSubDivisions()[i]->isPressed(&event,mx,my))
+				return i;
+		//SDL_RenderClear(renderer);
+		box.draw(renderer);
+		SDL_RenderPresent(renderer);
+		usleep(6000);
+	}
+};
+
+int Humanoid::turn(Creature* enemy,Camera* camera){
+	cerr<<"WhatToDo\n";
+	cerr<<"1:Attack\n";
+	cerr<<"2:Use Something\n";
+  int move = getMoveChoice(camera);
+  switch (move) {
+  case 1: return attack(enemy);
+    break;
+  case 2:
+		if(getInventory()->getElements().size()==0) break;
+		getInventory()->printElements();
+    int chosen = getInventoryChoice(this,camera); 
+		return useElementFromInventoryByIndex(chosen,this,enemy);
+  }
+	return 1;
+}

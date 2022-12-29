@@ -1,0 +1,9 @@
+JUMP
+Assets/Female.png 0 -1
+Assets/Female.png 0 -1.2
+Assets/Female.png 0 -1.3
+Assets/Female.png 0 -1.2
+Assets/Female.png 0 -1
+Assets/Female.png 0 -0.5
+Assets/Female.png 0 -0.1
+

@@ -1,9 +1,20 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
-#include "Map.h"
+class Map;
+class TextureUnit;
+class Camera;
 
-void getBlockTexture(int block);
-void drawMap(Map*,Camera*);
+class MapRenderer{
+	SDL_Renderer* renderer;
+  Camera* camera;
+	Map *map;
+	vector<TextureUnit*> units;
+	vector<SDL_Texture*> textures;
+public:
+	MapRenderer(Camera*,Map*);
+	void drawMap();
+	Map* getMap();
+};
 
 

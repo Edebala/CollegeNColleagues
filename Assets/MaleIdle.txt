@@ -1,0 +1,13 @@
+IDLE
+Assets/Male.png 0 0
+Assets/Male.png 0 0.05
+Assets/Male.png 0 0.07
+Assets/Male.png 0 0.1
+Assets/Male.png 0 0.07
+Assets/Male.png 0 0.05
+Assets/Male.png 0 0
+Assets/Male.png 0 -0.05
+Assets/Male.png 0 -0.07
+Assets/Male.png 0 -0.1
+Assets/Male.png 0 -0.07
+Assets/Male.png 0 -0.05
