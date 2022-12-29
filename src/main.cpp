@@ -18,15 +18,15 @@ int mainMenu(Camera* camera){
 	SDL_Texture* background = SDL_CreateTextureFromSurface(renderer,buffer);
 	box.setTexture(background);
 	
-	buffer = IMG_Load("Assets/Stone.png");
+	buffer = IMG_Load("Assets/NewGame.png");
 	SDL_Texture* newGame = SDL_CreateTextureFromSurface(renderer,buffer);
 	menu->getSubDivisions()[0]->setTexture(newGame);
 
-	buffer = IMG_Load("Assets/Bush.png");
+	buffer = IMG_Load("Assets/LoadGame.png");
 	SDL_Texture* loadGame = SDL_CreateTextureFromSurface(renderer,buffer);
 	menu->getSubDivisions()[1]->setTexture(loadGame);
 
-	buffer = IMG_Load("Assets/Brick.png");
+	buffer = IMG_Load("Assets/Quit.png");
 	SDL_Texture* quit = SDL_CreateTextureFromSurface(renderer,buffer);
 	menu->getSubDivisions()[2]->setTexture(quit);
 
