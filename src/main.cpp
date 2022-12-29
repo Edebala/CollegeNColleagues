@@ -8,8 +8,8 @@ int mainMenu(Camera* camera){
 	
 	SDL_Surface *buffer;
 
-	UIBox box(300,300,600,600,10);
-	box.createGrid(3,3);
+	UIBox box(300,300,550,450,10);
+	box.createGrid(3,2);
 	box.getSubDivisions()[4]->createGrid(1,3);
 
 	UIBox* menu = box.getSubDivisions()[4];

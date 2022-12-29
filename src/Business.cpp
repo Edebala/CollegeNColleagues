@@ -46,8 +46,7 @@ int getInput(SDL_Event *event){
 }
 
 int Explore(TextureUnit* player,Camera* camera){
-	MapRenderer* map;
-	init(&map,camera);
+	MapRenderer* map = new MapRenderer(camera,new Map("Assets/SecondMap.txt"));
 
 	SDL_SetRenderDrawBlendMode(camera->getRenderer(),SDL_BLENDMODE_BLEND);
 	TimeManager time;
