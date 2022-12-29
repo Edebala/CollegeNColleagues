@@ -44,6 +44,5 @@ void Camera::getEntityPos(Entity* entity, int &x, int &y){
 	y = (-posY + entity->getY() + rangeY+0.5)*blockSize;
 };
 
-SDL_Renderer* Camera::getRenderer(){
-	return renderer;
-}
+SDL_Renderer* Camera::getRenderer(){return renderer;}
+SDL_Window* Camera::getWindow(){return window;}

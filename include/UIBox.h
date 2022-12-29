@@ -20,8 +20,9 @@ public:
 	int getHeight();
 	int getPadding();
 	vector<UIBox*> getSubDivisions();
-	void subDivide(float x,float y);
+	void subDivide(float x,float y = 1);
 	void draw(SDL_Renderer*);
 	void setTexture(SDL_Texture*);
 	bool isPressed(SDL_Event*,int,int);
+	void createGrid(int x,int y);
 };

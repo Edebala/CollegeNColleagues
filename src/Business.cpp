@@ -5,7 +5,7 @@
 void init(Character*,TextureUnit**,MapRenderer**,Camera**);
 //int fight(Creature*, Creature*);
 
-int fight(Creature *attacker, Creature *enemy) {
+int fight(Creature *attacker, Creature *enemy,Camera* camera) {
     bool attackerTurn = true;
     while (1) {
         printf("PlayerHP:%i\nEnemyHP:%i\n\n",attacker->getHp(),enemy->getHp());
@@ -14,14 +14,14 @@ int fight(Creature *attacker, Creature *enemy) {
 							cerr<<"aa"<<endl;
 							return 1;
 						}
-            if(!attacker->turn(enemy)) return 1;
+            if(!attacker->turn(enemy,camera)) return 1;
         }
         else{
 						if(!enemy->affect()){
 							cerr<<"ea"<<endl;
 							return 0;
 						}
-            if(!enemy->turn(attacker)) return 0;
+            if(!enemy->turn(attacker,camera)) return 0;
         }
         attackerTurn = !attackerTurn;
     }
@@ -64,7 +64,7 @@ int Explore(Character* playerEntity){
 		if(player->isIdle())
 			if(player->move(-control%2 + (control/2)%2,(-control/4)%2 +(control/8)%2,time.getCurrentTime(),map->getMap())==2)
 				if(rand()%10>6){
-					int result = fight(player->getCharacter()->getCreature(),new Creature("Dog",30,30,5,vector<Effect*>{}));
+					int result = fight(player->getCharacter()->getCreature(),new Creature("Dog",30,30,5,vector<Effect*>{}),camera);
 					cerr<<"Result:"<<result<<endl;
 					if(result == 0) return 0;
 

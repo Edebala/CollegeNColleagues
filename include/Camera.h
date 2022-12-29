@@ -23,4 +23,5 @@ public:
 	int getBlockSize();
 	Camera(float posX, float posY);
 	SDL_Renderer* getRenderer();
+	SDL_Window* getWindow();
 };
