@@ -1,15 +1,9 @@
 #include "Game.h"
 
+class Character;
+class Creature;
+
 using namespace std;
 
+int Explore(Character*);
 int fight(Creature *player, Creature *enemy);
-
-bool useSpell(Creature *player, Creature *enemy);
-
-bool useItem(Creature *player, Creature *enemy);
-
-int getPlayersMove();
-
-int getSpellToCast();
-
-int getItemToUse();

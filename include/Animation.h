@@ -3,28 +3,31 @@
 #include <SDL2/SDL_image.h>
 #include <vector>
 
-class Frame{
-	SDL_Texture* texture;
-	int w, h;
-	float dx,dy;
-public:
-	Frame(SDL_Texture*,dx,dy);
-	float getDx();
-	float getDy();
-	void Draw(int x,int y,int size);
-}
-
-enum MoveType(MOVE_IDEL,MOVE_JUMP);
+class Frame;
 
 class Move{
-	vector<Frame> Frames;
+	vector<Frame*> frames;
 	MoveType moveType;
+	SDL_Renderer* renderer;
+	int startTime, animationLength; //Seconds
 public:
-	Move(string filename);
+	vector<Frame*> getFrames();
+	MoveType getMoveType();
+	Move(SDL_Renderer*, string file, int sTime, int moveLen);
+	void Draw(int x,int y,int size,int time);
+	int getStartTime();
+	void setStartTime(int);
+	float getAnimationLength();
+	Frame* getCurrentFrame(int);
+	void start();
 };
 
 class Animation{
+	Move* currentMove;
 	vector <Move*> Movements;
+public:
+	Animation(vector<Move*>);
+	void setCurrentMove(Move*,int time);
+	Move *getCurrentMove();
+	vector <Move*> getMovements();
 };
-
-

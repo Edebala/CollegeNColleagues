@@ -2,43 +2,75 @@
 #include <string>
 #include "Game.h"
 
-using namespace std;
+void init(Character*,TextureUnit**,MapRenderer**,Camera**);
+//int fight(Creature*, Creature*);
 
-int fight(Creature *attacker, Creature *enemy) {
+int fight(Creature *attacker, Creature *enemy,Camera* camera) {
     bool attackerTurn = true;
     while (1) {
         printf("PlayerHP:%i\nEnemyHP:%i\n\n",attacker->getHp(),enemy->getHp());
         if (attackerTurn){
-						if(!attacker->affect()) return 1;
-            if(!attacker->turn(enemy)) return 1;
+						if(!attacker->affect()){
+							cerr<<"aa"<<endl;
+							return 1;
+						}
+            if(!attacker->turn(enemy,camera)) return 1;
         }
         else{
-						if(!enemy->affect()) return 0;
-            if(!enemy->turn(attacker)) return 0;
+						if(!enemy->affect()){
+							cerr<<"ea"<<endl;
+							return 0;
+						}
+            if(!enemy->turn(attacker,camera)) return 0;
         }
         attackerTurn = !attackerTurn;
     }
     return -1;
 }
 
-char getInput(){
-	char a;
-	cin>>a;
-	return a;
+
+using namespace std;
+
+void Draw(Camera* camera, MapRenderer* map,TextureUnit* player,int currentTime){
+		SDL_RenderClear(camera->getRenderer());
+		map->drawMap();
+		player->Draw(camera,currentTime);
+		SDL_RenderPresent(camera->getRenderer());
+};
+
+int getInput(SDL_Event *event){
+	const unsigned char* key;
+	int control = 0;
+	SDL_PollEvent(event);
+	key = SDL_GetKeyboardState(0);
+	control = (key[SDL_SCANCODE_A]!=0) | 2*(key[SDL_SCANCODE_D]!=0)|
+		4*(key[SDL_SCANCODE_W]!=0) | 8*(key[SDL_SCANCODE_S]!=0);
+	return control;
 }
 
-int Explore(Character* player){
-	string mapFile="FirstMap.txt";
-	vector<Entity*> entities;
-	entities.push_back(player);
-	Map* map = new Map(mapFile);
-	while(true){
-		map->printMap(entities);
-		char input = getInput();
-		player->move(-1 * (input=='a') + (input =='d'),-1 * (input == 'w') + (input == 's'));
-		if(map->getBlock(player->getX(),player->getY()) == 2){
-			if(rand()%10>7)
-				if(fight(player->getCreature(),new Creature("Dog",30,30,5,vector<Effect*>{}))== 0) return 0;
-		}
+int Explore(Character* playerEntity){
+	TextureUnit* player;
+	MapRenderer* map;
+	Camera* camera;
+	init(playerEntity,&player,&map,&camera);
+
+	TimeManager time;
+
+	SDL_Event event;
+
+	while (event.type != SDL_QUIT){
+		time.tick();
+		int control = getInput(&event);
+		if(player->isIdle())
+			if(player->move(-control%2 + (control/2)%2,(-control/4)%2 +(control/8)%2,time.getCurrentTime(),map->getMap())==2)
+				if(rand()%10>6){
+					int result = fight(player->getCharacter()->getCreature(),new Creature("Dog",30,30,5,vector<Effect*>{}),camera);
+					cerr<<"Result:"<<result<<endl;
+					if(result == 0) return 0;
+
+				}
+    camera->update(player,map->getMap(),time.getCurrentTime());
+		player->update(time.getCurrentTime());
+		Draw(camera,map,player,time.getCurrentTime());
 	}
 }
