@@ -39,3 +39,4 @@ using namespace std;
 #include "TimeManager.h"
 #include "TextLine.h"
 #include "UIBox.h"
+#include "FightLog.h"

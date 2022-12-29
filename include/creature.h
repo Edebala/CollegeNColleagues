@@ -28,6 +28,7 @@ class PoisonGas;
 class Debuff;
 class Erase;
 class Camera;
+class FightLog;
 
 class Creature{
 protected:
@@ -53,10 +54,10 @@ public:
 	// actions
     virtual bool attack(Creature *enemy) const;
 	  virtual int damage(int dmg);
-    virtual int turn(Creature *enemy,Camera*);
+    virtual int turn(Creature *enemy,Camera*,FightLog*);
 		virtual bool addElementToInventory(Slot*  element){return false;}
 		void addEffect(Effect*);
-		int affect();
+		int affect(FightLog*);
 };
 
 class Humanoid : public Creature{
@@ -79,7 +80,7 @@ public:
 	bool attack(Creature *enemy) const;
 	bool use(Slot*, Creature*);
 	int damage(int dmg);
-  virtual int turn(Creature *enemy,Camera*);
+  virtual int turn(Creature *enemy,Camera*,FightLog*);
 	bool addElementToInventory(Slot* element);
   int useElementFromInventoryByIndex(int index, Humanoid * player, Creature * enemy);
 };

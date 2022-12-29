@@ -5,20 +5,22 @@
 void init(MapRenderer**,Camera*);
 
 int fight(Creature *attacker, Creature *enemy,Camera* camera) {
+		FightLog *log = new FightLog(9);
     bool attackerTurn = true;
     while (1) {
-        printf("PlayerHP:%i\nEnemyHP:%i\n\n",attacker->getHp(),enemy->getHp());
         if (attackerTurn){
-						if(!attacker->affect()){
-							return 0;
+						log->addLine(attacker->getName() + " has " + to_string(attacker->getHp())+ " hp");
+						log->addLine(enemy->getName() + " has " + to_string(enemy->getHp())+" hp");
+						if(!attacker->affect(log)){
+								return 0;
 						}
-            if(!attacker->turn(enemy,camera)) return 1;
+            if(!attacker->turn(enemy,camera,log)) return 1;
         }
         else{
-						if(!enemy->affect()){
+						if(!enemy->affect(log)){
 							return 1;
 						}
-            if(!enemy->turn(attacker,camera)) return 0;
+            if(!enemy->turn(attacker,camera,log)) return 0;
         }
         attackerTurn = !attackerTurn;
     }
@@ -65,7 +67,6 @@ int Explore(TextureUnit* player,Camera* camera){
 					SDL_SetRenderDrawColor(camera->getRenderer(),0,0,0,160);
 					SDL_RenderFillRect(camera->getRenderer(),NULL);
 					int result = fight(player->getCharacter()->getCreature(),new Creature("Dog",30,30,5,vector<Effect*>{}),camera);
-					cerr<<"Result:"<<result<<endl;
 					if(result == 0) return 0;
 				}
 			}

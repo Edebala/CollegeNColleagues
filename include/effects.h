@@ -11,6 +11,7 @@ protected:
 	int duration;
 public:
 	int getDuration();
+	string getName();
 	Effect(const string& name, int duration);
 	virtual int affect(Creature* target);
 	virtual void print()=0;

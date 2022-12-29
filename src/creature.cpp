@@ -27,8 +27,9 @@ void Creature::setStrength(int strength){
     this->strength = strength;
 }
 
-int Creature::affect(){
+int Creature::affect(FightLog* log){
 	for(long unsigned int i=0;i<effects.size();i++){
+		log->addLine(name + " has been affected by" + effects[i]->getName());
 		if(!effects[i]->affect(this)) return 0;
 		if(!effects[i]->getDuration()){
 			delete effects[i];
@@ -119,12 +120,13 @@ int Humanoid::damage(int dmg){
     return getHp();
 }
 
-int Creature::turn(Creature* enemy,Camera* camera){
+int Creature::turn(Creature* enemy,Camera* camera,FightLog* log){
+		log->addLine(name +" has attacked");
     return attack(enemy);
 }
 
 
-int getMoveChoice(Camera* camera){
+int getMoveChoice(Camera* camera,FightLog* log){
 	SDL_Renderer* renderer = camera->getRenderer();
 	SDL_Window* window = camera->getWindow();
 	SDL_Event event;
@@ -143,6 +145,27 @@ int getMoveChoice(Camera* camera){
 	buffer = IMG_Load("Assets/Use.png");
 	texture = SDL_CreateTextureFromSurface(renderer,buffer);
 	box.getSubDivisions()[1]->setTexture(texture);
+
+	buffer = IMG_Load("Assets/TextBackground.png");
+	texture = SDL_CreateTextureFromSurface(renderer,buffer);
+	box.getSubDivisions()[2]->setTexture(texture);
+	
+	UIBox *logBox = box.getSubDivisions()[2];
+	logBox->createGrid(1,log->getMaxSize());
+  
+	TTF_Init();
+	TTF_Font *font;
+	if(!(font = TTF_OpenFont("Assets/ARCADECLASSIC.TTF",32)))std::cout<<TTF_GetError()<<"\n";
+	SDL_Surface *surf;
+	SDL_Texture *textTexture;
+
+	SDL_Color White = {255,255,255};
+
+	for(int i=0;i<log->getLines(64).size();i++){
+		surf = TTF_RenderText_Solid(font,log->getLines(64)[i].c_str(),White);
+		textTexture = SDL_CreateTextureFromSurface(renderer,surf);
+		logBox->getSubDivisions()[i]->setTexture(textTexture);
+	}
 
 	int mx,my;
 	while(event.type != SDL_QUIT){
@@ -219,18 +242,16 @@ int getInventoryChoice(Humanoid* player,Camera* camera){
 	}
 };
 
-int Humanoid::turn(Creature* enemy,Camera* camera){
-	cerr<<"WhatToDo\n";
-	cerr<<"1:Attack\n";
-	cerr<<"2:Use Something\n";
-  int move = getMoveChoice(camera);
+int Humanoid::turn(Creature* enemy,Camera* camera,FightLog* log){
+  int move = getMoveChoice(camera,log);
   switch (move) {
-  case 1: return attack(enemy);
+  case 1: 
+		log->addLine(name +" has attacked");
+		return attack(enemy);
     break;
   case 2:
-		if(getInventory()->getElements().size()==0) break;
-		getInventory()->printElements();
     int chosen = getInventoryChoice(this,camera); 
+		log->addLine(name +" has used "+ getInventory()->getElements()[chosen]->getName());
 		return useElementFromInventoryByIndex(chosen,this,enemy);
   }
 	return 1;

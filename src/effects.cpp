@@ -25,4 +25,4 @@ void Regeneration::print(){
 	cout<<name<<":"<<" Gives "<<value<<" hp for "<<duration<<" rounds\n";
 }
 
-
+string Effect::getName(){return name;}
