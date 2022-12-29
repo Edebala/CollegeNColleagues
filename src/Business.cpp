@@ -2,8 +2,7 @@
 #include <string>
 #include "Game.h"
 
-void init(Character*,TextureUnit**,MapRenderer**,Camera**);
-//int fight(Creature*, Creature*);
+void init(MapRenderer**,Camera*);
 
 int fight(Creature *attacker, Creature *enemy,Camera* camera) {
     bool attackerTurn = true;
@@ -11,15 +10,13 @@ int fight(Creature *attacker, Creature *enemy,Camera* camera) {
         printf("PlayerHP:%i\nEnemyHP:%i\n\n",attacker->getHp(),enemy->getHp());
         if (attackerTurn){
 						if(!attacker->affect()){
-							cerr<<"aa"<<endl;
-							return 1;
+							return 0;
 						}
             if(!attacker->turn(enemy,camera)) return 1;
         }
         else{
 						if(!enemy->affect()){
-							cerr<<"ea"<<endl;
-							return 0;
+							return 1;
 						}
             if(!enemy->turn(attacker,camera)) return 0;
         }
@@ -48,12 +45,11 @@ int getInput(SDL_Event *event){
 	return control;
 }
 
-int Explore(Character* playerEntity){
-	TextureUnit* player;
+int Explore(TextureUnit* player,Camera* camera){
 	MapRenderer* map;
-	Camera* camera;
-	init(playerEntity,&player,&map,&camera);
+	init(&map,camera);
 
+	SDL_SetRenderDrawBlendMode(camera->getRenderer(),SDL_BLENDMODE_BLEND);
 	TimeManager time;
 
 	SDL_Event event;
@@ -61,14 +57,19 @@ int Explore(Character* playerEntity){
 	while (event.type != SDL_QUIT){
 		time.tick();
 		int control = getInput(&event);
-		if(player->isIdle())
-			if(player->move(-control%2 + (control/2)%2,(-control/4)%2 +(control/8)%2,time.getCurrentTime(),map->getMap())==2)
+		if(player->isIdle()){
+			int moveX = -control%2 + (control/2)%2;
+			int moveY = (-control/4)%2 +(control/8)%2;
+			if(moveX != 0) moveY=0;
+			if(player->move(moveX,moveY,time.getCurrentTime(),map->getMap())==2)
 				if(rand()%10>6){
+					SDL_SetRenderDrawColor(camera->getRenderer(),0,0,0,160);
+					SDL_RenderFillRect(camera->getRenderer(),NULL);
 					int result = fight(player->getCharacter()->getCreature(),new Creature("Dog",30,30,5,vector<Effect*>{}),camera);
 					cerr<<"Result:"<<result<<endl;
 					if(result == 0) return 0;
-
 				}
+			}
     camera->update(player,map->getMap(),time.getCurrentTime());
 		player->update(time.getCurrentTime());
 		Draw(camera,map,player,time.getCurrentTime());

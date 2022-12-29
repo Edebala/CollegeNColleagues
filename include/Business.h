@@ -1,9 +1,10 @@
 #include "Game.h"
 
-class Character;
+class TextureUnit;
 class Creature;
+class Camera;
 
 using namespace std;
 
-int Explore(Character*);
+int Explore(TextureUnit*,Camera*);
 int fight(Creature *player, Creature *enemy);

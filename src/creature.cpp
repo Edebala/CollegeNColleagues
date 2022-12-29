@@ -132,7 +132,7 @@ int getMoveChoice(Camera* camera){
 	SDL_Surface *buffer = IMG_Load("Assets/Brick.png");
 	SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer,buffer);
 
-	UIBox box(300,300,350,350,10);
+	UIBox box(300,300,600,600,10);
 	box.setTexture(texture);
 	box.subDivide(0.5,.3);
 
@@ -155,7 +155,7 @@ int getMoveChoice(Camera* camera){
 		//SDL_RenderClear(renderer);
 		box.draw(renderer);
 		SDL_RenderPresent(renderer);
-		usleep(10000);
+		usleep(6000);
 	}
 };
 
@@ -176,7 +176,16 @@ int getInventoryChoice(Humanoid* player,Camera* camera){
 	buffer = IMG_Load("Assets/Armor.png");
 	SDL_Texture *armortxt = SDL_CreateTextureFromSurface(renderer,buffer);
 
-	UIBox box(300,300,350,350,10);
+	buffer = IMG_Load("Assets/HPPotion.png");
+	SDL_Texture *hppottxt = SDL_CreateTextureFromSurface(renderer,buffer);
+
+	buffer = IMG_Load("Assets/FireBall.png");
+	SDL_Texture *fireballtxt = SDL_CreateTextureFromSurface(renderer,buffer);
+
+	buffer = IMG_Load("Assets/PoisonGas.png");
+	SDL_Texture *poisongastxt = SDL_CreateTextureFromSurface(renderer,buffer);
+
+	UIBox box(300,300,600,600,10);
 	box.setTexture(bricktxt);
 	box.createGrid(5,4);
 
@@ -187,6 +196,12 @@ int getInventoryChoice(Humanoid* player,Camera* camera){
 			box.getSubDivisions()[i]->setTexture(armortxt);
 		else if(typeid(*(player->getInventory()->getElements()[i]))== typeid(Weapon))
 			box.getSubDivisions()[i]->setTexture(swordtxt);
+		else if(typeid(*(player->getInventory()->getElements()[i]))== typeid(HealingPotion))
+			box.getSubDivisions()[i]->setTexture(hppottxt);
+		else if(typeid(*(player->getInventory()->getElements()[i]))== typeid(Fireball))
+			box.getSubDivisions()[i]->setTexture(fireballtxt);
+		else if(typeid(*(player->getInventory()->getElements()[i]))== typeid(PoisonGas))
+			box.getSubDivisions()[i]->setTexture(poisongastxt);
 		else
 			box.getSubDivisions()[i]->setTexture(questiontxt);
 
@@ -200,7 +215,7 @@ int getInventoryChoice(Humanoid* player,Camera* camera){
 		//SDL_RenderClear(renderer);
 		box.draw(renderer);
 		SDL_RenderPresent(renderer);
-		usleep(10000);
+		usleep(6000);
 	}
 };
 

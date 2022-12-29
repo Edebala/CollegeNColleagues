@@ -38,5 +38,4 @@ using namespace std;
 #include "MapRendering.h"
 #include "TimeManager.h"
 #include "TextLine.h"
-//#include "TextBox.h"
 #include "UIBox.h"

@@ -2,6 +2,7 @@
 
 class Animation;
 class Camera;
+class Character;
 class Map;
 
 class TextureUnit{
