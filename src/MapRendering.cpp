@@ -32,4 +32,4 @@ void MapRenderer::drawMap(){
 
 Map* MapRenderer::getMap(){return map;}
 
-
+void MapRenderer::setMap(Map* mp){delete map; map = mp;}

@@ -40,3 +40,4 @@ using namespace std;
 #include "TextLine.h"
 #include "UIBox.h"
 #include "FightLog.h"
+#include "Teleporter.h"

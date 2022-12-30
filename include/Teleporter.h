@@ -1,6 +1,6 @@
 #pragma once
-#include "Map.h"
-#include "Character.h"
+class MapRenderer;
+class Character;
 
 class Teleporter: public Entity{
 	int targetX,targetY;
@@ -9,4 +9,6 @@ public:
 	Teleporter(int posX,int posY,int tX,int tY,string map);
 	int getTargetX();
 	int getTargetY();
+	string getMapFileName();
+	void teleport(Entity*, MapRenderer*);
 };

@@ -39,6 +39,7 @@ protected:
     //Inventory * inventory;
 public:
     Creature(const string& name, int hp, int maxHp, int strength,vector<Effect*> effect);
+    Creature();
 	// setters
 	void setName(const string& name);
     void setHp(int hp);
@@ -66,6 +67,7 @@ class Humanoid : public Creature{
 	Inventory * inventory;
 public:
     Humanoid(const string& name, int hp, int maxHp, int strength,vector<Effect*>,Armor *armor, Weapon *weapon);
+    Humanoid(string fileName);
 
 	//setters
   void setArmor(Armor* armor);

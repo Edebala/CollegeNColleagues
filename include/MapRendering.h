@@ -15,6 +15,7 @@ public:
 	MapRenderer(Camera*,Map*);
 	void drawMap();
 	Map* getMap();
+	void setMap(Map*);
 };
 
 

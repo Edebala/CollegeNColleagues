@@ -3,6 +3,8 @@
 //
 #include "Game.h"
 
+Creature::Creature(){}
+
 Creature::Creature(const string& name, int hp, int maxHp, int strength,vector<Effect*>effect){
     this->name = name;
     this->hp = hp;
@@ -94,6 +96,55 @@ Humanoid::Humanoid(const string& name, int hp, int maxHp, int strength, vector<E
     this->weapon = weapon;
 		inventory = new Inventory();
 }
+
+Humanoid::Humanoid(string fileName){
+	ifstream file(fileName.c_str());
+	if(!file.is_open()){exit(-1);}
+	file>>hp>>maxHp>>strength;
+	string armorName, weaponName;
+	file>>armorName;
+	if(armorName != "NONE"){
+		int armorDefense;
+		file >>armorDefense;
+		setArmor(new Armor(armorName,armorDefense));
+	}
+	file>>weaponName;
+	if(weaponName != "NONE"){
+		int weaponDamage;
+		file >>weaponDamage;
+		setWeapon(new Weapon(weaponName,weaponDamage));
+	}
+	string slotName;
+	while(file>>slotName){
+		string slotType;
+		int data1,data2;
+		file>> slotType;
+		if(slotType == "Armor"){
+			file>>data1;
+			addElementToInventory(new Armor(slotName,data1));
+		}
+		if(slotType == "Weapon"){
+			file>>data1;
+			addElementToInventory(new Weapon(slotName,data1));
+		}
+		if(slotType == "HealingPotion"){
+			file>>data1>>data2;
+			addElementToInventory(new HealingPotion(slotName,data1,data2));
+		}
+		if(slotType == "Fireball"){
+			addElementToInventory(new Fireball());
+		}
+		if(slotType == "PoisonGas"){
+			file>>data1;
+			addElementToInventory(new PoisonGas(data1));
+		}
+		if(slotType == "Mend"){
+			file>>data1;
+			addElementToInventory(new Mend(data1));
+		}
+	}
+}
+
 
 void Humanoid::setArmor(Armor* armor){
     this->armor = armor;

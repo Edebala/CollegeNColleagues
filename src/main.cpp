@@ -22,9 +22,14 @@ int mainMenu(Camera* camera){
 	SDL_Texture* newGame = SDL_CreateTextureFromSurface(renderer,buffer);
 	menu->getSubDivisions()[0]->setTexture(newGame);
 
-	buffer = IMG_Load("Assets/LoadGame.png");
-	SDL_Texture* loadGame = SDL_CreateTextureFromSurface(renderer,buffer);
-	menu->getSubDivisions()[1]->setTexture(loadGame);
+	ifstream file("SaveFile.txt");
+	bool saveFileExists = false;
+	if(file.is_open()){
+		buffer = IMG_Load("Assets/LoadGame.png");
+		SDL_Texture* loadGame = SDL_CreateTextureFromSurface(renderer,buffer);
+		menu->getSubDivisions()[1]->setTexture(loadGame);
+		saveFileExists = true;
+	}
 
 	buffer = IMG_Load("Assets/Quit.png");
 	SDL_Texture* quit = SDL_CreateTextureFromSurface(renderer,buffer);
@@ -36,8 +41,10 @@ int mainMenu(Camera* camera){
 		SDL_PollEvent(&event);
 		SDL_GetMouseState(&mx,&my);
 		for(int i=0;i<menu->getSubDivisions().size();i++)
-			if(menu->getSubDivisions()[i]->isPressed(&event,mx,my))
+			if(menu->getSubDivisions()[i]->isPressed(&event,mx,my)){
+				if(i == 1 && !saveFileExists)i++;
 				return i;
+			}
 		box.draw(renderer);
 		SDL_RenderPresent(renderer);
 		usleep(6000);
@@ -82,6 +89,28 @@ int characterCreation(Camera* camera){
 	}
 }
 
+TextureUnit* loadPlayerAnimation(Camera* camera,Humanoid* hum,int x,int y,bool female){
+		Character *playerEntity = new Character(25,10,hum);
+		if(!female){
+			vector<Move*> moves;
+			moves.push_back(new Move(camera->getRenderer(),"Assets/MaleIdle.txt",0,700));
+			moves.push_back(new Move(camera->getRenderer(),"Assets/MaleJumpRight.txt",0,200));
+			moves.push_back(new Move(camera->getRenderer(),"Assets/MaleJumpLeft.txt",0,200));
+			moves.push_back(new Move(camera->getRenderer(),"Assets/MaleJumpUp.txt",0,200));
+			moves.push_back(new Move(camera->getRenderer(),"Assets/MaleJumpDown.txt",0,200));
+			Animation* animation = new Animation(moves);
+			return new TextureUnit(playerEntity,animation);
+		}else{
+			vector<Move*> moves;
+			moves.push_back(new Move(camera->getRenderer(),"Assets/FemaleIdle.txt",0,700));
+			moves.push_back(new Move(camera->getRenderer(),"Assets/FemaleJumpRight.txt",0,200));
+			moves.push_back(new Move(camera->getRenderer(),"Assets/FemaleJumpLeft.txt",0,200));
+			moves.push_back(new Move(camera->getRenderer(),"Assets/FemaleJumpUp.txt",0,200));
+			moves.push_back(new Move(camera->getRenderer(),"Assets/FemaleJumpDown.txt",0,200));
+			Animation* animation = new Animation(moves);
+			return new TextureUnit(playerEntity,animation);
+		}
+}
 
 int main(int argc, const char * argv[]) {
 	Camera *camera = new Camera(3.0,6.0);
@@ -91,27 +120,7 @@ int main(int argc, const char * argv[]) {
 	if (Choice == 0){
 		Choice = characterCreation(camera);
 		Humanoid * playerCreature = new Humanoid("Player",30,30,5,vector<Effect*>{},NULL,NULL);
-		Character *playerEntity = new Character(25,10,playerCreature);
-		if(Choice == 0){
-			vector<Move*> moves;
-			moves.push_back(new Move(camera->getRenderer(),"Assets/MaleIdle.txt",0,700));
-			moves.push_back(new Move(camera->getRenderer(),"Assets/MaleJumpRight.txt",0,200));
-			moves.push_back(new Move(camera->getRenderer(),"Assets/MaleJumpLeft.txt",0,200));
-			moves.push_back(new Move(camera->getRenderer(),"Assets/MaleJumpUp.txt",0,200));
-			moves.push_back(new Move(camera->getRenderer(),"Assets/MaleJumpDown.txt",0,200));
-			Animation* animation = new Animation(moves);
-			player = new TextureUnit(playerEntity,animation);
-		}else{
-			vector<Move*> moves;
-			moves.push_back(new Move(camera->getRenderer(),"Assets/FemaleIdle.txt",0,700));
-			moves.push_back(new Move(camera->getRenderer(),"Assets/FemaleJumpRight.txt",0,200));
-			moves.push_back(new Move(camera->getRenderer(),"Assets/FemaleJumpLeft.txt",0,200));
-			moves.push_back(new Move(camera->getRenderer(),"Assets/FemaleJumpUp.txt",0,200));
-			moves.push_back(new Move(camera->getRenderer(),"Assets/FemaleJumpDown.txt",0,200));
-			Animation* animation = new Animation(moves);
-			player = new TextureUnit(playerEntity,animation);
-		}
-
+		player = loadPlayerAnimation(camera,playerCreature,25,10,Choice);
 		playerCreature->addElementToInventory(new Armor("Diamond Chestplate", 3));
 		playerCreature->addElementToInventory(new HealingPotion("HP Poti",7, 5));
 		playerCreature->addElementToInventory(new Weapon("Diamond Sword", 4));
@@ -119,5 +128,8 @@ int main(int argc, const char * argv[]) {
 		playerCreature->addElementToInventory(new PoisonGas(4));
 		playerCreature->addElementToInventory(new Mend(7));
 		Explore(player,camera);
+	}
+	if(Choice == 1){
+		
 	}
 }
