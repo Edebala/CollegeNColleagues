@@ -1,6 +1,6 @@
 # CollegeNColleagues
 A two dimensional game, with two game modes: exporation and fighting.
-![Contributors](https://img.shields.io/github/contributors/larymak/Python-project-Scripts?style=plastic)
+![Contributors](3)
 
 ## Description
 The project is a contribution between three 3rd year Computer Science students.
