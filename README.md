@@ -1,6 +1,6 @@
 # CollegeNColleagues
 A two dimensional game, with two game modes: exporation and fighting.
-![Contributors](3)
+![Contributors](https://github.com/Edebala/CollegeNColleagues/graphs/contributors)
 
 ## Description
 The project is a contribution between three 3rd year Computer Science students.
