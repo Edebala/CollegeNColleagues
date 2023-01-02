@@ -1,5 +1,6 @@
 # CollegeNColleagues
 A two dimensional game, with two game modes: exporation and fighting.
+
 ![Contributors](https://github.com/Edebala/CollegeNColleagues/graphs/contributors)
 
 ## Description
