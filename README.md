@@ -6,8 +6,6 @@ A two dimensional game, with two game modes: exporation and fighting.
 Welcome aboard fellow developer, this is our project, a contribution between three 3rd year Computer Science students.
 We used C++ as programing language, and SDL(Simple DirectMedia Layer) free and open source library.
 
-![Contributors](https://github.com/Edebala/CollegeNColleagues/graphs/contributors)
-
 ### Requirements to run the game
 1. **OS**: 
     * Windows XP or newer
@@ -33,3 +31,12 @@ https://www.matsson.com/prog/sdl2-mingw-w64-tutorial.php
 The link below contains all the methods how you can install SDL on different Operating Systems
 
 https://wiki.libsdl.org/SDL2/Installation 
+
+### Contributors
+Contributor| Worked on
+--------------|--------------
+Row element| Row element
+Row element| Row element
+Row element| Row element
+
+![Me and my](https://github.com/Edebala/CollegeNColleagues/graphs/contributors)
