@@ -28,4 +28,4 @@ We used C++ as programing language, and SDL(Simple DirectMedia Layer) free and o
 `sudo pacman -S sdl2 2.26.1-1`
 
 ### For windows here is a link for SDL2 setup
-![How to Setup SDL2 on Windows for C/C++](https://www.matsson.com/prog/sdl2-mingw-w64-tutorial.php)
+https://www.matsson.com/prog/sdl2-mingw-w64-tutorial.php
