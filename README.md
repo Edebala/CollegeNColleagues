@@ -31,4 +31,5 @@ We used C++ as programing language, and SDL(Simple DirectMedia Layer) free and o
 https://www.matsson.com/prog/sdl2-mingw-w64-tutorial.php
 
 The link below contains all the methods how you can install SDL on different Operating Systems
+
 https://wiki.libsdl.org/SDL2/Installation 
