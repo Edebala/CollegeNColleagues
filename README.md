@@ -33,7 +33,7 @@ The link below contains all the methods how you can install SDL on different Ope
 https://wiki.libsdl.org/SDL2/Installation 
 
 ### Contributors
-Contributor| Worked on
+GitHub username| Worked on
 --------------|--------------
 Edebala | UI/Grafics
 LorincziMatyas12 | Business Logic
