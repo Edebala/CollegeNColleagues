@@ -29,3 +29,4 @@ We used C++ as programing language, and SDL(Simple DirectMedia Layer) free and o
 
 ### For windows here is a link for SDL2 setup
 https://www.matsson.com/prog/sdl2-mingw-w64-tutorial.php
+https://wiki.libsdl.org/SDL2/Installation
