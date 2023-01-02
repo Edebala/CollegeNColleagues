@@ -35,8 +35,8 @@ https://wiki.libsdl.org/SDL2/Installation
 ### Contributors
 Contributor| Worked on
 --------------|--------------
-Row element| Row element
-Row element| Row element
-Row element| Row element
+Edebala | UI/Grafics
+LorincziMatyas12 | Business Logic
+BApor | Data Access Layer
 
-![Me and my](https://github.com/Edebala/CollegeNColleagues/graphs/contributors)
+![The colaborators](https://github.com/Edebala/CollegeNColleagues/graphs/contributors)
