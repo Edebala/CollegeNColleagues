@@ -19,7 +19,9 @@ We used C++ as programing language, and SDL(Simple DirectMedia Layer) free and o
 
 ### To SDL install on a Debian system follow these instructions
 `sudo apt install libsdl2-dev`
+
 `sudo apt install libsdl2-image-dev`
+
 `sudo apt install libsdl2-ttf-dev`
 
 ### To SDL install on a Arch Linux system follow these instructions
