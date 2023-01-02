@@ -1,5 +1,4 @@
-# CollegeNColleagues
-<img alt="CnC" src="https://github.com/Edebala/CollegeNColleagues/blob/main/Assets/logo.png" width="100"/>
+# CollegeNColleagues <img alt="CnC" src="https://github.com/Edebala/CollegeNColleagues/blob/main/Assets/logo.png" width="100"/>
 A two dimensional game, with two game modes: exporation and fighting.
 
 ## Description
