@@ -9,9 +9,9 @@ We used C++ as programing language, and SDL(Simple DirectMedia Layer) free and o
 
 ### Requirements to run the game
 1. **OS**: 
-  * Windows XP or newer
-  * Linux 2.6 or newer
-  * MacOS X 10.5 or newer
+    * Windows XP or newer
+    * Linux 2.6 or newer
+    * MacOS X 10.5 or newer
 2. **C++98** (ISO/IEC 14882:1998) or newer
 3. **SDL** (Simple DirectMedia Layer) 2.0.0 or newer
 4. At least **700 MHz** frequency CPU
