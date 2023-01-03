@@ -43,5 +43,6 @@ BApor | Data Access Layer
 
 ![The colaborators](https://github.com/Edebala/CollegeNColleagues/graphs/contributors)
 
-###License
+### License
+
 GNU General Public License v3
