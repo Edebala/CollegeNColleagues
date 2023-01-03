@@ -42,3 +42,6 @@ LorincziMatyas12 | Business Logic
 BApor | Data Access Layer
 
 ![The colaborators](https://github.com/Edebala/CollegeNColleagues/graphs/contributors)
+
+###License
+GNU General Public License v3
