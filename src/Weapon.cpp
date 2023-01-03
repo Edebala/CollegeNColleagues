@@ -2,11 +2,11 @@
 
 // Weapon class implementations
 //
-Weapon::Weapon(const string& name, int damage) : Item(name) {
+Weapon::Weapon(string name, int damage) : Item(name) {
     this->damage = damage;
 }
 
-Weapon::Weapon(const string &name, float magicAdjust, int damage) : Item(name) {
+Weapon::Weapon(string name, float magicAdjust, int damage) : Item(name) {
     this->damage = damage;
     this->magicAdjust = magicAdjust;
 }

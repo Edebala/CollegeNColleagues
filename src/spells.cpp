@@ -21,7 +21,7 @@ int Fireball::cast(Humanoid* caster, Creature* enemy){
     return enemy->damage((caster->getWeapon()==nullptr)?10:10*caster->getWeapon()->getMagicAdjust());
 }
 
-PoisonGas::PoisonGas(int duration):Spell(string("Poison Gas"),duration){}
+PoisonGas::PoisonGas(int duration):Spell(string("Poison_Gas"),duration){}
 
 int PoisonGas::cast(Humanoid *caster, Creature *enemy){
 		enemy->addEffect(new Regeneration(5,-4));
@@ -30,13 +30,11 @@ int PoisonGas::cast(Humanoid *caster, Creature *enemy){
 }
 
 int Mend::cast(Humanoid *caster, Creature *enemy){
-	caster->setHp(caster->getHp()+value);
+	caster->setHp(caster->getHp()+8);
 	return 1;
 }
 
-int Mend::getValue(){return value;}
-
-Mend::Mend(int val):Spell(string("Mend"),0){value = val;}
+Mend::Mend():Spell(string("Mend"),0){}
 
 
 

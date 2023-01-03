@@ -21,29 +21,23 @@ public:
 // Damaging spells
 
 class Fireball: public Spell{
-    static int damage;
 public:
 		Fireball();
     int cast(Humanoid *caster, Creature* enemy);
-    int getDamage() const;
 };
 
 class PoisonGas: public Spell{
-    static int damage;
 public:
     int cast(Humanoid *caster, Creature* enemy);
     PoisonGas(int duration);
-    int getDamage() const;
 };
 
 //Healing Spell
 
 class Mend: public Spell{
-	int value;
 public:
 	int cast(Humanoid *caster, Creature *enemy);
-	Mend(int damage);
-	int getValue();
+	Mend();
 };
 
 // Debuff spells

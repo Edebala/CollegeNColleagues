@@ -1,0 +1,9 @@
+24
+30
+5
+Diamond_Chestplate 3
+Diamond_Sword 4
+HPPoti HealingPotion 7 5
+Fireball Fireball 
+Poison_Gas PoisonGas 4
+Mend Mend

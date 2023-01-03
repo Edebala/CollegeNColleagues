@@ -41,3 +41,8 @@ using namespace std;
 #include "UIBox.h"
 #include "FightLog.h"
 #include "Teleporter.h"
+
+int mainMenu(Camera*);
+int getMoveChoice(Camera* camera,FightLog* log);
+int getInventoryChoice(Humanoid* player,Camera* camera);
+int characterCreation(Camera* camera);

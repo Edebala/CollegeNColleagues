@@ -4,18 +4,14 @@
 //
 // Item parent class implementations
 
-Item::Item(const string& name): Slot(name){
-}
-
-string Item::getName(){
-    return this->name;
+Item::Item(string name): Slot(name){
 }
 
 bool Item::isSpell(){return false;}
 
 // Throwable class implementations
 
-Throwable::Throwable(const string& name, int damage) : Item(name) {
+Throwable::Throwable(string name, int damage) : Item(name) {
     this->damage = damage;
 }
 

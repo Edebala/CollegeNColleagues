@@ -2,7 +2,7 @@
 
 // Armor class implementations
 
-Armor::Armor(const string& name, int def) : Item(name) {
+Armor::Armor(string name, int def) : Item(name) {
     defense = def;
 }
 

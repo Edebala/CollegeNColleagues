@@ -38,10 +38,10 @@ protected:
 		vector<Effect*> effects;
     //Inventory * inventory;
 public:
-    Creature(const string& name, int hp, int maxHp, int strength,vector<Effect*> effect);
+    Creature(string name, int hp, int maxHp, int strength,vector<Effect*> effect);
     Creature();
 	// setters
-	void setName(const string& name);
+	void setName(string name);
     void setHp(int hp);
     void setMaxHp(int maxHp);
     void setStrength(int strength);
@@ -62,12 +62,13 @@ public:
 };
 
 class Humanoid : public Creature{
-    Armor * armor = nullptr;
-    Weapon * weapon = nullptr;
+  Armor * armor = nullptr;
+  Weapon * weapon = nullptr;
 	Inventory * inventory;
 public:
-    Humanoid(const string& name, int hp, int maxHp, int strength,vector<Effect*>,Armor *armor, Weapon *weapon);
-    Humanoid(string fileName);
+  Humanoid(string name, int hp, int maxHp, int strength,vector<Effect*>,Armor *armor, Weapon *weapon);
+  Humanoid(string fileName);
+	void Save(string fileName);
 
 	//setters
   void setArmor(Armor* armor);
@@ -76,8 +77,8 @@ public:
 	Inventory* getInventory() const;
 
 	// getters
-    Weapon* getWeapon() const;
-    Armor* getArmor() const;
+  Weapon* getWeapon() const;
+  Armor* getArmor() const;
 	//actions
 	bool attack(Creature *enemy) const;
 	bool use(Slot*, Creature*);

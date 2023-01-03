@@ -9,12 +9,9 @@ class Slot;
 using namespace std;
 
 class Item: public Slot{
-    string name;
-protected:
-    Item(const string& name);
+public:
+    Item(string);
 		bool isSpell();
-    string getName();
-    void setName(const string& name);
 		virtual int use(Humanoid* user,Creature* Enemy)=0;
 };
 
@@ -25,7 +22,7 @@ protected:
 class Throwable: public Item{
     int damage = 0;
 public:
-    Throwable(const string& name, int damage);
+    Throwable(string, int damage);
     int getDamage() const;
     int use(Humanoid* user,Creature *enemy) const;
 };
