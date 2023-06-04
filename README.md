@@ -25,7 +25,7 @@ We used C++ as programing language, and SDL(Simple DirectMedia Layer) free and o
 `sudo apt install libsdl2-ttf-dev`
 
 ### To SDL install on a Arch Linux system follow these instructions
-`sudo pacman -S sdl2 2.26.1-1`
+`sudo pacman -S --needed git && git clone https://aur.archlinux.org/sdl.git && cd sdl && makepkg -si`
 
 ### For windows here is a link for SDL2 setup
 https://www.matsson.com/prog/sdl2-mingw-w64-tutorial.php
